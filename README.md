@@ -7,7 +7,7 @@ This project serves as an excellent template for those wanting to develop cross-
 
 ## Graphics
 
-The graphics used in Tappy Plane are taken directly from Kenney's generous Public Domain Tappy Plane graphic pack. You can check that out here: http://opengameart.org/content/tappy-plane
+Thanks goes to Kenney at <a href="http://kenney.nl/" target="_blank">www.kenney.nl</a> for this awesome set of free graphics!
 
 ## Setup Instructions for Android/iOS
 
