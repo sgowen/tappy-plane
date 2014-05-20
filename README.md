@@ -5,6 +5,10 @@ A lightweight cross-platform Flappy Bird clone for Android, iOS, and Windows Pho
 In this game, you tap to control a colorful plane through a cave!
 This project serves as an excellent template for those wanting to develop cross-platform games for mobile without relying on cross-platform frameworks. It uses precompiler directives to intuitively switch between OpenGL ES and Direct3D rendering. Roughly 90% of the game is written in C++. The other 10% of the game is a reusable wrapper layer written in Java for Android, Objective-C for iOS, and C# for Windows Phone 8.
 
+## Graphics
+
+The graphics used in Tappy Plane are taken directly from Kenney's generous Public Domain Tappy Plane graphic pack. You can check that out here: http://opengameart.org/content/tappy-plane
+
 ## Setup Instructions for Android/iOS
 
 1. Download version **1.6.8** of the libpng library from http://sourceforge.net/projects/libpng/files/libpng16/older-releases/1.6.8/
