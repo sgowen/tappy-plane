@@ -46,3 +46,11 @@ local.properties
 # Xcode
 *.xcuserdatad/
 xcshareddata/
+
+# Visual Studio
+*.user
+*.*sdf
+ARM/
+Debug/
+DirectXTK/
+!DirectXTK/DirectXTK_readme.txt
