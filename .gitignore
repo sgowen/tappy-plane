@@ -1,47 +1,27 @@
 # Mac
 .DS_Store
 
-# built application files
-*.apk
-*.ap_
-
-# files for the dex VM
-*.dex
-
-# Java class files
-*.class
-
-# generated files
-bin/
-gen/
-*.class
-obj/
-armeabi/
-armeabi-v7a/
-mips/
-x86/
+# DirectXTK
+DirectXTK/
+!DirectXTK/DirectXTK_readme.txt
 
 # libpng
 libpng/
 !libpng/Android.mk
 !libpng/libpng_readme.txt
 
-# Local configuration file (sdk path, etc)
-local.properties
-
-# Eclipse project files
-#.classpath
-#.project
-#project.properties
-
-# Android Studio
-build/
-.idea/
-.gradle/
-local.properties
-*.iml
-*.lock
-*.bin
+# Eclipse
+bin/
+gen/
+*.class
+*.dex
+*.apk
+*.ap_
+obj/
+armeabi/
+armeabi-v7a/
+mips/
+x86/
 
 # Xcode
 *.xcuserdatad/
@@ -50,8 +30,6 @@ xcshareddata/
 # Visual Studio
 *.user
 *.*sdf
+*.suo
 ARM/
 Debug/
-DirectXTK/
-!DirectXTK/DirectXTK_readme.txt
-*.suo
