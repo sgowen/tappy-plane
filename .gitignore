@@ -16,6 +16,15 @@ bin/
 gen/
 *.class
 obj/
+armeabi/
+armeabi-v7a/
+mips/
+x86/
+
+# libpng
+libpng/
+!libpng/Android.mk
+!libpng/libpng_readme.txt
 
 # Local configuration file (sdk path, etc)
 local.properties
