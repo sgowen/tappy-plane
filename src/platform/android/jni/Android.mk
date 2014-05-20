@@ -1,0 +1,53 @@
+NDKROOT := /Applications/adt-bundle-mac-x86_64-20131030/android-ndk-r9c
+LOCAL_PATH := $(call my-dir)
+PROJECT_ROOT_PATH := $(LOCAL_PATH)/../../../
+CORE_RELATIVE_PATH := ../../../core/
+COMMON_RELATIVE_PATH := ../../../platform/common/
+
+include $(CLEAR_VARS)
+
+LOCAL_MODULE    := game
+LOCAL_CFLAGS    := -Wall -Wextra -DTECHNE_GAMES_OPENGL_ES -DTECHNE_GAMES_OPENGL_ANDROID
+
+LOCAL_SRC_FILES := platform_asset_utils.c
+LOCAL_SRC_FILES += platform_log.c
+LOCAL_SRC_FILES += renderer_wrapper.cpp
+LOCAL_SRC_FILES += $(CORE_RELATIVE_PATH)/asset_utils.c
+LOCAL_SRC_FILES += $(CORE_RELATIVE_PATH)/Assets.cpp
+LOCAL_SRC_FILES += $(CORE_RELATIVE_PATH)/DynamicGameObject.cpp
+LOCAL_SRC_FILES += $(CORE_RELATIVE_PATH)/Font.cpp
+LOCAL_SRC_FILES += $(CORE_RELATIVE_PATH)/game.cpp
+LOCAL_SRC_FILES += $(CORE_RELATIVE_PATH)/GameButton.cpp
+LOCAL_SRC_FILES += $(CORE_RELATIVE_PATH)/GameObject.cpp
+LOCAL_SRC_FILES += $(CORE_RELATIVE_PATH)/GameScreen.cpp
+LOCAL_SRC_FILES += $(CORE_RELATIVE_PATH)/Glove.cpp
+LOCAL_SRC_FILES += $(CORE_RELATIVE_PATH)/image.c
+LOCAL_SRC_FILES += $(CORE_RELATIVE_PATH)/Line.cpp
+LOCAL_SRC_FILES += $(CORE_RELATIVE_PATH)/Obstacle.cpp
+LOCAL_SRC_FILES += $(CORE_RELATIVE_PATH)/OpenGLESGameScreen.cpp
+LOCAL_SRC_FILES += $(CORE_RELATIVE_PATH)/OpenGLESRenderer.cpp
+LOCAL_SRC_FILES += $(CORE_RELATIVE_PATH)/OverlapTester.cpp
+LOCAL_SRC_FILES += $(CORE_RELATIVE_PATH)/PlaneDynamicGameObject.cpp
+LOCAL_SRC_FILES += $(CORE_RELATIVE_PATH)/PuffCloud.cpp
+LOCAL_SRC_FILES += $(CORE_RELATIVE_PATH)/Rectangle.cpp
+LOCAL_SRC_FILES += $(CORE_RELATIVE_PATH)/Renderer.cpp
+LOCAL_SRC_FILES += $(CORE_RELATIVE_PATH)/SpikeGameObject.cpp
+LOCAL_SRC_FILES += $(CORE_RELATIVE_PATH)/SpriteBatcher.cpp
+LOCAL_SRC_FILES += $(CORE_RELATIVE_PATH)/texture.c
+LOCAL_SRC_FILES += $(CORE_RELATIVE_PATH)/TextureRegion.cpp
+LOCAL_SRC_FILES += $(CORE_RELATIVE_PATH)/TouchEvent.cpp
+LOCAL_SRC_FILES += $(CORE_RELATIVE_PATH)/Triangle.cpp
+LOCAL_SRC_FILES += $(CORE_RELATIVE_PATH)/Vector2D.cpp
+LOCAL_SRC_FILES += $(CORE_RELATIVE_PATH)/Vertices2D.cpp
+LOCAL_SRC_FILES += $(CORE_RELATIVE_PATH)/World.cpp
+LOCAL_SRC_FILES += $(COMMON_RELATIVE_PATH)/platform_file_utils.c
+
+LOCAL_C_INCLUDES := $(PROJECT_ROOT_PATH)/platform/common/
+LOCAL_C_INCLUDES += $(PROJECT_ROOT_PATH)/core/
+LOCAL_STATIC_LIBRARIES := libpng
+LOCAL_LDLIBS := -lGLESv1_CM -llog -landroid
+
+include $(BUILD_SHARED_LIBRARY)
+
+$(call import-add-path,$(PROJECT_ROOT_PATH)/3rdparty)
+$(call import-module,libpng)
