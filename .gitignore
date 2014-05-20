@@ -54,3 +54,4 @@ ARM/
 Debug/
 DirectXTK/
 !DirectXTK/DirectXTK_readme.txt
+*.suo
