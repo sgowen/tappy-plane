@@ -42,3 +42,7 @@ local.properties
 *.iml
 *.lock
 *.bin
+
+# Xcode
+*.xcuserdatad/
+xcshareddata/
