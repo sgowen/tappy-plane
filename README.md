@@ -22,7 +22,7 @@ Thanks goes to Kenney at <a href="http://kenney.nl/" target="_blank">www.kenney.
 2. Open src/platform/android/jni/Android.mk
 3. Edit the first line (starting with NDKROOT :=) to point to your Android NDK installation root directory
 4. Open ADT Eclipse > right-click your workspace > Import... > Existing Projects into Workspace > Browse... > tappy-plane > Finish
-5. The tappy-plane Eclipse project is bundled with an NDK builder, but for it to work, you will need to point it to where your **ndk-build** is installed. Right-click the tappy-plane project > Builders > Tappy Plane NDK Builder > Edit... > Location: > set the path to your **ndk-build** here. It is located in the root of your Android NDK installation directory.
+5. The tappy-plane Eclipse project is bundled with an NDK builder, but for it to work, you will need to point it to where your **ndk-build** is installed. Right-click the tappy-plane project > Properties > Builders > Tappy Plane NDK Builder > Edit... > Location: > set the path to your **ndk-build** here. It is located in the root of your Android NDK installation directory.
 
 ## Setup Instructions for Windows Phone 8
 
