@@ -2,11 +2,11 @@
 .DS_Store
 
 # DirectXTK
-DirectXTK/*
+DirectXTK/
 !DirectXTK/DirectXTK_readme.txt
 
 # libpng
-libpng/*
+libpng/
 !libpng/Android.mk
 !libpng/libpng_readme.txt
 
