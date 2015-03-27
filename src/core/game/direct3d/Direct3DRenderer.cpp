@@ -24,17 +24,7 @@
 #include "Direct3DSpriteBatcher.h"
 #include "Direct3DLineBatcher.h"
 #include "Direct3DCircleBatcher.h"
-#include "BackgroundElements.h"
-#include "TimeButton.h"
-#include "Dialog.h"
-#include "TouchCursor.h"
-#include "Text.h"
-#include "Asteroid.h"
-#include "ShipModule.h"
-#include "CoreShipModule.h"
-#include "TowerCursor.h"
 #include "Rectangle.h"
-#include "TowerOptionButton.h"
 #include "Circle.h"
 #include "DirectXManager.h"
 
@@ -44,29 +34,17 @@
 using namespace DirectX;
 
 ID3D11ShaderResourceView *m_backgroundShaderResourceView;
-ID3D11ShaderResourceView *m_creepsShaderResourceView;
-ID3D11ShaderResourceView *m_spawnPlatformsProjectilesTowersShaderResourceView;
-ID3D11ShaderResourceView *m_looseObjectsExplosionsShaderResourceView;
-ID3D11ShaderResourceView *m_topLevelUiShaderResourceView;
+ID3D11ShaderResourceView *m_gameShaderResourceView;
 
 Direct3DRenderer::Direct3DRenderer() : Renderer()
 {
 	m_spriteBatcher = std::unique_ptr<Direct3DSpriteBatcher>(new Direct3DSpriteBatcher());
-	m_rectangleBatcher = std::unique_ptr<Direct3DRectangleBatcher>(new Direct3DRectangleBatcher(false));
-	m_lineBatcher = std::unique_ptr<Direct3DLineBatcher>(new Direct3DLineBatcher());
-	m_circleBatcher = std::unique_ptr<Direct3DCircleBatcher>(new Direct3DCircleBatcher());
 
-	CreateDDSTextureFromFile(DXManager->m_device, L"Assets\\background_texture.dds", NULL, &m_backgroundShaderResourceView, NULL);
-	CreateDDSTextureFromFile(DXManager->m_device, L"Assets\\creeps.dds", NULL, &m_creepsShaderResourceView, NULL);
-	CreateDDSTextureFromFile(DXManager->m_device, L"Assets\\spawn_platforms_projectiles_towers.dds", NULL, &m_spawnPlatformsProjectilesTowersShaderResourceView, NULL);
-	CreateDDSTextureFromFile(DXManager->m_device, L"Assets\\loose_objects_explosions.dds", NULL, &m_looseObjectsExplosionsShaderResourceView, NULL);
-	CreateDDSTextureFromFile(DXManager->m_device, L"Assets\\top_level_ui.dds", NULL, &m_topLevelUiShaderResourceView, NULL);
+	CreateDDSTextureFromFile(DXManager->m_device, L"Assets\\background.dds", NULL, &m_backgroundShaderResourceView, NULL);
+	CreateDDSTextureFromFile(DXManager->m_device, L"Assets\\game.dds", NULL, &m_gameShaderResourceView, NULL);
 
 	m_backgroundTexture = std::unique_ptr<TextureWrapper>(new TextureWrapper(m_backgroundShaderResourceView));
-	m_creepsTexture = std::unique_ptr<TextureWrapper>(new TextureWrapper(m_creepsShaderResourceView));
-	m_spawnPlatformsProjectilesTowersTexture = std::unique_ptr<TextureWrapper>(new TextureWrapper(m_spawnPlatformsProjectilesTowersShaderResourceView));
-	m_looseObjectsTexture = std::unique_ptr<TextureWrapper>(new TextureWrapper(m_looseObjectsExplosionsShaderResourceView));
-	m_topLevelUiTexture = std::unique_ptr<TextureWrapper>(new TextureWrapper(m_topLevelUiShaderResourceView));
+	m_gameTexture = std::unique_ptr<TextureWrapper>(new TextureWrapper(m_gameShaderResourceView));
 }
 
 void Direct3DRenderer::clearScreenWithColor(float r, float g, float b, float a)
@@ -92,8 +70,5 @@ void Direct3DRenderer::endFrame()
 void Direct3DRenderer::cleanUp()
 {
 	m_backgroundShaderResourceView->Release();
-	m_creepsShaderResourceView->Release();
-	m_spawnPlatformsProjectilesTowersShaderResourceView->Release();
-	m_looseObjectsExplosionsShaderResourceView->Release();
-	m_topLevelUiShaderResourceView->Release();
+	m_gameShaderResourceView->Release();
 }

@@ -49,7 +49,6 @@ namespace TappyPlane
 
             // Set render resolution to the full native resolution
             m_d3dInterop.RenderResolution = m_d3dInterop.NativeResolution;
-            m_d3dInterop.screenType = 1;
 
             // Hook-up native component to DrawingSurface
             if (m_d3dContentProvider == null)

@@ -31,6 +31,7 @@
 #include "GameConstants.h"
 #include "ResourceConstants.h"
 #include "DirectXManager.h"
+#include "GameButton.h"
 
 Direct3DGameScreen::Direct3DGameScreen() : GameScreen()
 {

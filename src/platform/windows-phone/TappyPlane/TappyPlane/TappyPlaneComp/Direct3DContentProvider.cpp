@@ -3,7 +3,7 @@
 //  tappyplane
 //
 //  Created by Stephen Gowen on 2/22/14.
-//  Copyright (c) 2014 Gowen Game Dev. All rights reserved.
+//  Copyright (c) 2015 Gowen Game Dev. All rights reserved.
 //
 
 #include "pch.h"
@@ -28,6 +28,7 @@
 #include "Rectangle.h"
 #include "Circle.h"
 #include "GameSound.h"
+#include "GameButton.h"
 
 using namespace TappyPlaneComp;
 

@@ -3,7 +3,7 @@
 //  tappyplane
 //
 //  Created by Stephen Gowen on 2/22/14.
-//  Copyright (c) 2014 Gowen Game Dev. All rights reserved.
+//  Copyright (c) 2015 Gowen Game Dev. All rights reserved.
 //
 
 #include "pch.h"
@@ -32,6 +32,7 @@
 #include "Circle.h"
 #include "GameSound.h"
 #include "ScreenState.h"
+#include "GameButton.h"
 
 #include <string.h>
 #include <sstream>
@@ -161,9 +162,6 @@ namespace TappyPlaneComp
 		int screenState = m_gameScreen->getState();
 		switch (screenState)
 		{
-		case SCREEN_STATE_WAVE_COMPLETED:
-			onWaveCompleted();
-			m_gameScreen->clearState();
 		case SCREEN_STATE_NORMAL:
 			for (std::vector<TouchEvent>::iterator itr = m_touchEvents.begin(); itr != m_touchEvents.end(); itr++)
 			{
@@ -180,12 +178,24 @@ namespace TappyPlaneComp
 			m_timer->Update();
 			m_gameScreen->update(m_timer->Delta, m_touchEvents);
 			break;
-		case SCREEN_STATE_GAME_OVER:
-			m_winRtCallback->Invoke("GAME_OVER", "NULL");
-			m_gameScreen->clearState();
+		case SCREEN_STATE_RESET:
+			m_gameScreen = std::unique_ptr<Direct3DGameScreen>(new Direct3DGameScreen());
+			m_gameScreen->load(m_renderResolution.Width, m_renderResolution.Height, (int)WindowBounds.Width, (int)WindowBounds.Height);
+			m_gameScreen->onResume();
+
+			// Restart timer after renderer has finished initializing.
+			m_timer->Reset();
 			break;
 		case SCREEN_STATE_EXIT:
-			m_winRtCallback->Invoke("EXIT", "NULL");
+			// Exiting Status
+			break;
+		case SCREEN_STATE_GAME_OVER:
+			m_gameScreen->clearState();
+			m_winRtCallback->Invoke("GAME_OVER", "NULL");
+			break;
+		case SCREEN_STATE_LEADERBOARDS:
+			m_gameScreen->clearState();
+			// TODO, show Leaderboards here if you want
 			break;
 		default:
 			break;

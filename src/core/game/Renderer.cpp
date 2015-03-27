@@ -59,7 +59,7 @@ void Renderer::renderWorldForeground(World &world, Glove &glove, float titleAlph
         
         for (std::vector<std::unique_ptr<PuffCloud>>::iterator itr = world.getPlane().getPuffClouds().begin(); itr != world.getPlane().getPuffClouds().end(); itr++)
         {
-            Color puffCloudColor = { 1, 1, 1, (*itr)->getAlpha() };
+			Color puffCloudColor = Color(1, 1, 1, (*itr)->getAlpha());
             m_spriteBatcher->drawSprite((*itr)->getPosition().getX(), (*itr)->getPosition().getY(), (*itr)->getWidth(), (*itr)->getHeight(), (*itr)->getAngle(), puffCloudColor, Assets::getPuffLargeTextureRegion());
         }
         
@@ -74,7 +74,7 @@ void Renderer::renderWorldForeground(World &world, Glove &glove, float titleAlph
     
     if(titleAlpha > 0)
     {
-        Color titleColor = { 1, 1, 1, titleAlpha };
+        Color titleColor = Color(1, 1, 1, titleAlpha);
         
         m_spriteBatcher->beginBatch();
         m_spriteBatcher->drawSprite(TITLE_X, TITLE_Y, TITLE_WIDTH, TITLE_HEIGHT, 0, titleColor, Assets::getTitleTextureRegion());
@@ -89,7 +89,7 @@ void Renderer::renderWorldForeground(World &world, Glove &glove, float titleAlph
         std::stringstream ss;
         ss << world.getScore();
         std::string score = ss.str();
-        static Color scoreColor = { 1, 1, 1, 1 };
+		static Color scoreColor = Color(1, 1, 1, 1);
         
         m_spriteBatcher->beginBatch();
         m_font->renderText(*m_spriteBatcher, score, SCORE_FONT_X, SCORE_FONT_Y, SCORE_FONT_WIDTH, SCORE_FONT_HEIGHT, scoreColor, true, false, 16);
@@ -128,7 +128,7 @@ void Renderer::renderWorldGameOver(World &world, GameButton &okButton, GameButto
     ss2 << bestScore;
     std::string bestScoreString = ss2.str();
     
-    static Color scoreColor = { 1, 1, 1, 1 };
+	static Color scoreColor = Color(1, 1, 1, 1);
     
     m_spriteBatcher->beginBatch();
     m_font->renderText(*m_spriteBatcher, scoreString, SCORE_FONT_IN_WINDOW_X, SCORE_FONT_IN_WINDOW_Y, FONT_IN_WINDOW_WIDTH, FONT_IN_WINDOW_HEIGHT, scoreColor, false, true, 16);
