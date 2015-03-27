@@ -9,7 +9,6 @@
 #pragma once
 
 #include "GameScreen.h"
-#include "MediaEnginePlayer.h"
 #include <memory>
 
 class GameSound;
@@ -17,15 +16,13 @@ class GameSound;
 class Direct3DGameScreen : public GameScreen
 {
 public:
-	Direct3DGameScreen(int levelIndex, int difficulty);
+	Direct3DGameScreen();
 
 	void load(float deviceScreenWidth, float deviceScreenHeight, int deviceScreenDpWidth, int deviceScreenDpHeight);
 
 	void updateForRenderResolutionChange(float width, float height);
 
 	void handleSound();
-
-	void handleMusic();
 
 	void unload();
 
@@ -40,23 +37,10 @@ public:
 	virtual bool handleOnBackPressed();
 
 private:
-	std::unique_ptr<MediaEnginePlayer> m_mediaPlayer;
-	std::unique_ptr<GameSound> m_acidDropSound;
-	std::unique_ptr<GameSound> m_beginWaveSound;
-	std::unique_ptr<GameSound> m_creepDeathSound;
-	std::unique_ptr<GameSound> m_dragTowerSound;
-	std::unique_ptr<GameSound> m_electricBoltSound;
-	std::unique_ptr<GameSound> m_explosionSound;
-	std::unique_ptr<GameSound> m_fireBoltSound;
-	std::unique_ptr<GameSound> m_goalHitSound;
-	std::unique_ptr<GameSound> m_iceBlastSound;
-	std::unique_ptr<GameSound> m_lazerBeamSound;
-	std::unique_ptr<GameSound> m_missileLaunchSound;
-	std::unique_ptr<GameSound> m_placeTowerSound;
-	std::unique_ptr<GameSound> m_plasmaBangSound;
-	std::unique_ptr<GameSound> m_sellTowerSound;
-	std::unique_ptr<GameSound> m_towerUpgradedSound;
-	std::unique_ptr<GameSound> m_toxicCloudSound;
+	std::unique_ptr<GameSound> m_ascendSound;
+	std::unique_ptr<GameSound> m_scoreSound;
+	std::unique_ptr<GameSound> m_hitSound;
+	std::unique_ptr<GameSound> m_landSound;
 
 	float m_fGameScreenToDeviceScreenWidthRatio;
 	float m_fGameScreenToDeviceScreenHeightRatio;

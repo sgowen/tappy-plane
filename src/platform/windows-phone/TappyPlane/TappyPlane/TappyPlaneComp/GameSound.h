@@ -1,9 +1,9 @@
 //
 //  GameSound.h
-//  TappyPlaneComp
+//  gowengamedev-framework
 //
-//  Created by Stephen Gowen on 11/27/13.
-//  Copyright (c) 2013 Techne Games. All rights reserved.
+//  Created by Stephen Gowen on 2/22/14.
+//  Copyright (c) 2013 Gowen Game Dev. All rights reserved.
 //
 
 #pragma once

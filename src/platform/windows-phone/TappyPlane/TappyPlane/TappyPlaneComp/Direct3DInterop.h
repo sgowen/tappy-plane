@@ -1,9 +1,17 @@
+//
+//  Direct3DInterop.h
+//  tappyplane
+//
+//  Created by Stephen Gowen on 2/22/14.
+//  Copyright (c) 2014 Gowen Game Dev. All rights reserved.
+//
+
 #pragma once
 
 #include "pch.h"
 #include "BasicTimer.h"
-#include "Direct3DBase.h"
 #include "Direct3DGameScreen.h"
+#include "TouchEvent.h"
 #include <DrawingSurfaceNative.h>
 
 namespace TappyPlaneComp
@@ -28,24 +36,20 @@ namespace TappyPlaneComp
 
 		bool onBackPressed();
 
-		void setBestScore(int bestScore);
-
 		int getScore();
 
-		// Add callback method here to be invoked when achievements are earned
+		// Add callback method here to be invoked when a chat message needs to be sent
 		void setWinRtCallback(WinRtCallback^ callback);
-
-		property int screenType
-		{
-			int get(){ return m_screenType; }
-			void set(int screenType);
-		}
 
 		property Windows::Foundation::Size WindowBounds;
 		property Windows::Foundation::Size NativeResolution;
 		property Windows::Foundation::Size RenderResolution
 		{
-			Windows::Foundation::Size get(){ return m_renderResolution; }
+			Windows::Foundation::Size get()
+			{
+				return m_renderResolution;
+			}
+
 			void set(Windows::Foundation::Size renderResolution);
 		}
 
@@ -65,9 +69,14 @@ namespace TappyPlaneComp
 	private:
 		WinRtCallback^ m_winRtCallback;
 		std::unique_ptr<Direct3DGameScreen> m_gameScreen;
-		Direct3DBase^ m_direct3DBase;
 		BasicTimer^ m_timer;
 		Windows::Foundation::Size m_renderResolution;
-		int m_screenType;
+		std::vector<TouchEvent> m_touchEvents;
+		std::vector<TouchEvent> m_touchEventsPool;
+		std::vector<TouchEvent> m_touchEventsBuffer;
+
+		void addTouchEventForType(Touch_Type touchType, float x, float y);
+
+		TouchEvent newTouchEvent();
 	};
 }

@@ -3,7 +3,7 @@
 //  tappyplane
 //
 //  Created by Stephen Gowen on 2/25/14.
-//  Copyright (c) 2014 Techne Games. All rights reserved.
+//  Copyright (c) 2014 Gowen Game Dev. All rights reserved.
 //
 
 #pragma once
