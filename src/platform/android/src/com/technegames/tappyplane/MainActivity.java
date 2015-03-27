@@ -5,143 +5,113 @@ import android.app.Activity;
 import android.graphics.Point;
 import android.media.AudioManager;
 import android.opengl.GLSurfaceView;
-import android.os.Build;
-import android.os.Build.VERSION;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 public final class MainActivity extends Activity
 {
-	private RendererWrapper rendererWrapper;
-	private GLSurfaceView glSurfaceView;
-	boolean isAttemptingToSubmitAndOrViewLeaderboard = false;
+    private static final Logger logger = new Logger(MainActivity.class);
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
+    protected RendererWrapper _rendererWrapper;
+    private GLSurfaceView _glSurfaceView;
 
-		setContentView(R.layout.activity_main);
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
 
-		Point size = getScreenSize();
+        // Do the stuff that initialize() would do for you
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
 
-		Log.d("Tappy Plane", "dimension " + size.x + " x " + size.y);
+        setContentView(R.layout.activity_main);
 
-		rendererWrapper = new RendererWrapper(this, size.x, size.y);
-		glSurfaceView = new GLSurfaceView(this);
-		glSurfaceView.setEGLContextClientVersion(1);
-		glSurfaceView.setRenderer(rendererWrapper);
+        Point size = ViewUtils.getScreenSize(this);
 
-		LinearLayout gameContainer = (LinearLayout) findViewById(R.id.game);
-		gameContainer.addView(glSurfaceView);
+        if (Logger.isDebugEnabled())
+        {
+            logger.debug("dimension " + size.x + " x " + size.y);
+        }
 
-		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-		getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
-		setVolumeControlStream(AudioManager.STREAM_MUSIC);
+        _rendererWrapper = new RendererWrapper(this, size.x, size.y);
+        _glSurfaceView = new GLSurfaceView(this);
+        _glSurfaceView.setEGLContextClientVersion(2);
+        _glSurfaceView.setRenderer(_rendererWrapper);
 
-		glSurfaceView.setOnTouchListener(new OnTouchListener()
-		{
-			@Override
-			public boolean onTouch(View v, final MotionEvent event)
-			{
-				if (event != null)
-				{
-					if (event.getAction() == MotionEvent.ACTION_DOWN)
-					{
-						glSurfaceView.queueEvent(new Runnable()
-						{
-							@Override
-							public void run()
-							{
-								rendererWrapper.handleTouchDown(event.getX(), event.getY());
-							}
-						});
-					}
-					else if (event.getAction() == MotionEvent.ACTION_MOVE)
-					{
-						glSurfaceView.queueEvent(new Runnable()
-						{
-							@Override
-							public void run()
-							{
-								rendererWrapper.handleTouchDragged(event.getX(), event.getY());
-							}
-						});
-					}
-					else if (event.getAction() == MotionEvent.ACTION_UP)
-					{
-						glSurfaceView.queueEvent(new Runnable()
-						{
-							@Override
-							public void run()
-							{
-								rendererWrapper.handleTouchUp(event.getX(), event.getY());
-							}
-						});
-					}
+        LinearLayout gameContainer = (LinearLayout) findViewById(R.id.game);
+        gameContainer.addView(_glSurfaceView);
 
-					return true;
-				}
-				else
-				{
-					return false;
-				}
-			}
-		});
-	}
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
-	@Override
-	protected void onResume()
-	{
-		super.onResume();
+        _glSurfaceView.setOnTouchListener(new OnTouchListener()
+        {
+            @SuppressLint("ClickableViewAccessibility")
+            @Override
+            public boolean onTouch(View v, final MotionEvent event)
+            {
+                synchronized (this)
+                {
+                    int action = event.getAction() & MotionEvent.ACTION_MASK;
+                    int pointerIndex = (event.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK) >> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
 
-		glSurfaceView.onResume();
-		rendererWrapper.onResume();
-	}
+                    switch (action)
+                    {
+                        case MotionEvent.ACTION_DOWN:
+                        case MotionEvent.ACTION_POINTER_DOWN:
+                            _rendererWrapper.handleTouchDown(event.getX(pointerIndex), event.getY(pointerIndex));
+                            break;
+                        case MotionEvent.ACTION_UP:
+                        case MotionEvent.ACTION_POINTER_UP:
+                        case MotionEvent.ACTION_CANCEL:
+                            _rendererWrapper.handleTouchUp(event.getX(pointerIndex), event.getY(pointerIndex));
+                            break;
+                        case MotionEvent.ACTION_MOVE:
+                            for (int i = 0; i < event.getPointerCount(); i++)
+                            {
+                                pointerIndex = i;
+                                _rendererWrapper.handleTouchDragged(event.getX(pointerIndex), event.getY(pointerIndex));
+                            }
+                            break;
+                    }
 
-	@Override
-	protected void onPause()
-	{
-		super.onPause();
+                    return true;
+                }
+            }
+        });
+    }
 
-		rendererWrapper.onPause(isFinishing());
-		glSurfaceView.onPause();
-	}
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
 
-	@Override
-	public void onBackPressed()
-	{
-		if (rendererWrapper.handleOnBackPressed())
-		{
-			return;
-		}
+        _glSurfaceView.onResume();
+        _rendererWrapper.onResume();
+    }
 
-		super.onBackPressed();
-	}
+    @Override
+    protected void onPause()
+    {
+        _rendererWrapper.onPause();
+        _glSurfaceView.onPause();
 
-	@SuppressLint("NewApi")
-	@SuppressWarnings("deprecation")
-	private Point getScreenSize()
-	{
-		Display display = getWindowManager().getDefaultDisplay();
-		Point size = new Point();
+        super.onPause();
+    }
 
-		if (VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2)
-		{
-			display.getSize(size);
-		}
-		else
-		{
-			size.x = display.getWidth();
-			size.y = display.getHeight();
-		}
+    @Override
+    public void onBackPressed()
+    {
+        if (_rendererWrapper.handleOnBackPressed())
+        {
+            return;
+        }
 
-		return size;
-	}
+        super.onBackPressed();
+    }
 }

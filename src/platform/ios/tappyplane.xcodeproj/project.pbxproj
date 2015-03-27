@@ -502,10 +502,10 @@
 				BB48760A1AC5A5D200C6CCE9 /* platform_file_utils.h */,
 				BB48760B1AC5A5D200C6CCE9 /* shader.c */,
 				BB48760C1AC5A5D200C6CCE9 /* shader.h */,
-				BB48760D1AC5A5D200C6CCE9 /* texture.c */,
-				BB48760E1AC5A5D200C6CCE9 /* texture.h */,
 				BB48760F1AC5A5D200C6CCE9 /* texture_shader.fsh */,
 				BB4876101AC5A5D200C6CCE9 /* texture_shader.vsh */,
+				BB48760D1AC5A5D200C6CCE9 /* texture.c */,
+				BB48760E1AC5A5D200C6CCE9 /* texture.h */,
 			);
 			path = opengles;
 			sourceTree = "<group>";

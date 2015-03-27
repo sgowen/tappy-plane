@@ -3,6 +3,7 @@ package com.technegames.tappyplane;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
+import android.app.Activity;
 import android.opengl.GLSurfaceView.Renderer;
 import android.os.SystemClock;
 
@@ -10,218 +11,235 @@ import com.technegames.tappyplane.platform.PlatformFileUtils;
 
 public final class RendererWrapper implements Renderer
 {
-	/*
-	 * These definitions are copied directly from src/core/Assets.h
-	 */
-	private static final short ASCEND_SOUND = 1;
-	private static final short SCORE_SOUND = 2;
-	private static final short HIT_SOUND = 3;
-	private static final short LAND_SOUND = 4;
+    private static final Logger logger = new Logger(RendererWrapper.class);
 
-	private static final Logger logger = new Logger(RendererWrapper.class);
+    // Definitions from src/core/game/ResourceConstants.h
+    private static final short ASCEND_SOUND = 1;
+    private static final short SCORE_SOUND = 2;
+    private static final short HIT_SOUND = 3;
+    private static final short LAND_SOUND = 4;
 
-	static
-	{
-		System.loadLibrary("game");
-	}
+    // Definitions from src/core/game/ScreenState.h
+    private static final short SCREEN_STATE_NORMAL = 0;
+    private static final short SCREEN_STATE_RESET = 1;
+    private static final short SCREEN_STATE_EXIT = 2;
+    private static final short SCREEN_STATE_GAME_OVER = 3;
+    private static final short SCREEN_STATE_LEADERBOARDS = 4;
 
-	private final MainActivity activity;
-	private final Audio audio;
-	private final Sound ascendSound;
-	private final Sound scoreSound;
-	private final Sound hitSound;
-	private final Sound landSound;
-	private final int deviceScreenWidth;
-	private final int deviceScreenHeight;
-	private boolean isInitialized;
+    // #frames involved in average calc (suggested values 5-100)
+    private static final float movAveragePeriod = 40;
 
-	public RendererWrapper(MainActivity activity, int deviceScreenWidth, int deviceScreenHeight)
-	{
-		this.activity = activity;
-		this.audio = new Audio(activity.getAssets());
-		this.ascendSound = audio.newSound("ascend.ogg");
-		this.scoreSound = audio.newSound("score.ogg");
-		this.hitSound = audio.newSound("hit.ogg");
-		this.landSound = audio.newSound("land.ogg");
-		this.deviceScreenWidth = deviceScreenWidth;
-		this.deviceScreenHeight = deviceScreenHeight;
-		this.isInitialized = false;
-	}
+    // adjusting ratio (suggested values 0.01-0.5)
+    private static final float smoothFactor = 0.1f;
 
-	@Override
-	public void onSurfaceCreated(GL10 gl, EGLConfig config)
-	{
-		logger.debug("GL Surface created!");
+    static
+    {
+        System.loadLibrary("game");
+    }
 
-		if (!isInitialized)
-		{
-			PlatformFileUtils.init_asset_manager(activity.getAssets());
-			init();
-			isInitialized = true;
-		}
+    private final Activity activity;
+    private final int deviceScreenWidth;
+    private final int deviceScreenHeight;
+    private final Audio audio;
 
-		on_surface_created(deviceScreenWidth, deviceScreenHeight);
-	}
+    private final Sound ascendSound;
+    private final Sound scoreSound;
+    private final Sound hitSound;
+    private final Sound landSound;
 
-	@Override
-	public void onSurfaceChanged(GL10 gl, int width, int height)
-	{
-		logger.debug("GL Surface changed!");
+    private float smoothedDeltaRealTime_ms = 17.5f;
+    private float movAverageDeltaTime_ms = smoothedDeltaRealTime_ms;
+    private long lastRealTimeMeasurement_ms;
+    private boolean isInitialized;
+    private boolean _isMinimumWaveRequirementMet;
 
-		on_surface_changed(width, height, width, height);
-		on_resume();
-	}
+    public RendererWrapper(Activity activity, int deviceScreenWidth, int deviceScreenHeight)
+    {
+        this.activity = activity;
+        this.deviceScreenWidth = deviceScreenWidth;
+        this.deviceScreenHeight = deviceScreenHeight;
+        this.audio = new Audio(activity.getAssets());
 
-	// avoid GC in your threads. declare nonprimitive variables out of onDraw
-	float smoothedDeltaRealTime_ms = 17.5f; // initial value, Optionally you can save the new computed value (will change with each hardware) in Preferences to optimize the first drawing frames
-	float movAverageDeltaTime_ms = smoothedDeltaRealTime_ms; // mov Average start with default value
-	long lastRealTimeMeasurement_ms; // temporal storage for last time measurement
+        this.ascendSound = audio.newSound("ascend.ogg");
+        this.scoreSound = audio.newSound("score.ogg");
+        this.hitSound = audio.newSound("hit.ogg");
+        this.landSound = audio.newSound("land.ogg");
 
-	// smooth constant elements to play with
-	static final float movAveragePeriod = 40; // #frames involved in average calc (suggested values 5-100)
-	static final float smoothFactor = 0.1f; // adjusting ratio (suggested values 0.01-0.5)
+        this.isInitialized = false;
 
-	@Override
-	public void onDrawFrame(GL10 gl)
-	{
-		int gameState = get_state();
-		switch (gameState)
-		{
-			case 0:
-				update(smoothedDeltaRealTime_ms / 1000);
-				break;
-			case 1:
-				init();
-				break;
-			case 2:
-				activity.finish();
-				break;
-			case 3:
-				clear_state();
-				handleFinalScore();
-				break;
-			case 4:
-				clear_state();
-				// TODO, show Leaderboards here if you want
-				break;
-			default:
-				break;
-		}
+        init();
+    }
 
-		present();
-		handleSoundId(get_current_sound_id());
+    @Override
+    public void onSurfaceCreated(GL10 gl, EGLConfig config)
+    {
+        logger.debug("GL Surface created!");
 
-		// Moving average calc
-		long currTimePick_ms = SystemClock.uptimeMillis();
-		float realTimeElapsed_ms;
-		if (lastRealTimeMeasurement_ms > 0)
-		{
-			realTimeElapsed_ms = (currTimePick_ms - lastRealTimeMeasurement_ms);
-		}
-		else
-		{
-			realTimeElapsed_ms = smoothedDeltaRealTime_ms; // just the first time
-		}
-		movAverageDeltaTime_ms = (realTimeElapsed_ms + movAverageDeltaTime_ms * (movAveragePeriod - 1)) / movAveragePeriod;
+        if (!isInitialized)
+        {
+            PlatformFileUtils.init_asset_manager(activity.getAssets());
+            isInitialized = true;
+        }
 
-		// Calc a better aproximation for smooth stepTime
-		smoothedDeltaRealTime_ms = smoothedDeltaRealTime_ms + (movAverageDeltaTime_ms - smoothedDeltaRealTime_ms) * smoothFactor;
+        on_surface_created(deviceScreenWidth, deviceScreenHeight);
+    }
 
-		lastRealTimeMeasurement_ms = currTimePick_ms;
-	}
+    @Override
+    public void onSurfaceChanged(GL10 gl, int width, int height)
+    {
+        logger.debug("GL Surface changed!");
 
-	public void onResume()
-	{
-		on_resume();
-	}
+        on_surface_changed(width, height, width, height);
+        on_resume();
+    }
 
-	public void onPause(final boolean isFinishing)
-	{
-		on_pause();
-	}
+    @Override
+    public void onDrawFrame(GL10 gl)
+    {
+        int gameState = get_state();
+        switch (gameState)
+        {
+            case SCREEN_STATE_NORMAL:
+                update(smoothedDeltaRealTime_ms / 1000);
+                break;
+            case SCREEN_STATE_RESET:
+                init();
+                break;
+            case SCREEN_STATE_EXIT:
+                activity.finish();
+                break;
+            case SCREEN_STATE_GAME_OVER:
+                clear_state();
+                handleFinalScore();
+                break;
+            case SCREEN_STATE_LEADERBOARDS:
+                clear_state();
+                // TODO, show Leaderboards here if you want
+                break;
+            default:
+                break;
+        }
 
-	public void handleTouchDown(float rawX, float rawY)
-	{
-		on_touch_down(rawX, rawY);
-	}
+        present();
+        handleSound();
 
-	public void handleTouchDragged(float rawX, float rawY)
-	{
-		on_touch_dragged(rawX, rawY);
-	}
+        // Moving average calc
+        long currTimePick_ms = SystemClock.uptimeMillis();
+        float realTimeElapsed_ms;
+        if (lastRealTimeMeasurement_ms > 0)
+        {
+            realTimeElapsed_ms = (currTimePick_ms - lastRealTimeMeasurement_ms);
+        }
+        else
+        {
+            realTimeElapsed_ms = smoothedDeltaRealTime_ms; // just the first
+                                                           // time
+        }
 
-	public void handleTouchUp(float rawX, float rawY)
-	{
-		on_touch_up(rawX, rawY);
-	}
+        movAverageDeltaTime_ms = (realTimeElapsed_ms + movAverageDeltaTime_ms * (movAveragePeriod - 1)) / movAveragePeriod;
 
-	public boolean handleOnBackPressed()
-	{
-		return handle_on_back_pressed();
-	}
+        // Calc a better aproximation for smooth stepTime
+        smoothedDeltaRealTime_ms = smoothedDeltaRealTime_ms + (movAverageDeltaTime_ms - smoothedDeltaRealTime_ms) * smoothFactor;
 
-	private void handleSoundId(short soundId)
-	{
-		switch (soundId)
-		{
-			case ASCEND_SOUND:
-				ascendSound.play(1);
-				break;
-			case SCORE_SOUND:
-				scoreSound.play(1);
-				break;
-			case HIT_SOUND:
-				hitSound.play(1);
-				break;
-			case LAND_SOUND:
-				landSound.play(1);
-				break;
-			default:
-				break;
-		}
-	}
+        lastRealTimeMeasurement_ms = currTimePick_ms;
+    }
 
-	private void handleFinalScore()
-	{
-		int score = get_score();
-		int bestScore = AppPrefs.getInstance(activity).getBestScore();
-		if (score > bestScore)
-		{
-			AppPrefs.getInstance(activity).setBestScore(score);
-		}
+    public void onResume()
+    {
+        on_resume();
+    }
 
-		set_best_score(AppPrefs.getInstance(activity).getBestScore());
-	}
+    public void onPause()
+    {
+        on_pause();
+    }
 
-	private static native void on_surface_created(int pixelWidth, int pixelHeight);
+    public void handleTouchDown(float rawX, float rawY)
+    {
+        on_touch_down(rawX, rawY);
+    }
 
-	private static native void on_surface_changed(int pixelWidth, int pixelHeight, int dpWidth, int dpHeight);
+    public void handleTouchDragged(float rawX, float rawY)
+    {
+        on_touch_dragged(rawX, rawY);
+    }
 
-	private static native void init();
+    public void handleTouchUp(float rawX, float rawY)
+    {
+        on_touch_up(rawX, rawY);
+    }
 
-	private static native void on_resume();
+    public boolean handleOnBackPressed()
+    {
+        return handle_on_back_pressed();
+    }
 
-	private static native void on_pause();
+    private void handleSound()
+    {
+        short soundId;
+        while ((soundId = get_current_sound_id()) > 0)
+        {
+            switch (soundId)
+            {
+                case ASCEND_SOUND:
+                    ascendSound.play(1);
+                    break;
+                case SCORE_SOUND:
+                    scoreSound.play(1);
+                    break;
+                case HIT_SOUND:
+                    hitSound.play(1);
+                    break;
+                case LAND_SOUND:
+                    landSound.play(1);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 
-	private static native void update(float deltaTime);
+    private void handleFinalScore()
+    {
+        int score = get_score();
+        int bestScore = AppPrefs.getInstance(activity).getBestScore();
+        if (score > bestScore)
+        {
+            AppPrefs.getInstance(activity).setBestScore(score);
+        }
 
-	private static native void present();
+        set_best_score(AppPrefs.getInstance(activity).getBestScore());
+    }
 
-	private static native void on_touch_down(float normalized_x, float normalized_y);
+    private static native void init();
 
-	private static native void on_touch_dragged(float normalized_x, float normalized_y);
+    private static native void on_surface_created(int pixelWidth, int pixelHeight);
 
-	private static native void on_touch_up(float normalized_x, float normalized_y);
+    private static native void on_surface_changed(int pixelWidth, int pixelHeight, int dpWidth, int dpHeight);
 
-	private static native short get_current_sound_id();
+    private static native void on_resume();
 
-	private static native int get_state();
+    private static native void on_pause();
 
-	private static native void clear_state();
+    private static native void update(float deltaTime);
 
-	private static native int get_score();
+    private static native void present();
 
-	private static native void set_best_score(int best_score);
+    private static native void on_touch_down(float normalized_x, float normalized_y);
 
-	private static native boolean handle_on_back_pressed();
+    private static native void on_touch_dragged(float normalized_x, float normalized_y);
+
+    private static native void on_touch_up(float normalized_x, float normalized_y);
+
+    private static native short get_current_sound_id();
+
+    private static native int get_state();
+
+    private static native void clear_state();
+
+    private static native int get_score();
+
+    private static native void set_best_score(int best_score);
+
+    private static native boolean handle_on_back_pressed();
 }
