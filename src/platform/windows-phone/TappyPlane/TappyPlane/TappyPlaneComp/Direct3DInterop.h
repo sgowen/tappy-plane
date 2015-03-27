@@ -36,6 +36,8 @@ namespace TappyPlaneComp
 
 		bool onBackPressed();
 
+		void setBestScore(int bestScore);
+
 		int getScore();
 
 		// Add callback method here to be invoked when a chat message needs to be sent

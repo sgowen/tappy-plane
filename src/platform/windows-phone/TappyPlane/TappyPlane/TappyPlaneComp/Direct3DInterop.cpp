@@ -90,6 +90,11 @@ namespace TappyPlaneComp
 		return m_gameScreen->handleOnBackPressed();
 	}
 
+	void Direct3DInterop::setBestScore(int bestScore)
+	{
+		m_gameScreen->setBestScore(bestScore);
+	}
+
 	int Direct3DInterop::getScore()
 	{
 		return m_gameScreen->getScore();

@@ -65,7 +65,7 @@ namespace TappyPlane
         async private void ProcessCallback(String command, String param)
         {
             Console.WriteLine("Incoming callback from C++ : " + command);
-            
+
             if (command.Equals("GAME_OVER"))
             {
                 int score = m_d3dInterop.getScore();
