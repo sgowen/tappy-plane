@@ -2,13 +2,12 @@
 //  platform_asset_utils.c
 //  tappyplane
 //
-//  Created by Stephen Gowen on 1/29/14.
-//  Copyright (c) 2014 Techne Games. All rights reserved.
+//  Created by Stephen Gowen on 2/22/14.
+//  Copyright (c) 2015 Gowen Game Dev. All rights reserved.
 //
 
 #include "platform_asset_utils.h"
 #include "macros.h"
-#include "platform_log.h"
 #include <android/asset_manager_jni.h>
 #include <assert.h>
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Helpers\XAudio2SoundPlayer.h"
+#include "XAudio2SoundPlayer.h"
 
 class Global
 {

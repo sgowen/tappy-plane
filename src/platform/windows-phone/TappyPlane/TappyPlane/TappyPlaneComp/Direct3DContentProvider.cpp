@@ -1,26 +1,54 @@
+//
+//  Direct3DContentProvider.cpp
+//  tappyplane
+//
+//  Created by Stephen Gowen on 2/22/14.
+//  Copyright (c) 2015 Gowen Game Dev. All rights reserved.
+//
+
 #include "pch.h"
-#include "GameButton.h"
 #include "Direct3DContentProvider.h"
+#include "Direct3DGameScreen.h"
+#include "Vector2D.h"
+#include "TouchEvent.h"
+#include "Vector2D.h"
+#include "Rectangle.h"
+#include "Assets.h"
+#include "OverlapTester.h"
+#include "GameListener.h"
+#include "Renderer.h"
+#include "Triangle.h"
+#include "Font.h"
+#include "Direct3DRenderer.h"
+#include "SpriteBatcher.h"
+#include "RectangleBatcher.h"
+#include "LineBatcher.h"
+#include "CircleBatcher.h"
+#include "GameListener.h"
+#include "Rectangle.h"
+#include "Circle.h"
+#include "GameSound.h"
+#include "GameButton.h"
 
 using namespace TappyPlaneComp;
 
 Direct3DContentProvider::Direct3DContentProvider(Direct3DInterop^ controller) : m_controller(controller)
 {
-	m_controller->RequestAdditionalFrame += ref new RequestAdditionalFrameHandler([=] ()
+	m_controller->RequestAdditionalFrame += ref new RequestAdditionalFrameHandler([=]()
+	{
+		if (m_host)
 		{
-			if (m_host)
-			{
-				m_host->RequestAdditionalFrame();
-			}
-		});
-	
-	m_controller->RecreateSynchronizedTexture += ref new RecreateSynchronizedTextureHandler([=] ()
+			m_host->RequestAdditionalFrame();
+		}
+	});
+
+	m_controller->RecreateSynchronizedTexture += ref new RecreateSynchronizedTextureHandler([=]()
+	{
+		if (m_host)
 		{
-			if (m_host)
-			{
-				m_host->CreateSynchronizedTexture(m_controller->GetTexture(), &m_synchronizedTexture);
-			}
-		});
+			m_host->CreateSynchronizedTexture(m_controller->GetTexture(), &m_synchronizedTexture);
+		}
+	});
 }
 
 // IDrawingSurfaceContentProviderNative interface
@@ -64,7 +92,7 @@ HRESULT Direct3DContentProvider::GetTexture(_In_ const DrawingSurfaceSizeF* size
 	if (SUCCEEDED(hr))
 	{
 		hr = m_synchronizedTexture->BeginDraw();
-		
+
 		if (SUCCEEDED(hr))
 		{
 			hr = m_controller->GetTexture(size, synchronizedTexture, textureSubRectangle);

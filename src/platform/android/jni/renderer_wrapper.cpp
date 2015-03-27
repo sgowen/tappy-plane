@@ -3,7 +3,7 @@
 //  tappyplane
 //
 //  Created by Stephen Gowen on 1/29/14.
-//  Copyright (c) 2014 Techne Games. All rights reserved.
+//  Copyright (c) 2015 Gowen Game Dev. All rights reserved.
 //
 
 #include <jni.h>
@@ -49,7 +49,7 @@ JNIEXPORT void JNICALL Java_com_technegames_tappyplane_RendererWrapper_init(JNIE
 {
 	UNUSED(env);
 	UNUSED(cls);
-	init();
+	init(false);
 }
 
 JNIEXPORT void JNICALL Java_com_technegames_tappyplane_RendererWrapper_on_1resume(JNIEnv* env, jclass cls)

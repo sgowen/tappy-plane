@@ -3,7 +3,8 @@
 //  tappyplane
 //
 //  Created by Stephen Gowen on 1/29/14.
-//  Copyright (c) 2014 Techne Games. All rights reserved.
+//  Copyright (c) 2015 Gowen Game Dev. All rights reserved.
 //
 
-#include <GLES/gl.h>
+#include <GLES2/gl2.h>
+#include <GLES2/gl2ext.h>
