@@ -2,19 +2,18 @@
 //  platform_asset_utils.c
 //  tappyplane
 //
-//  Created by Stephen Gowen on 1/29/14.
-//  Copyright (c) 2014 Techne Games. All rights reserved.
+//  Created by Stephen Gowen on 2/22/14.
+//  Copyright (c) 2015 Gowen Game Dev. All rights reserved.
 //
 
 #include "platform_asset_utils.h"
 #include "macros.h"
-#include "platform_log.h"
 #include <android/asset_manager_jni.h>
 #include <assert.h>
 
 static AAssetManager *asset_manager;
 
-JNIEXPORT void JNICALL Java_com_technegames_tappyplane_platform_PlatformFileUtils_init_1asset_1manager(JNIEnv * env, jclass jclazz, jobject java_asset_manager)
+JNIEXPORT void JNICALL Java_com_technegames_insectoiddefense_platform_PlatformFileUtils_init_1asset_1manager(JNIEnv * env, jclass jclazz, jobject java_asset_manager)
 {
 	UNUSED(jclazz);
 	asset_manager = AAssetManager_fromJava(env, java_asset_manager);
