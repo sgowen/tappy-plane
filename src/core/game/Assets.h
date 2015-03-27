@@ -23,39 +23,39 @@ class Assets
 public:
     static Assets * getInstance();
     
-    static TextureRegion getWorldBackgroundTextureRegion();
+    static TextureRegion& getWorldBackgroundTextureRegion();
     
-    static TextureRegion getTitleTextureRegion();
+    static TextureRegion& getTitleTextureRegion();
     
-    static TextureRegion getGloveTextureRegion(Glove &glove);
+    static TextureRegion& getGloveTextureRegion(Glove &glove);
     
-    static TextureRegion getTapLeftTextureRegion();
+    static TextureRegion& getTapLeftTextureRegion();
     
-    static TextureRegion getTapRightTextureRegion();
+    static TextureRegion& getTapRightTextureRegion();
     
-    static TextureRegion getWorldForegroundLeftTextureRegion(Environment_Type type);
+    static TextureRegion& getWorldForegroundLeftTextureRegion(Environment_Type type);
     
-    static TextureRegion getWorldForegroundRightTextureRegion(Environment_Type type);
+    static TextureRegion& getWorldForegroundRightTextureRegion(Environment_Type type);
     
-    static TextureRegion getWorldSpikeTextureRegion(Environment_Type type);
+    static TextureRegion& getWorldSpikeTextureRegion(Environment_Type type);
     
-    static TextureRegion getPlaneTextureRegion(PlaneDynamicGameObject &plane);
+    static TextureRegion& getPlaneTextureRegion(PlaneDynamicGameObject &plane);
     
-    static TextureRegion getPuffLargeTextureRegion();
+    static TextureRegion& getPuffLargeTextureRegion();
     
-    static TextureRegion getDialogTextureRegion();
+    static TextureRegion& getDialogTextureRegion();
     
-    static TextureRegion getGameOverTextureRegion();
+    static TextureRegion& getGameOverTextureRegion();
     
-    static TextureRegion getOkButtonTextureRegion();
+    static TextureRegion& getOkButtonTextureRegion();
     
-    static TextureRegion getLeaderboardsButtonTextureRegion();
+    static TextureRegion& getLeaderboardsButtonTextureRegion();
     
-    static TextureRegion getBronzeMedalTextureRegion();
+    static TextureRegion& getBronzeMedalTextureRegion();
     
-    static TextureRegion getSilverMedalTextureRegion();
+    static TextureRegion& getSilverMedalTextureRegion();
     
-    static TextureRegion getGoldMedalTextureRegion();
+    static TextureRegion& getGoldMedalTextureRegion();
     
     short getFirstSoundId();
     

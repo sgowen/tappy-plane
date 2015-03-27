@@ -18,19 +18,19 @@ Assets * Assets::getInstance()
     return assets;
 }
 
-TextureRegion Assets::getWorldBackgroundTextureRegion()
+TextureRegion& Assets::getWorldBackgroundTextureRegion()
 {
     static TextureRegion textureRegion = TextureRegion(BACKGROUND_TEXTURE_REGION_X, BACKGROUND_TEXTURE_REGION_Y, BACKGROUND_TEXTURE_REGION_WIDTH, BACKGROUND_TEXTURE_REGION_HEIGHT, TEXTURE_SIZE_1024x1024, TEXTURE_SIZE_1024x1024);
     return textureRegion;
 }
 
-TextureRegion Assets::getTitleTextureRegion()
+TextureRegion& Assets::getTitleTextureRegion()
 {
     static TextureRegion textureRegion = TextureRegion(TITLE_TEXTURE_REGION_X, TITLE_TEXTURE_REGION_Y, TITLE_TEXTURE_REGION_WIDTH, TITLE_TEXTURE_REGION_HEIGHT, TEXTURE_SIZE_1024x1024, TEXTURE_SIZE_1024x1024);
     return textureRegion;
 }
 
-TextureRegion Assets::getGloveTextureRegion(Glove &glove)
+TextureRegion& Assets::getGloveTextureRegion(Glove &glove)
 {
     static std::vector<TextureRegion> gloveTextureRegions;
     if(gloveTextureRegions.size() == 0)
@@ -50,19 +50,19 @@ TextureRegion Assets::getGloveTextureRegion(Glove &glove)
     return gloveTextureRegions.at(getKeyFrameNumber(glove.getStateTime(), cycleTime, gloveFrames));
 }
 
-TextureRegion Assets::getTapLeftTextureRegion()
+TextureRegion& Assets::getTapLeftTextureRegion()
 {
     static TextureRegion textureRegion = TextureRegion(TAP_LEFT_TEXTURE_REGION_X, TAP_LEFT_TEXTURE_REGION_Y, TAP_LEFT_TEXTURE_REGION_WIDTH, TAP_LEFT_TEXTURE_REGION_HEIGHT, TEXTURE_SIZE_1024x1024, TEXTURE_SIZE_1024x1024);
     return textureRegion;
 }
 
-TextureRegion Assets::getTapRightTextureRegion()
+TextureRegion& Assets::getTapRightTextureRegion()
 {
     static TextureRegion textureRegion = TextureRegion(TAP_RIGHT_TEXTURE_REGION_X, TAP_RIGHT_TEXTURE_REGION_Y, TAP_RIGHT_TEXTURE_REGION_WIDTH, TAP_RIGHT_TEXTURE_REGION_HEIGHT, TEXTURE_SIZE_1024x1024, TEXTURE_SIZE_1024x1024);
     return textureRegion;
 }
 
-TextureRegion Assets::getWorldForegroundLeftTextureRegion(Environment_Type type)
+TextureRegion& Assets::getWorldForegroundLeftTextureRegion(Environment_Type type)
 {
     static TextureRegion textureRegionGrass = TextureRegion(FOREGROUND_LEFT_TEXTURE_REGION_X, FOREGROUND_GRASS_LEFT_TEXTURE_REGION_Y, FOREGROUND_LEFT_TEXTURE_REGION_WIDTH, FOREGROUND_LEFT_TEXTURE_REGION_HEIGHT, TEXTURE_SIZE_1024x1024, TEXTURE_SIZE_1024x1024);
     
@@ -86,7 +86,7 @@ TextureRegion Assets::getWorldForegroundLeftTextureRegion(Environment_Type type)
     }
 }
 
-TextureRegion Assets::getWorldForegroundRightTextureRegion(Environment_Type type)
+TextureRegion& Assets::getWorldForegroundRightTextureRegion(Environment_Type type)
 {
     static TextureRegion textureRegionGrass = TextureRegion(FOREGROUND_RIGHT_TEXTURE_REGION_X, FOREGROUND_GRASS_RIGHT_TEXTURE_REGION_Y, FOREGROUND_RIGHT_TEXTURE_REGION_WIDTH, FOREGROUND_RIGHT_TEXTURE_REGION_HEIGHT, TEXTURE_SIZE_1024x1024, TEXTURE_SIZE_1024x1024);
     
@@ -110,7 +110,7 @@ TextureRegion Assets::getWorldForegroundRightTextureRegion(Environment_Type type
     }
 }
 
-TextureRegion Assets::getWorldSpikeTextureRegion(Environment_Type type)
+TextureRegion& Assets::getWorldSpikeTextureRegion(Environment_Type type)
 {
     static TextureRegion textureRegionGrass = TextureRegion(SPIKE_TEXTURE_REGION_X, SPIKE_GRASS_TEXTURE_REGION_Y, SPIKE_TEXTURE_REGION_WIDTH, SPIKE_TEXTURE_REGION_HEIGHT, TEXTURE_SIZE_1024x1024, TEXTURE_SIZE_1024x1024);
     static TextureRegion textureRegionRock =  TextureRegion(SPIKE_TEXTURE_REGION_X,  SPIKE_ROCK_TEXTURE_REGION_Y, SPIKE_TEXTURE_REGION_WIDTH, SPIKE_TEXTURE_REGION_HEIGHT, TEXTURE_SIZE_1024x1024, TEXTURE_SIZE_1024x1024);
@@ -131,7 +131,7 @@ TextureRegion Assets::getWorldSpikeTextureRegion(Environment_Type type)
     }
 }
 
-TextureRegion Assets::getPlaneTextureRegion(PlaneDynamicGameObject &plane)
+TextureRegion& Assets::getPlaneTextureRegion(PlaneDynamicGameObject &plane)
 {
     static std::vector<TextureRegion> blueTextureRegions;
     if(blueTextureRegions.size() == 0)
@@ -188,49 +188,49 @@ TextureRegion Assets::getPlaneTextureRegion(PlaneDynamicGameObject &plane)
     }
 }
 
-TextureRegion Assets::getPuffLargeTextureRegion()
+TextureRegion& Assets::getPuffLargeTextureRegion()
 {
     static TextureRegion textureRegion = TextureRegion(PUFF_LARGE_TEXTURE_REGION_X, PUFF_LARGE_TEXTURE_REGION_Y, PUFF_LARGE_TEXTURE_REGION_WIDTH, PUFF_LARGE_TEXTURE_REGION_HEIGHT, TEXTURE_SIZE_1024x1024, TEXTURE_SIZE_1024x1024);
     return textureRegion;
 }
 
-TextureRegion Assets::getDialogTextureRegion()
+TextureRegion& Assets::getDialogTextureRegion()
 {
     static TextureRegion textureRegion = TextureRegion(DIALOG_TEXTURE_REGION_X, DIALOG_TEXTURE_REGION_Y, DIALOG_TEXTURE_REGION_WIDTH, DIALOG_TEXTURE_REGION_HEIGHT, TEXTURE_SIZE_1024x1024, TEXTURE_SIZE_1024x1024);
     return textureRegion;
 }
 
-TextureRegion Assets::getGameOverTextureRegion()
+TextureRegion& Assets::getGameOverTextureRegion()
 {
     static TextureRegion textureRegion = TextureRegion(GAME_OVER_TEXTURE_REGION_X, GAME_OVER_TEXTURE_REGION_Y, GAME_OVER_TEXTURE_REGION_WIDTH, GAME_OVER_TEXTURE_REGION_HEIGHT, TEXTURE_SIZE_1024x1024, TEXTURE_SIZE_1024x1024);
     return textureRegion;
 }
 
-TextureRegion Assets::getOkButtonTextureRegion()
+TextureRegion& Assets::getOkButtonTextureRegion()
 {
     static TextureRegion textureRegion = TextureRegion(OK_BUTTON_TEXTURE_REGION_X, OK_BUTTON_TEXTURE_REGION_Y, OK_BUTTON_TEXTURE_REGION_WIDTH, OK_BUTTON_TEXTURE_REGION_HEIGHT, TEXTURE_SIZE_1024x1024, TEXTURE_SIZE_1024x1024);
     return textureRegion;
 }
 
-TextureRegion Assets::getLeaderboardsButtonTextureRegion()
+TextureRegion& Assets::getLeaderboardsButtonTextureRegion()
 {
     static TextureRegion textureRegion = TextureRegion(LEADERBOARDS_BUTTON_TEXTURE_REGION_X, LEADERBOARDS_BUTTON_TEXTURE_REGION_Y, LEADERBOARDS_BUTTON_TEXTURE_REGION_WIDTH, LEADERBOARDS_BUTTON_TEXTURE_REGION_HEIGHT, TEXTURE_SIZE_1024x1024, TEXTURE_SIZE_1024x1024);
     return textureRegion;
 }
 
-TextureRegion Assets::getBronzeMedalTextureRegion()
+TextureRegion& Assets::getBronzeMedalTextureRegion()
 {
     static TextureRegion textureRegion = TextureRegion(MEDAL_BRONZE_TEXTURE_REGION_X, MEDAL_TEXTURE_REGION_Y, MEDAL_TEXTURE_REGION_WIDTH, MEDAL_TEXTURE_REGION_HEIGHT, TEXTURE_SIZE_1024x1024, TEXTURE_SIZE_1024x1024);
     return textureRegion;
 }
 
-TextureRegion Assets::getSilverMedalTextureRegion()
+TextureRegion& Assets::getSilverMedalTextureRegion()
 {
     static TextureRegion textureRegion = TextureRegion(MEDAL_SILVER_TEXTURE_REGION_X, MEDAL_TEXTURE_REGION_Y, MEDAL_TEXTURE_REGION_WIDTH, MEDAL_TEXTURE_REGION_HEIGHT, TEXTURE_SIZE_1024x1024, TEXTURE_SIZE_1024x1024);
     return textureRegion;
 }
 
-TextureRegion Assets::getGoldMedalTextureRegion()
+TextureRegion& Assets::getGoldMedalTextureRegion()
 {
     static TextureRegion textureRegion = TextureRegion(MEDAL_GOLD_TEXTURE_REGION_X, MEDAL_TEXTURE_REGION_Y, MEDAL_TEXTURE_REGION_WIDTH, MEDAL_TEXTURE_REGION_HEIGHT, TEXTURE_SIZE_1024x1024, TEXTURE_SIZE_1024x1024);
     return textureRegion;
