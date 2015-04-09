@@ -1,4 +1,4 @@
-package com.technegames.tappyplane;
+package com.gowengamedev.tappyplane;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -7,7 +7,7 @@ import android.app.Activity;
 import android.opengl.GLSurfaceView.Renderer;
 import android.os.SystemClock;
 
-import com.technegames.tappyplane.platform.PlatformFileUtils;
+import com.gowengamedev.tappyplane.platform.PlatformFileUtils;
 
 public final class RendererWrapper implements Renderer
 {

@@ -1,4 +1,4 @@
-package com.technegames.tappyplane;
+package com.gowengamedev.tappyplane;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

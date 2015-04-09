@@ -48,9 +48,9 @@ void OpenGLESGameScreen::onSurfaceChanged(int width, int height, int dpWidth, in
 
 void OpenGLESGameScreen::touchToWorld(TouchEvent &touchEvent)
 {
-#ifdef TECHNE_GAMES_OPENGL_ANDROID
+#ifdef GGD_OPENGL_ANDROID
     m_touchPoint->set((touchEvent.getX() / (float) m_iDeviceScreenWidth) * SCREEN_WIDTH, (1 - touchEvent.getY() / (float) m_iDeviceScreenHeight) * SCREEN_HEIGHT);
-#elif defined TECHNE_GAMES_IOS
+#elif defined GGD_IOS
     if(m_isRunningIOS8)
     {
         m_touchPoint->set((touchEvent.getX() / (float) m_iDeviceScreenDpWidth) * SCREEN_WIDTH, (1 - touchEvent.getY() / (float) m_iDeviceScreenDpHeight) * SCREEN_HEIGHT);

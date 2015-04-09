@@ -1,4 +1,4 @@
-package com.technegames.tappyplane.platform;
+package com.gowengamedev.tappyplane.platform;
 
 import android.content.res.AssetManager;
 

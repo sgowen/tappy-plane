@@ -9,7 +9,7 @@
 #ifndef __tappyplane__GameListener__
 #define __tappyplane__GameListener__
 
-#ifdef TECHNE_GAMES_DIRECT_3D
+#ifdef GGD_DIRECT_3D
 #define strdup _strdup
 #endif
 
