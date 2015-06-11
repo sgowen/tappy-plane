@@ -1,12 +1,12 @@
 NDKROOT := /Applications/adt-bundle-mac-x86_64-20131030/android-ndk-r9c
 LOCAL_PATH := $(call my-dir)
-PROJECT_ROOT_PATH := $(LOCAL_PATH)/../../../
-CORE_FRAMEWORK_RELATIVE_PATH := ../../../core/framework/
-CORE_FRAMEWORK_OPENGLES_RELATIVE_PATH := ../../../core/framework/opengles/
-CORE_FRAMEWORK_UI_RELATIVE_PATH := ../../../core/framework/ui/
-CORE_GAME_RELATIVE_PATH := ../../../core/game/
-CORE_GAME_OPENGLES_RELATIVE_PATH := ../../../core/game/opengles/
-CORE_GAME_UI_RELATIVE_PATH := ../../../core/game/ui/
+PROJECT_ROOT_PATH := $(LOCAL_PATH)/../../../../../../
+CORE_FRAMEWORK_RELATIVE_PATH := ../../../../../../core/framework/
+CORE_FRAMEWORK_OPENGLES_RELATIVE_PATH := ../../../../../../core/framework/opengles/
+CORE_FRAMEWORK_UI_RELATIVE_PATH := ../../../../../../core/framework/ui/
+CORE_GAME_RELATIVE_PATH := ../../../../../../core/game/
+CORE_GAME_OPENGLES_RELATIVE_PATH := ../../../../../../core/game/opengles/
+CORE_GAME_UI_RELATIVE_PATH := ../../../../../../core/game/ui/
 
 include $(CLEAR_VARS)
 

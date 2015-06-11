@@ -1,1 +1,0 @@
-../../../core/framework/opengles/color_shader.fsh
