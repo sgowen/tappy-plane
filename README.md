@@ -26,8 +26,9 @@ Thanks goes to <a href="http://kenney.nl/" target="_blank">Kenney</a> for this a
 
 1. Download the Android NDK from https://developer.android.com/ndk/downloads/index.html if you do not already have it
 2. Open app/src/main/jni/Android.mk and edit the first line (starting with NDKROOT :=) to point to your Android NDK installation root directory
-3. Open the local.properties file and add the following: ndk.dir=<path to ndk, same as above>
-4. Open in Android Studio and run it!
+3. Open in Android Studio (src/platform/android)
+4. Open the local.properties file and add the following: ndk.dir=<path to ndk, same as above>
+5. Run it!
 
 ## Setup Instructions for Windows Phone 8
 
