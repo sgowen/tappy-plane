@@ -12,6 +12,10 @@ android {
         targetSdkVersion 21
     }
 
+    lintOptions {
+        abortOnError false
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -19,7 +23,7 @@ android {
         }
     }
 
-    sourceSets.main.jni.srcDirs = []
+    sourceSets.main.jni.srcDirs 'src/main/jni'
     // disable the automatic ndk-build call, which would ignore our Android.mk
     sourceSets.main.jniLibs.srcDir 'src/main/libs'
 
