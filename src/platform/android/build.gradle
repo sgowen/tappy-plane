@@ -13,3 +13,6 @@ allprojects {
         jcenter()
     }
 }
+
+gradle.startParameter.excludedTaskNames += "compileDebugNdk"
+gradle.startParameter.excludedTaskNames += "compileReleaseNdk"

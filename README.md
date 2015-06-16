@@ -28,7 +28,7 @@ Thanks goes to <a href="http://kenney.nl/" target="_blank">Kenney</a> for this a
 2. Open app/src/main/jni/Android.mk and edit the first line (starting with NDKROOT :=) to point to your Android NDK installation root directory
 3. Open in Android Studio (src/platform/android)
 4. Open the local.properties file and add the following line: ndk.dir=**path to ndk, same as in Android.mk**
-5. Open the Terminal inside of Android Studio and run the following command to install and run the game: ./gradlew installDebug -x compileDebugNdk -x compileReleaseNdk && adb shell am start -n com.gowengamedev.tappyplane/.MainActivity
+5. Run it!
 
 ## Setup Instructions for Windows Phone 8
 
