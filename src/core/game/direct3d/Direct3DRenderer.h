@@ -23,11 +23,6 @@ public:
 	virtual void endFrame();
 
 	virtual void cleanUp();
-
-private:
-	void createInputLayoutForSpriteBatcher();
-
-	void createInputLayoutForGeometryBatcher();
 };
 
 #endif /* defined(__tappyplane__Direct3DRenderer__) */
