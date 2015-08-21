@@ -24,6 +24,8 @@ public:
 
 	void handleSound();
 
+	void handleMusic();
+
 	void unload();
 
 	ID3D11Texture2D* getTexture();

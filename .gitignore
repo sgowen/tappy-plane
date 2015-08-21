@@ -1,6 +1,9 @@
 # Mac
 .DS_Store
 
+# Windows
+Thumbs.db
+
 # libpng
 libpng/
 !libpng/Android.mk
@@ -27,6 +30,7 @@ xcshareddata/
 *.suo
 ARM/
 Debug/
+ipch/
 
 # NetBeans
 private/

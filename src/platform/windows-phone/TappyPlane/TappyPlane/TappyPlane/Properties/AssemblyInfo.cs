@@ -11,7 +11,7 @@ using System.Resources;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("TappyPlane")]
-[assembly: AssemblyCopyright("Copyright © Stephen Gowen 2015")]
+[assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -21,7 +21,7 @@ using System.Resources;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("e45e3250-247b-4230-9273-b8c00b6e55a5")]
+[assembly: Guid("81ca8177-ff20-4268-ac42-9b1eda85f320")]
 
 // Version information for an assembly consists of the following four values:
 //

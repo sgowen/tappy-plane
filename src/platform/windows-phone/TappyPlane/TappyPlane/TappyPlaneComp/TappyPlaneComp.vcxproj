@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -68,12 +68,11 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PreprocessorDefinitions>GGD_WP;GGD_DIRECT_3D;_WINRT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <CompileAsWinRT>true</CompileAsWinRT>
-      <AdditionalIncludeDirectories>..\..\..\..\..\core\framework;..\..\..\..\..\core\framework\ui;..\..\..\..\..\core\framework\direct3d;..\..\..\..\..\core\game;..\..\..\..\..\core\game\direct3d;..\..\..\..\..\3rdparty;$(ProjectDir);$(GeneratedFilesDir);$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Microsoft;..\..\..\..\..\core\framework;..\..\..\..\..\core\framework\entity;..\..\..\..\..\core\framework\math;..\..\..\..\..\core\framework\ui;..\..\..\..\..\core\framework\ui\direct3d;..\..\..\..\..\core\framework\util;..\..\..\..\..\core\game;..\..\..\..\..\core\game\ui;..\..\..\..\..\core\game\ui\direct3d;..\..\..\..\..\3rdparty;$(ProjectDir);$(GeneratedFilesDir);$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -85,12 +84,12 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PreprocessorDefinitions>GGD_WP;GGD_DIRECT_3D;_WINRT_DLL;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GGD_WP;GGD_DIRECT_3D;_WINRT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <CompileAsWinRT>true</CompileAsWinRT>
-      <AdditionalIncludeDirectories>..\..\..\..\..\core\framework;..\..\..\..\..\core\framework\ui;..\..\..\..\..\core\framework\direct3d;..\..\..\..\..\core\game;..\..\..\..\..\core\game\direct3d;..\..\..\..\..\3rdparty;$(ProjectDir);$(GeneratedFilesDir);$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Microsoft;..\..\..\..\..\core\framework;..\..\..\..\..\core\framework\entity;..\..\..\..\..\core\framework\math;..\..\..\..\..\core\framework\ui;..\..\..\..\..\core\framework\ui\direct3d;..\..\..\..\..\core\framework\util;..\..\..\..\..\core\game;..\..\..\..\..\core\game\ui;..\..\..\..\..\core\game\ui\direct3d;..\..\..\..\..\3rdparty;$(ProjectDir);$(GeneratedFilesDir);$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -103,12 +102,11 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <ClCompile>
       <PreprocessorDefinitions>GGD_WP;GGD_DIRECT_3D;_WINRT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <CompileAsWinRT>true</CompileAsWinRT>
-      <AdditionalIncludeDirectories>..\..\..\..\..\core\framework;..\..\..\..\..\core\framework\ui;..\..\..\..\..\core\framework\direct3d;..\..\..\..\..\core\game;..\..\..\..\..\core\game\direct3d;..\..\..\..\..\3rdparty;$(ProjectDir);$(GeneratedFilesDir);$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Microsoft;..\..\..\..\..\core\framework;..\..\..\..\..\core\framework\entity;..\..\..\..\..\core\framework\math;..\..\..\..\..\core\framework\ui;..\..\..\..\..\core\framework\ui\direct3d;..\..\..\..\..\core\framework\util;..\..\..\..\..\core\game;..\..\..\..\..\core\game\ui;..\..\..\..\..\core\game\ui\direct3d;..\..\..\..\..\3rdparty;$(ProjectDir);$(GeneratedFilesDir);$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -120,13 +118,12 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <ClCompile>
-      <PreprocessorDefinitions>GGD_WP;GGD_DIRECT_3D;_WINRT_DLL;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PreprocessorDefinitions>GGD_WP;GGD_DIRECT_3D;_WINRT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <CompileAsWinRT>true</CompileAsWinRT>
-      <AdditionalIncludeDirectories>..\..\..\..\..\core\framework;..\..\..\..\..\core\framework\ui;..\..\..\..\..\core\framework\direct3d;..\..\..\..\..\core\game;..\..\..\..\..\core\game\direct3d;..\..\..\..\..\3rdparty;$(ProjectDir);$(GeneratedFilesDir);$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Microsoft;..\..\..\..\..\core\framework;..\..\..\..\..\core\framework\entity;..\..\..\..\..\core\framework\math;..\..\..\..\..\core\framework\ui;..\..\..\..\..\core\framework\ui\direct3d;..\..\..\..\..\core\framework\util;..\..\..\..\..\core\game;..\..\..\..\..\core\game\ui;..\..\..\..\..\core\game\ui\direct3d;..\..\..\..\..\3rdparty;$(ProjectDir);$(GeneratedFilesDir);$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -143,32 +140,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\core\framework\Circle.h" />
-    <ClInclude Include="..\..\..\..\..\core\framework\Color.h" />
-    <ClInclude Include="..\..\..\..\..\core\framework\direct3d\BasicReaderWriter.h" />
-    <ClInclude Include="..\..\..\..\..\core\framework\direct3d\dds.h" />
-    <ClInclude Include="..\..\..\..\..\core\framework\direct3d\DDSTextureLoader.h" />
-    <ClInclude Include="..\..\..\..\..\core\framework\direct3d\Direct3DCircleBatcher.h" />
-    <ClInclude Include="..\..\..\..\..\core\framework\direct3d\Direct3DLineBatcher.h" />
-    <ClInclude Include="..\..\..\..\..\core\framework\direct3d\Direct3DProgram.h" />
-    <ClInclude Include="..\..\..\..\..\core\framework\direct3d\Direct3DRectangleBatcher.h" />
-    <ClInclude Include="..\..\..\..\..\core\framework\direct3d\Direct3DSpriteBatcher.h" />
-    <ClInclude Include="..\..\..\..\..\core\framework\direct3d\DirectXHelpers.h" />
-    <ClInclude Include="..\..\..\..\..\core\framework\direct3d\DirectXManager.h" />
-    <ClInclude Include="..\..\..\..\..\core\framework\direct3d\PlatformHelpers.h" />
-    <ClInclude Include="..\..\..\..\..\core\framework\DynamicGameObject.h" />
-    <ClInclude Include="..\..\..\..\..\core\framework\DynamicGridGameObject.h" />
-    <ClInclude Include="..\..\..\..\..\core\framework\FlagUtil.h" />
-    <ClInclude Include="..\..\..\..\..\core\framework\GameObject.h" />
-    <ClInclude Include="..\..\..\..\..\core\framework\GridGameObject.h" />
-    <ClInclude Include="..\..\..\..\..\core\framework\Line.h" />
-    <ClInclude Include="..\..\..\..\..\core\framework\macros.h" />
-    <ClInclude Include="..\..\..\..\..\core\framework\Node.h" />
-    <ClInclude Include="..\..\..\..\..\core\framework\OverlapTester.h" />
-    <ClInclude Include="..\..\..\..\..\core\framework\pch.h" />
-    <ClInclude Include="..\..\..\..\..\core\framework\Rectangle.h" />
-    <ClInclude Include="..\..\..\..\..\core\framework\Triangle.h" />
+    <ClInclude Include="..\..\..\..\..\core\framework\entity\Entity.h" />
+    <ClInclude Include="..\..\..\..\..\core\framework\entity\PhysicalEntity.h" />
+    <ClInclude Include="..\..\..\..\..\core\framework\math\Circle.h" />
+    <ClInclude Include="..\..\..\..\..\core\framework\math\Line.h" />
+    <ClInclude Include="..\..\..\..\..\core\framework\math\OverlapTester.h" />
+    <ClInclude Include="..\..\..\..\..\core\framework\math\Rectangle.h" />
+    <ClInclude Include="..\..\..\..\..\core\framework\math\Triangle.h" />
+    <ClInclude Include="..\..\..\..\..\core\framework\math\Vector2D.h" />
     <ClInclude Include="..\..\..\..\..\core\framework\ui\CircleBatcher.h" />
+    <ClInclude Include="..\..\..\..\..\core\framework\ui\Color.h" />
+    <ClInclude Include="..\..\..\..\..\core\framework\ui\direct3d\Direct3DCircleBatcher.h" />
+    <ClInclude Include="..\..\..\..\..\core\framework\ui\direct3d\Direct3DLineBatcher.h" />
+    <ClInclude Include="..\..\..\..\..\core\framework\ui\direct3d\Direct3DManager.h" />
+    <ClInclude Include="..\..\..\..\..\core\framework\ui\direct3d\Direct3DProgram.h" />
+    <ClInclude Include="..\..\..\..\..\core\framework\ui\direct3d\Direct3DRectangleBatcher.h" />
+    <ClInclude Include="..\..\..\..\..\core\framework\ui\direct3d\Direct3DSpriteBatcher.h" />
+    <ClInclude Include="..\..\..\..\..\core\framework\ui\direct3d\GameSound.h" />
     <ClInclude Include="..\..\..\..\..\core\framework\ui\Font.h" />
     <ClInclude Include="..\..\..\..\..\core\framework\ui\LineBatcher.h" />
     <ClInclude Include="..\..\..\..\..\core\framework\ui\RectangleBatcher.h" />
@@ -176,109 +164,116 @@
     <ClInclude Include="..\..\..\..\..\core\framework\ui\TextureRegion.h" />
     <ClInclude Include="..\..\..\..\..\core\framework\ui\TextureWrapper.h" />
     <ClInclude Include="..\..\..\..\..\core\framework\ui\TouchEvent.h" />
-    <ClInclude Include="..\..\..\..\..\core\framework\Vector2D.h" />
-    <ClInclude Include="..\..\..\..\..\core\game\Assets.h" />
-    <ClInclude Include="..\..\..\..\..\core\game\direct3d\Direct3DGameScreen.h" />
-    <ClInclude Include="..\..\..\..\..\core\game\direct3d\Direct3DRenderer.h" />
+    <ClInclude Include="..\..\..\..\..\core\framework\ui\TouchType.h" />
+    <ClInclude Include="..\..\..\..\..\core\framework\ui\TriangleBatcher.h" />
+    <ClInclude Include="..\..\..\..\..\core\framework\util\FlagUtil.h" />
+    <ClInclude Include="..\..\..\..\..\core\framework\util\macros.h" />
     <ClInclude Include="..\..\..\..\..\core\game\EnvironmentType.h" />
-    <ClInclude Include="..\..\..\..\..\core\game\GameButton.h" />
     <ClInclude Include="..\..\..\..\..\core\game\GameConstants.h" />
     <ClInclude Include="..\..\..\..\..\core\game\GameListener.h" />
-    <ClInclude Include="..\..\..\..\..\core\game\GameScreen.h" />
     <ClInclude Include="..\..\..\..\..\core\game\GameState.h" />
     <ClInclude Include="..\..\..\..\..\core\game\Glove.h" />
     <ClInclude Include="..\..\..\..\..\core\game\Obstacle.h" />
-    <ClInclude Include="..\..\..\..\..\core\game\PlaneDynamicGameObject.h" />
+    <ClInclude Include="..\..\..\..\..\core\game\PlanePhysicalEntity.h" />
     <ClInclude Include="..\..\..\..\..\core\game\PlaneType.h" />
     <ClInclude Include="..\..\..\..\..\core\game\PuffCloud.h" />
-    <ClInclude Include="..\..\..\..\..\core\game\Renderer.h" />
     <ClInclude Include="..\..\..\..\..\core\game\ResourceConstants.h" />
-    <ClInclude Include="..\..\..\..\..\core\game\ScreenState.h" />
-    <ClInclude Include="..\..\..\..\..\core\game\SpikeGameObject.h" />
+    <ClInclude Include="..\..\..\..\..\core\game\SpikePhysicalEntity.h" />
+    <ClInclude Include="..\..\..\..\..\core\game\ui\Assets.h" />
+    <ClInclude Include="..\..\..\..\..\core\game\ui\direct3d\Direct3DGameScreen.h" />
+    <ClInclude Include="..\..\..\..\..\core\game\ui\direct3d\Direct3DRenderer.h" />
+    <ClInclude Include="..\..\..\..\..\core\game\ui\GameButton.h" />
+    <ClInclude Include="..\..\..\..\..\core\game\ui\GameScreen.h" />
+    <ClInclude Include="..\..\..\..\..\core\game\ui\Renderer.h" />
+    <ClInclude Include="..\..\..\..\..\core\game\ui\ScreenState.h" />
     <ClInclude Include="..\..\..\..\..\core\game\World.h" />
     <ClInclude Include="BasicTimer.h" />
-    <ClInclude Include="Direct3DContentProvider.h" />
     <ClInclude Include="Direct3DInterop.h" />
-    <ClInclude Include="DirectXHelper.h" />
-    <ClInclude Include="GameSound.h" />
-    <ClInclude Include="Global.h" />
-    <ClInclude Include="MediaEnginePlayer.h" />
-    <ClInclude Include="RandomAccessReader.h" />
-    <ClInclude Include="SoundFileReader.h" />
-    <ClInclude Include="XAudio2SoundPlayer.h" />
+    <ClInclude Include="Direct3DContentProvider.h" />
+    <ClInclude Include="Microsoft\BasicReaderWriter.h" />
+    <ClInclude Include="Microsoft\dds.h" />
+    <ClInclude Include="Microsoft\DDSTextureLoader.h" />
+    <ClInclude Include="Microsoft\DirectXHelper.h" />
+    <ClInclude Include="Microsoft\DirectXHelpers.h" />
+    <ClInclude Include="Microsoft\MediaEnginePlayer.h" />
+    <ClInclude Include="Microsoft\PlatformHelpers.h" />
+    <ClInclude Include="Microsoft\RandomAccessReader.h" />
+    <ClInclude Include="Microsoft\SoundFileReader.h" />
+    <ClInclude Include="Microsoft\XAudio2SoundPlayer.h" />
+    <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\core\framework\Circle.cpp" />
-    <ClCompile Include="..\..\..\..\..\core\framework\direct3d\BasicReaderWriter.cpp" />
-    <ClCompile Include="..\..\..\..\..\core\framework\direct3d\DDSTextureLoader.cpp" />
-    <ClCompile Include="..\..\..\..\..\core\framework\direct3d\Direct3DCircleBatcher.cpp" />
-    <ClCompile Include="..\..\..\..\..\core\framework\direct3d\Direct3DLineBatcher.cpp" />
-    <ClCompile Include="..\..\..\..\..\core\framework\direct3d\Direct3DProgram.cpp" />
-    <ClCompile Include="..\..\..\..\..\core\framework\direct3d\Direct3DRectangleBatcher.cpp" />
-    <ClCompile Include="..\..\..\..\..\core\framework\direct3d\Direct3DSpriteBatcher.cpp" />
-    <ClCompile Include="..\..\..\..\..\core\framework\direct3d\DirectXManager.cpp" />
-    <ClCompile Include="..\..\..\..\..\core\framework\DynamicGameObject.cpp" />
-    <ClCompile Include="..\..\..\..\..\core\framework\DynamicGridGameObject.cpp" />
-    <ClCompile Include="..\..\..\..\..\core\framework\GameObject.cpp" />
-    <ClCompile Include="..\..\..\..\..\core\framework\GridGameObject.cpp" />
-    <ClCompile Include="..\..\..\..\..\core\framework\Line.cpp" />
-    <ClCompile Include="..\..\..\..\..\core\framework\OverlapTester.cpp" />
-    <ClCompile Include="..\..\..\..\..\core\framework\Rectangle.cpp" />
-    <ClCompile Include="..\..\..\..\..\core\framework\Triangle.cpp" />
+    <ClCompile Include="..\..\..\..\..\core\framework\entity\Entity.cpp" />
+    <ClCompile Include="..\..\..\..\..\core\framework\entity\PhysicalEntity.cpp" />
+    <ClCompile Include="..\..\..\..\..\core\framework\math\Circle.cpp" />
+    <ClCompile Include="..\..\..\..\..\core\framework\math\Line.cpp" />
+    <ClCompile Include="..\..\..\..\..\core\framework\math\OverlapTester.cpp" />
+    <ClCompile Include="..\..\..\..\..\core\framework\math\Rectangle.cpp" />
+    <ClCompile Include="..\..\..\..\..\core\framework\math\Triangle.cpp" />
+    <ClCompile Include="..\..\..\..\..\core\framework\math\Vector2D.cpp" />
     <ClCompile Include="..\..\..\..\..\core\framework\ui\CircleBatcher.cpp" />
+    <ClCompile Include="..\..\..\..\..\core\framework\ui\direct3d\Direct3DCircleBatcher.cpp" />
+    <ClCompile Include="..\..\..\..\..\core\framework\ui\direct3d\Direct3DLineBatcher.cpp" />
+    <ClCompile Include="..\..\..\..\..\core\framework\ui\direct3d\Direct3DManager.cpp" />
+    <ClCompile Include="..\..\..\..\..\core\framework\ui\direct3d\Direct3DProgram.cpp" />
+    <ClCompile Include="..\..\..\..\..\core\framework\ui\direct3d\Direct3DRectangleBatcher.cpp" />
+    <ClCompile Include="..\..\..\..\..\core\framework\ui\direct3d\Direct3DSpriteBatcher.cpp" />
+    <ClCompile Include="..\..\..\..\..\core\framework\ui\direct3d\GameSound.cpp" />
     <ClCompile Include="..\..\..\..\..\core\framework\ui\Font.cpp" />
     <ClCompile Include="..\..\..\..\..\core\framework\ui\LineBatcher.cpp" />
     <ClCompile Include="..\..\..\..\..\core\framework\ui\RectangleBatcher.cpp" />
     <ClCompile Include="..\..\..\..\..\core\framework\ui\SpriteBatcher.cpp" />
     <ClCompile Include="..\..\..\..\..\core\framework\ui\TextureRegion.cpp" />
     <ClCompile Include="..\..\..\..\..\core\framework\ui\TouchEvent.cpp" />
-    <ClCompile Include="..\..\..\..\..\core\framework\Vector2D.cpp" />
-    <ClCompile Include="..\..\..\..\..\core\game\Assets.cpp" />
-    <ClCompile Include="..\..\..\..\..\core\game\direct3d\Direct3DGameScreen.cpp" />
-    <ClCompile Include="..\..\..\..\..\core\game\direct3d\Direct3DRenderer.cpp" />
-    <ClCompile Include="..\..\..\..\..\core\game\GameButton.cpp" />
+    <ClCompile Include="..\..\..\..\..\core\framework\ui\TriangleBatcher.cpp" />
     <ClCompile Include="..\..\..\..\..\core\game\GameListener.cpp" />
-    <ClCompile Include="..\..\..\..\..\core\game\GameScreen.cpp" />
     <ClCompile Include="..\..\..\..\..\core\game\Glove.cpp" />
     <ClCompile Include="..\..\..\..\..\core\game\Obstacle.cpp" />
-    <ClCompile Include="..\..\..\..\..\core\game\PlaneDynamicGameObject.cpp" />
+    <ClCompile Include="..\..\..\..\..\core\game\PlanePhysicalEntity.cpp" />
     <ClCompile Include="..\..\..\..\..\core\game\PuffCloud.cpp" />
-    <ClCompile Include="..\..\..\..\..\core\game\Renderer.cpp" />
-    <ClCompile Include="..\..\..\..\..\core\game\SpikeGameObject.cpp" />
+    <ClCompile Include="..\..\..\..\..\core\game\SpikePhysicalEntity.cpp" />
+    <ClCompile Include="..\..\..\..\..\core\game\ui\Assets.cpp" />
+    <ClCompile Include="..\..\..\..\..\core\game\ui\direct3d\Direct3DGameScreen.cpp" />
+    <ClCompile Include="..\..\..\..\..\core\game\ui\direct3d\Direct3DRenderer.cpp" />
+    <ClCompile Include="..\..\..\..\..\core\game\ui\GameButton.cpp" />
+    <ClCompile Include="..\..\..\..\..\core\game\ui\GameScreen.cpp" />
+    <ClCompile Include="..\..\..\..\..\core\game\ui\Renderer.cpp" />
     <ClCompile Include="..\..\..\..\..\core\game\World.cpp" />
-    <ClCompile Include="Direct3DContentProvider.cpp" />
     <ClCompile Include="Direct3DInterop.cpp" />
-    <ClCompile Include="GameSound.cpp" />
-    <ClCompile Include="Global.cpp" />
-    <ClCompile Include="MediaEnginePlayer.cpp" />
-    <ClCompile Include="pch.cpp" />
-    <ClCompile Include="RandomAccessReader.cpp" />
-    <ClCompile Include="SoundFileReader.cpp" />
-    <ClCompile Include="XAudio2SoundPlayer.cpp" />
+    <ClCompile Include="Direct3DContentProvider.cpp" />
+    <ClCompile Include="Microsoft\BasicReaderWriter.cpp" />
+    <ClCompile Include="Microsoft\DDSTextureLoader.cpp" />
+    <ClCompile Include="Microsoft\MediaEnginePlayer.cpp" />
+    <ClCompile Include="Microsoft\RandomAccessReader.cpp" />
+    <ClCompile Include="Microsoft\SoundFileReader.cpp" />
+    <ClCompile Include="Microsoft\XAudio2SoundPlayer.cpp" />
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="..\..\..\..\..\core\framework\direct3d\ColorPixelShader.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+    <FxCompile Include="..\..\..\..\..\core\framework\ui\direct3d\ColorPixelShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
     </FxCompile>
-    <FxCompile Include="..\..\..\..\..\core\framework\direct3d\ColorVertexShader.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+    <FxCompile Include="..\..\..\..\..\core\framework\ui\direct3d\ColorVertexShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
     </FxCompile>
-    <FxCompile Include="..\..\..\..\..\core\framework\direct3d\TexturePixelShader.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+    <FxCompile Include="..\..\..\..\..\core\framework\ui\direct3d\TexturePixelShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
     </FxCompile>
-    <FxCompile Include="..\..\..\..\..\core\framework\direct3d\TextureVertexShader.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+    <FxCompile Include="..\..\..\..\..\core\framework\ui\direct3d\TextureVertexShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
     </FxCompile>
   </ItemGroup>

@@ -52,13 +52,6 @@ public:
 	// All above rendering takes place inside this matrix
 	DirectX::XMMATRIX m_matFinal;
 
-	// Used when rendering directly to the screen (-1 to 1)
-	ID3D11VertexShader *m_screenBatcherVertexShader; // the vertex shader interface
-	ID3D11PixelShader *m_screenBatcherPixelShader; // the pixel shader interface
-	ID3D11InputLayout *m_screenBatcherInputLayout; // the input layout interface
-	ID3D11Buffer *m_screenBatcherVertexBuffer; // the vertex buffer interface
-	std::vector<SCREEN_VERTEX> m_screenVertices;
-
 	static Direct3DManager * getInstance();
 
 	void init(float width, float height);
@@ -68,7 +61,6 @@ public:
 	// Called by Batchers
 	void prepareForSpriteRendering();
 	void prepareForGeometryRendering();
-	void prepareForScreenRendering();
 
 	void cleanUp();
 
@@ -80,10 +72,8 @@ private:
 	void createSamplerState();
 	void createInputLayoutForSpriteBatcher();
 	void createInputLayoutForGeometryBatcher();
-	void createInputLayoutForScreenBatcher();
 	void createVertexBufferForSpriteBatcher();
 	void createVertexBufferForGeometryBatcher();
-	void createVertexBufferForScreenBatcher();
 	void createIndexBuffer();
 	void createConstantBuffer();
 	void createOffsetBuffer();

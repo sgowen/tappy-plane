@@ -34,10 +34,8 @@ void Direct3DManager::init(float width, float height)
 	createSamplerState();
 	createInputLayoutForSpriteBatcher();
 	createInputLayoutForGeometryBatcher();
-	createInputLayoutForScreenBatcher();
 	createVertexBufferForSpriteBatcher();
 	createVertexBufferForGeometryBatcher();
-	createVertexBufferForScreenBatcher();
 	createIndexBuffer();
 	createConstantBuffer();
 	createOffsetBuffer();
@@ -163,32 +161,6 @@ void Direct3DManager::prepareForGeometryRendering()
 	m_deviceContext->IASetVertexBuffers(0, 1, &m_gbVertexBuffer, &stride, &offset);
 }
 
-void Direct3DManager::prepareForScreenRendering()
-{
-	m_deviceContext->IASetInputLayout(m_screenBatcherInputLayout);
-
-	// set the shader objects as the active shaders
-	m_deviceContext->VSSetShader(m_screenBatcherVertexShader, nullptr, 0);
-	m_deviceContext->PSSetShader(m_screenBatcherPixelShader, nullptr, 0);
-
-	D3D11_MAPPED_SUBRESOURCE mappedResource;
-	ZeroMemory(&mappedResource, sizeof(D3D11_MAPPED_SUBRESOURCE));
-
-	//	Disable GPU access to the vertex buffer data.
-	m_deviceContext->Map(m_screenBatcherVertexBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
-
-	//	Update the vertex buffer here.
-	memcpy(mappedResource.pData, &m_screenVertices.front(), sizeof(SCREEN_VERTEX)* m_screenVertices.size());
-
-	//	Reenable GPU access to the vertex buffer data.
-	m_deviceContext->Unmap(m_screenBatcherVertexBuffer, 0);
-
-	// Set the vertex buffer
-	UINT stride = sizeof(SCREEN_VERTEX);
-	UINT offset = 0;
-	m_deviceContext->IASetVertexBuffers(0, 1, &m_screenBatcherVertexBuffer, &stride, &offset);
-}
-
 void Direct3DManager::cleanUp()
 {
 	m_device->Release();
@@ -210,14 +182,9 @@ void Direct3DManager::cleanUp()
 	m_gbPixelShader->Release();
 	m_gbInputLayout->Release();
 	m_gbVertexBuffer->Release();
-	m_screenBatcherVertexShader->Release();
-	m_screenBatcherPixelShader->Release();
-	m_screenBatcherInputLayout->Release();
-	m_screenBatcherVertexBuffer->Release();
 
 	m_textureVertices.clear();
 	m_colorVertices.clear();
-	m_screenVertices.clear();
 }
 
 void Direct3DManager::initDeviceResources()
@@ -352,30 +319,6 @@ void Direct3DManager::createInputLayoutForGeometryBatcher()
 	m_device->CreatePixelShader(pixelShaderBytecode->Data, pixelShaderBytecode->Length, nullptr, &m_gbPixelShader);
 }
 
-void Direct3DManager::createInputLayoutForScreenBatcher()
-{
-	// Create a Basic Reader - Writer class to load data from disk.
-	BasicReaderWriter^ reader = ref new BasicReaderWriter();
-	Platform::Array<byte>^ vertexShaderBytecode;
-	Platform::Array<byte>^ pixelShaderBytecode;
-
-	// Load the raw shader bytecode from disk and create shader objects with it.
-	vertexShaderBytecode = reader->ReadData("PPSinWaveVertexShader.cso");
-	pixelShaderBytecode = reader->ReadData("PPSinWavePixelShader.cso");
-
-	// initialize input layout
-	D3D11_INPUT_ELEMENT_DESC ied[] =
-	{
-		{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 }
-	};
-
-	// create and set the input layout
-	m_device->CreateInputLayout(ied, ARRAYSIZE(ied), vertexShaderBytecode->Data, vertexShaderBytecode->Length, &m_screenBatcherInputLayout);
-
-	m_device->CreateVertexShader(vertexShaderBytecode->Data, vertexShaderBytecode->Length, nullptr, &m_screenBatcherVertexShader);
-	m_device->CreatePixelShader(pixelShaderBytecode->Data, pixelShaderBytecode->Length, nullptr, &m_screenBatcherPixelShader);
-}
-
 void Direct3DManager::createVertexBufferForSpriteBatcher()
 {
 	m_textureVertices.reserve(MAX_BATCH_SIZE * VERTICES_PER_RECTANGLE);
@@ -424,31 +367,6 @@ void Direct3DManager::createVertexBufferForGeometryBatcher()
 	vertexBufferData.SysMemSlicePitch = 0;
 
 	throwIfFailed(m_device->CreateBuffer(&vertexBufferDesc, &vertexBufferData, &m_gbVertexBuffer));
-}
-
-void Direct3DManager::createVertexBufferForScreenBatcher()
-{
-	m_screenVertices.reserve(VERTICES_PER_RECTANGLE);
-	SCREEN_VERTEX sv = { 0, 0, 0 };
-	for (int i = 0; i < VERTICES_PER_RECTANGLE; i++)
-	{
-		m_screenVertices.push_back(sv);
-	}
-
-	D3D11_BUFFER_DESC vertexBufferDesc = { 0 };
-	vertexBufferDesc.ByteWidth = sizeof(SCREEN_VERTEX) * m_screenVertices.size();
-	vertexBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
-	vertexBufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-	vertexBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-	vertexBufferDesc.MiscFlags = 0;
-	vertexBufferDesc.StructureByteStride = 0;
-
-	D3D11_SUBRESOURCE_DATA vertexBufferData;
-	vertexBufferData.pSysMem = &m_screenVertices[0];
-	vertexBufferData.SysMemPitch = 0;
-	vertexBufferData.SysMemSlicePitch = 0;
-
-	throwIfFailed(m_device->CreateBuffer(&vertexBufferDesc, &vertexBufferData, &m_screenBatcherVertexBuffer));
 }
 
 void Direct3DManager::createIndexBuffer()

@@ -108,7 +108,7 @@ void GameScreen::update(float deltaTime)
     }
 }
 
-void GameScreen::present()
+void GameScreen::render()
 {
     m_renderer->clearScreenWithColor(m_fColor, m_fColor, m_fColor, 1);
 

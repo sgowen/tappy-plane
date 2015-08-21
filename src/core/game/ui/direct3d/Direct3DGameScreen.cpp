@@ -19,7 +19,6 @@
 #include "Triangle.h"
 #include "Font.h"
 #include "Direct3DRenderer.h"
-#include "Global.h"
 #include "GameSound.h"
 #include "SpriteBatcher.h"
 #include "LineBatcher.h"
@@ -30,7 +29,8 @@
 #include "Circle.h"
 #include "GameConstants.h"
 #include "ResourceConstants.h"
-#include "DirectXManager.h"
+#include "Direct3DManager.h"
+#include "Font.h"
 #include "GameButton.h"
 
 Direct3DGameScreen::Direct3DGameScreen() : GameScreen()
@@ -46,7 +46,7 @@ void Direct3DGameScreen::load(float deviceScreenWidth, float deviceScreenHeight,
 	m_fGameScreenToDeviceScreenHeightRatio = deviceScreenHeight / SCREEN_HEIGHT;
 	m_fDipToPixelRatio = (float)deviceScreenWidth / (float)deviceScreenDpWidth;
 
-	DXManager->init(deviceScreenWidth, deviceScreenHeight);
+	D3DManager->init(deviceScreenWidth, deviceScreenHeight);
 
 	m_renderer = std::unique_ptr<Direct3DRenderer>(new Direct3DRenderer());
 
@@ -62,12 +62,12 @@ void Direct3DGameScreen::updateForRenderResolutionChange(float width, float heig
 	m_iDeviceScreenHeight = height;
 
 	ID3D11RenderTargetView* nullViews[] = { nullptr };
-	DXManager->m_deviceContext->OMSetRenderTargets(ARRAYSIZE(nullViews), nullViews, nullptr);
-	DXManager->m_renderTarget = nullptr;
-	DXManager->m_renderTargetView = nullptr;
-	DXManager->m_deviceContext->Flush();
+	D3DManager->m_deviceContext->OMSetRenderTargets(ARRAYSIZE(nullViews), nullViews, nullptr);
+	D3DManager->m_renderTarget = nullptr;
+	D3DManager->m_renderTargetView = nullptr;
+	D3DManager->m_deviceContext->Flush();
 
-	DXManager->initWindowSizeDependentResources(width, height);
+	D3DManager->initWindowSizeDependentResources(width, height);
 }
 
 void Direct3DGameScreen::handleSound()
@@ -97,6 +97,11 @@ void Direct3DGameScreen::handleSound()
 	}
 }
 
+void Direct3DGameScreen::handleMusic()
+{
+	// TODO
+}
+
 void Direct3DGameScreen::unload()
 {
 	if (m_gameState == RUNNING)
@@ -106,12 +111,12 @@ void Direct3DGameScreen::unload()
 
 	m_renderer->cleanUp();
 
-	DXManager->cleanUp();
+	D3DManager->cleanUp();
 }
 
 ID3D11Texture2D* Direct3DGameScreen::getTexture()
 {
-	return DXManager->m_renderTarget;
+	return D3DManager->m_renderTarget;
 }
 
 void Direct3DGameScreen::touchToWorld(TouchEvent &touchEvent)
@@ -121,12 +126,12 @@ void Direct3DGameScreen::touchToWorld(TouchEvent &touchEvent)
 
 void Direct3DGameScreen::platformResume()
 {
-	Global::getSoundPlayerInstance()->Resume();
+	GameSound::getSoundPlayerInstance()->Resume();
 }
 
 void Direct3DGameScreen::platformPause()
 {
-	Global::getSoundPlayerInstance()->Suspend();
+	GameSound::getSoundPlayerInstance()->Suspend();
 }
 
 bool Direct3DGameScreen::handleOnBackPressed()

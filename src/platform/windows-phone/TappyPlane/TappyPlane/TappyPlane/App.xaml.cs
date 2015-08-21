@@ -54,6 +54,7 @@ namespace TappyPlane
                 // and consume battery power when the user is not using the phone.
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
+
         }
 
         // Code to execute when the application is launching (eg, from Start)
@@ -78,7 +79,6 @@ namespace TappyPlane
         // This code will not execute when the application is deactivated
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
-            // Empty
         }
 
         // Code to execute if a navigation fails

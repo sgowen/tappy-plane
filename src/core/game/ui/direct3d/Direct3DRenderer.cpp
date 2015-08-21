@@ -9,7 +9,6 @@
 #include "pch.h"
 #include "macros.h"
 #include "Direct3DRenderer.h"
-#include "GameObject.h"
 #include "TextureRegion.h"
 #include "Assets.h"
 #include "Vector2D.h"
@@ -26,7 +25,7 @@
 #include "Direct3DCircleBatcher.h"
 #include "Rectangle.h"
 #include "Circle.h"
-#include "DirectXManager.h"
+#include "Direct3DManager.h"
 
 #include <string>
 #include <sstream>
@@ -40,8 +39,8 @@ Direct3DRenderer::Direct3DRenderer() : Renderer()
 {
 	m_spriteBatcher = std::unique_ptr<Direct3DSpriteBatcher>(new Direct3DSpriteBatcher());
 
-	CreateDDSTextureFromFile(DXManager->m_device, L"Assets\\background.dds", NULL, &m_backgroundShaderResourceView, NULL);
-	CreateDDSTextureFromFile(DXManager->m_device, L"Assets\\game.dds", NULL, &m_gameShaderResourceView, NULL);
+	CreateDDSTextureFromFile(D3DManager->m_device, L"Assets\\background.dds", NULL, &m_backgroundShaderResourceView, NULL);
+	CreateDDSTextureFromFile(D3DManager->m_device, L"Assets\\game.dds", NULL, &m_gameShaderResourceView, NULL);
 
 	m_backgroundTexture = std::unique_ptr<TextureWrapper>(new TextureWrapper(m_backgroundShaderResourceView));
 	m_gameTexture = std::unique_ptr<TextureWrapper>(new TextureWrapper(m_gameShaderResourceView));
@@ -52,9 +51,9 @@ void Direct3DRenderer::clearScreenWithColor(float r, float g, float b, float a)
 	float color[] = { r, g, b, a };
 
 	// set our new render target object as the active render target
-	DXManager->m_deviceContext->OMSetRenderTargets(1, &DXManager->m_renderTargetView, nullptr);
+	D3DManager->m_deviceContext->OMSetRenderTargets(1, &D3DManager->m_renderTargetView, nullptr);
 
-	DXManager->m_deviceContext->ClearRenderTargetView(DXManager->m_renderTargetView, color);
+	D3DManager->m_deviceContext->ClearRenderTargetView(D3DManager->m_renderTargetView, color);
 }
 
 void Direct3DRenderer::beginFrame()

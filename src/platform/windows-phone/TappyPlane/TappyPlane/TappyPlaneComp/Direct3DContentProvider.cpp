@@ -15,7 +15,6 @@
 #include "Rectangle.h"
 #include "Assets.h"
 #include "OverlapTester.h"
-#include "GameListener.h"
 #include "Renderer.h"
 #include "Triangle.h"
 #include "Font.h"
@@ -24,11 +23,11 @@
 #include "RectangleBatcher.h"
 #include "LineBatcher.h"
 #include "CircleBatcher.h"
-#include "GameListener.h"
 #include "Rectangle.h"
 #include "Circle.h"
-#include "GameSound.h"
+#include "Font.h"
 #include "GameButton.h"
+#include "GameSound.h"
 
 using namespace TappyPlaneComp;
 

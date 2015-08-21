@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{fba3b264-7d49-446a-b86b-5f45b246e0e0}" Title="Tappy Plane" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Gowen Game Dev" Description="Tap that plane!" Publisher="Gowen Game Dev" PublisherID="{a583793b-5b54-45d6-b024-bbd8a9f0aafb}">
+  <App xmlns="" ProductID="{4bb04646-9fec-4c9c-b2f1-89ccd43b37da}" Title="TappyPlane" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Gowen Game Dev" Description="Sample description" Publisher="Gowen Game Dev" PublisherID="{f8ca5fd6-18e3-4609-9ee4-0b47fdef28a4}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
@@ -9,9 +9,6 @@
       <Capability Name="ID_CAP_MEDIALIB_PLAYBACK" />
       <Capability Name="ID_CAP_SENSORS" />
       <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
-      <Capability Name="ID_CAP_MEDIALIB_PHOTO" />
-      <Capability Name="ID_CAP_IDENTITY_USER" />
-      <Capability Name="ID_CAP_PHONEDIALER" />
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="MainPage.xaml" />
