@@ -1,10 +1,6 @@
 # Mac
 .DS_Store
 
-# DirectXTK
-DirectXTK/
-!DirectXTK/DirectXTK_readme.txt
-
 # libpng
 libpng/
 !libpng/Android.mk
@@ -31,3 +27,18 @@ xcshareddata/
 *.suo
 ARM/
 Debug/
+
+# NetBeans
+private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+.nb-gradle/
+
+# 3DS Build Artifacts
+*.elf
+*.smdh
+*.3dsx

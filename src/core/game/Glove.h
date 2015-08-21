@@ -9,19 +9,14 @@
 #ifndef __tappyplane__Glove__
 #define __tappyplane__Glove__
 
-#include "GameObject.h"
+#include "PhysicalEntity.h"
 
-class Glove : public GameObject
+class Glove : public PhysicalEntity
 {
 public:
     Glove(float x, float y, float width, float height);
     
     void update(float deltaTime);
-    
-    float getStateTime();
-    
-private:
-    float m_fStateTime;
 };
 
 #endif /* defined(__tappyplane__Glove__) */

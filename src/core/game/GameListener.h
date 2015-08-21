@@ -15,7 +15,7 @@
 
 #include <vector>
 
-class PlayerDynamicGameObject;
+class PlayerPhysicalEntity;
 
 class GameListener
 {

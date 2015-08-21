@@ -9,15 +9,18 @@
 #import "ViewController.h"
 #import "GGDDeviceUtil.h"
 #import "AppPrefs.h"
+#import "Logger.h"
 
-#include "game.h"
+// C++
+#include "IOSOpenGLESGameScreen.h"
+#include "IOS8OpenGLESGameScreen.h"
 #include "Sound.h"
 #include "ResourceConstants.h"
 #include "ScreenState.h"
 
 @interface ViewController ()
 {
-    // Empty
+    IOSOpenGLESGameScreen *gameScreen;
 }
 
 @property (strong, nonatomic) EAGLContext *context;
@@ -30,10 +33,12 @@
 
 @implementation ViewController
 
+static Logger *logger = nil;
 static bool isRunningiOS8 = false;
 
 + (void)initialize
 {
+    logger = [[Logger alloc] initWithClass:[ViewController class]];
     isRunningiOS8 = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0");
 }
 
@@ -45,7 +50,7 @@ static bool isRunningiOS8 = false;
     
     if (!self.context)
     {
-        NSLog(@"Failed to create ES context");
+        [logger error:@"Failed to create ES context"];
     }
     
     GLKView *view = (GLKView *)self.view;
@@ -71,10 +76,23 @@ static bool isRunningiOS8 = false;
     newSize.width = roundf(newSize.width);
     newSize.height = roundf(newSize.height);
     
-    init(isRunningiOS8);
-    on_surface_created(newSize.width, newSize.height);
-    on_surface_changed(newSize.width, newSize.height, [UIScreen mainScreen].applicationFrame.size.width, [UIScreen mainScreen].applicationFrame.size.height);
-    on_resume();
+    [logger debug:[NSString stringWithFormat:@"dimension %f x %f", newSize.width, newSize.height]];
+    
+    [view bindDrawable];
+    
+    if(isRunningiOS8)
+    {
+        [logger debug:@"Instantiating IOS8OpenGLESGameScreen"];
+        gameScreen = new IOS8OpenGLESGameScreen([UIScreen mainScreen].applicationFrame.size.width, [UIScreen mainScreen].applicationFrame.size.height);
+    }
+    else
+    {
+        [logger debug:@"Instantiating IOSOpenGLESGameScreen"];
+        gameScreen = new IOSOpenGLESGameScreen([UIScreen mainScreen].applicationFrame.size.width, [UIScreen mainScreen].applicationFrame.size.height);
+    }
+    
+    gameScreen->onSurfaceCreated(MIN(newSize.width, newSize.height), MAX(newSize.width, newSize.height));
+    gameScreen->onSurfaceChanged(MIN(newSize.width, newSize.height), MAX(newSize.width, newSize.height));
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onPause)
@@ -98,45 +116,45 @@ static bool isRunningiOS8 = false;
 {
     UITouch *touch = [touches anyObject];
     CGPoint pos = [touch locationInView: [UIApplication sharedApplication].keyWindow];
-    on_touch_down(pos.x, pos.y);
+    gameScreen->onTouch(DOWN, pos.x, pos.y);
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch = [touches anyObject];
     CGPoint pos = [touch locationInView: [UIApplication sharedApplication].keyWindow];
-    on_touch_dragged(pos.x, pos.y);
+    gameScreen->onTouch(DRAGGED, pos.x, pos.y);
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch = [touches anyObject];
     CGPoint pos = [touch locationInView: [UIApplication sharedApplication].keyWindow];
-    on_touch_up(pos.x, pos.y);
+    gameScreen->onTouch(UP, pos.x, pos.y);
 }
 
 #pragma mark <GLKViewControllerDelegate>
 
 - (void)update
 {
-    int screenState = get_state();
+    int screenState = gameScreen->getState();
     switch (screenState)
     {
         case SCREEN_STATE_NORMAL:
-            update(self.timeSinceLastUpdate);
+            gameScreen->update(self.timeSinceLastUpdate);
             break;
         case SCREEN_STATE_RESET:
-            init(isRunningiOS8);
+            gameScreen->init();
             break;
         case SCREEN_STATE_EXIT:
             [self dismissViewControllerAnimated:NO completion:nil];
             break;
         case SCREEN_STATE_GAME_OVER:
-            clear_state();
+            gameScreen->clearState();
             [self handleFinalScore];
             break;
         case SCREEN_STATE_LEADERBOARDS:
-            clear_state();
+            gameScreen->clearState();
             // TODO, show Leaderboards here if you want
             break;
         default:
@@ -148,7 +166,7 @@ static bool isRunningiOS8 = false;
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
 {
-    present();
+    gameScreen->present();
     [self handleSound];
 }
 
@@ -156,7 +174,7 @@ static bool isRunningiOS8 = false;
 
 - (void)handleFinalScore
 {
-    int score = get_score();
+    int score = gameScreen->getScore();
     int bestScore = [[AppPrefs getInstance] getBestScore];
     
     if(score > bestScore)
@@ -164,13 +182,13 @@ static bool isRunningiOS8 = false;
         [[AppPrefs getInstance] setBestScore:score];
     }
     
-    set_best_score([[AppPrefs getInstance] getBestScore]);
+    gameScreen->setBestScore([[AppPrefs getInstance] getBestScore]);
 }
 
 - (void)handleSound
 {
     short soundId;
-    while ((soundId = get_current_sound_id()) > 0)
+    while ((soundId = gameScreen->getCurrentSoundId()) > 0)
     {
         switch (soundId)
         {
@@ -194,12 +212,12 @@ static bool isRunningiOS8 = false;
 
 - (void)onResume
 {
-    on_resume();
+    gameScreen->onResume();
 }
 
 - (void)onPause
 {
-    on_pause();
+    gameScreen->onPause();
 }
 
 @end

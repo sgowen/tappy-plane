@@ -9,9 +9,9 @@
 #ifndef __tappyplane__PuffCloud__
 #define __tappyplane__PuffCloud__
 
-#include "GameObject.h"
+#include "PhysicalEntity.h"
 
-class PuffCloud : public GameObject
+class PuffCloud : public PhysicalEntity
 {
 public:
     PuffCloud(float x, float y, float width, float height, float angle);

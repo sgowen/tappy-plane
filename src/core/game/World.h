@@ -13,9 +13,9 @@
 #include <vector>
 #include "Obstacle.h"
 
-class GameObject;
+class PhysicalEntity;
 class Obstacle;
-class PlaneDynamicGameObject;
+class PlanePhysicalEntity;
 class TouchEvent;
 
 class World
@@ -31,11 +31,11 @@ public:
     
     std::vector<std::unique_ptr<Obstacle>> & getObstacles();
     
-    GameObject& getForegroundLeft();
+    PhysicalEntity& getForegroundLeft();
     
-    GameObject& getForegroundRight();
+    PhysicalEntity& getForegroundRight();
     
-    PlaneDynamicGameObject & getPlane();
+    PlanePhysicalEntity & getPlane();
     
     Environment_Type getEnvironmentType();
     
@@ -45,9 +45,9 @@ public:
     
 private:
     std::vector<std::unique_ptr<Obstacle>> m_obstacles;
-    std::unique_ptr<PlaneDynamicGameObject> m_plane;
-    std::unique_ptr<GameObject> m_foregroundLeft;
-    std::unique_ptr<GameObject> m_foregroundRight;
+    std::unique_ptr<PlanePhysicalEntity> m_plane;
+    std::unique_ptr<PhysicalEntity> m_foregroundLeft;
+    std::unique_ptr<PhysicalEntity> m_foregroundRight;
     Environment_Type m_environmentType;
     int m_iScore;
 };

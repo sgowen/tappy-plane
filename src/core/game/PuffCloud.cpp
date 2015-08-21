@@ -10,7 +10,7 @@
 #include "Vector2D.h"
 #include "Rectangle.h"
 
-PuffCloud::PuffCloud(float x, float y, float width, float height, float angle) : GameObject(x, y, width, height, angle)
+PuffCloud::PuffCloud(float x, float y, float width, float height, float angle) : PhysicalEntity(x, y, width, height, angle)
 {
     m_fAlpha = 1;
 }

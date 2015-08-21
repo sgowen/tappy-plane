@@ -8,24 +8,23 @@
 
 #define GAME_SPEED 8
 
-#include "pch.h"
 #include "GameConstants.h"
 #include "World.h"
 #include "Rectangle.h"
 #include "Vector2D.h"
-#include "PlaneDynamicGameObject.h"
+#include "PlanePhysicalEntity.h"
 #include "TouchEvent.h"
 #include "GameListener.h"
 #include "Obstacle.h"
 #include "Triangle.h"
-#include "SpikeGameObject.h"
+#include "SpikePhysicalEntity.h"
 #include "Line.h"
 #include "ResourceConstants.h"
 #include <random>
 
 World::World()
 {
-    m_plane = std::unique_ptr<PlaneDynamicGameObject>(new PlaneDynamicGameObject(SCREEN_WIDTH / 8 * 3, SCREEN_HEIGHT / 2, 3.95f, 3.25f));
+    m_plane = std::unique_ptr<PlanePhysicalEntity>(new PlanePhysicalEntity(SCREEN_WIDTH / 8 * 3, SCREEN_HEIGHT / 2, 3.95f, 3.25f));
     
     int randomInt = rand() % 4;
     m_environmentType = randomInt == 0 ? GRASS : randomInt == 1 ? ROCK : randomInt == 2 ? SNOW : ICE;
@@ -37,8 +36,8 @@ World::World()
     m_obstacles.push_back(std::unique_ptr<Obstacle>(new Obstacle(SCREEN_WIDTH / 8 * 35, SCREEN_HEIGHT / 2, 8.55f, SCREEN_HEIGHT, GAME_SPEED, m_environmentType)));
     m_obstacles.push_back(std::unique_ptr<Obstacle>(new Obstacle(SCREEN_WIDTH / 8 * 40, SCREEN_HEIGHT / 2, 8.55f, SCREEN_HEIGHT, GAME_SPEED, m_environmentType)));
     
-    m_foregroundLeft = std::unique_ptr<GameObject>(new GameObject(SCREEN_WIDTH_1_2, GAME_WORLD_BASE_1_2, SCREEN_WIDTH, GAME_WORLD_BASE, 0));
-    m_foregroundRight = std::unique_ptr<GameObject>(new GameObject(SCREEN_WIDTH_3_2, GAME_WORLD_BASE_1_2, SCREEN_WIDTH, GAME_WORLD_BASE, 0));
+    m_foregroundLeft = std::unique_ptr<PhysicalEntity>(new PhysicalEntity(SCREEN_WIDTH_1_2, GAME_WORLD_BASE_1_2, SCREEN_WIDTH, GAME_WORLD_BASE, 0));
+    m_foregroundRight = std::unique_ptr<PhysicalEntity>(new PhysicalEntity(SCREEN_WIDTH_3_2, GAME_WORLD_BASE_1_2, SCREEN_WIDTH, GAME_WORLD_BASE, 0));
     
     m_iScore = 0;
 }
@@ -107,17 +106,17 @@ std::vector<std::unique_ptr<Obstacle>> & World::getObstacles()
     return m_obstacles;
 }
 
-GameObject & World::getForegroundLeft()
+PhysicalEntity & World::getForegroundLeft()
 {
     return *m_foregroundLeft;
 }
 
-GameObject & World::getForegroundRight()
+PhysicalEntity & World::getForegroundRight()
 {
     return *m_foregroundRight;
 }
 
-PlaneDynamicGameObject & World::getPlane()
+PlanePhysicalEntity & World::getPlane()
 {
     return *m_plane;
 }

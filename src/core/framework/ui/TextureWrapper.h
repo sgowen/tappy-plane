@@ -34,6 +34,11 @@ struct TextureWrapper
     {
         // Empty
     }
+#else
+    TextureWrapper()
+    {
+        // This is a Dummy Container for mocking
+    }
 #endif
 };
 

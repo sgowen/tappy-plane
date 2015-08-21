@@ -9,12 +9,7 @@
 #ifndef TouchEvent_H
 #define TouchEvent_H
 
-typedef enum
-{
-    DOWN,
-    DRAGGED,
-    UP
-} Touch_Type;
+#include "TouchType.h"
 
 class TouchEvent
 {

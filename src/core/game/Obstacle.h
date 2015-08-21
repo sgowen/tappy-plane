@@ -9,26 +9,31 @@
 #ifndef __tappyplane__Obstacle__
 #define __tappyplane__Obstacle__
 
-#include "GameObject.h"
-#include "SpikeGameObject.h"
+#include "PhysicalEntity.h"
 #include "Triangle.h"
+#include "EnvironmentType.h"
+#include "SpikePhysicalEntity.h"
 #include <vector>
 #include <memory>
 
-class PlaneDynamicGameObject;
+class PlanePhysicalEntity;
 
-class Obstacle : public GameObject
+class Obstacle : public PhysicalEntity
 {
 public:
     Obstacle(float x, float y, float width, float height, float speed, Environment_Type environmentType);
     
     // Return true if the plane has passed this obstacle
-    bool update(float deltaTime, PlaneDynamicGameObject &plane);
+    bool update(float deltaTime, PlanePhysicalEntity &plane);
     
-    std::vector<std::unique_ptr<SpikeGameObject>> & getSpikes();
+    std::vector<std::unique_ptr<SpikePhysicalEntity>> & getSpikes();
+    
+    Triangle & getTopBounds();
+    
+    Triangle & getBottomBounds();
 
 private:
-    std::vector<std::unique_ptr<SpikeGameObject>> m_spikes;
+    std::vector<std::unique_ptr<SpikePhysicalEntity>> m_spikes;
     std::unique_ptr<Triangle> m_topBounds;
     std::unique_ptr<Triangle> m_bottomBounds;
     Environment_Type m_environmentType;

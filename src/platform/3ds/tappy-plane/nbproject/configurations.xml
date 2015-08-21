@@ -1,0 +1,806 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="90">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="core" displayName="core" projectFiles="true">
+      <logicalFolder name="framework" displayName="framework" projectFiles="true">
+        <logicalFolder name="entity" displayName="entity" projectFiles="true">
+          <itemPath>../../../core/framework/entity/Entity.cpp</itemPath>
+          <itemPath>../../../core/framework/entity/Entity.h</itemPath>
+          <itemPath>../../../core/framework/entity/PhysicalEntity.cpp</itemPath>
+          <itemPath>../../../core/framework/entity/PhysicalEntity.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="math" displayName="math" projectFiles="true">
+          <itemPath>../../../core/framework/math/Circle.cpp</itemPath>
+          <itemPath>../../../core/framework/math/Circle.h</itemPath>
+          <itemPath>../../../core/framework/math/Line.cpp</itemPath>
+          <itemPath>../../../core/framework/math/Line.h</itemPath>
+          <itemPath>../../../core/framework/math/OverlapTester.cpp</itemPath>
+          <itemPath>../../../core/framework/math/OverlapTester.h</itemPath>
+          <itemPath>../../../core/framework/math/Rectangle.cpp</itemPath>
+          <itemPath>../../../core/framework/math/Rectangle.h</itemPath>
+          <itemPath>../../../core/framework/math/Triangle.cpp</itemPath>
+          <itemPath>../../../core/framework/math/Triangle.h</itemPath>
+          <itemPath>../../../core/framework/math/Vector2D.cpp</itemPath>
+          <itemPath>../../../core/framework/math/Vector2D.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="ui" displayName="ui" projectFiles="true">
+          <logicalFolder name="direct3d" displayName="direct3d" projectFiles="true">
+            <itemPath>../../../core/framework/ui/direct3d/ColorPixelShader.hlsl</itemPath>
+            <itemPath>../../../core/framework/ui/direct3d/ColorVertexShader.hlsl</itemPath>
+            <itemPath>../../../core/framework/ui/direct3d/Direct3DCircleBatcher.cpp</itemPath>
+            <itemPath>../../../core/framework/ui/direct3d/Direct3DCircleBatcher.h</itemPath>
+            <itemPath>../../../core/framework/ui/direct3d/Direct3DLineBatcher.cpp</itemPath>
+            <itemPath>../../../core/framework/ui/direct3d/Direct3DLineBatcher.h</itemPath>
+            <itemPath>../../../core/framework/ui/direct3d/Direct3DManager.cpp</itemPath>
+            <itemPath>../../../core/framework/ui/direct3d/Direct3DManager.h</itemPath>
+            <itemPath>../../../core/framework/ui/direct3d/Direct3DProgram.cpp</itemPath>
+            <itemPath>../../../core/framework/ui/direct3d/Direct3DProgram.h</itemPath>
+            <itemPath>../../../core/framework/ui/direct3d/Direct3DRectangleBatcher.cpp</itemPath>
+            <itemPath>../../../core/framework/ui/direct3d/Direct3DRectangleBatcher.h</itemPath>
+            <itemPath>../../../core/framework/ui/direct3d/Direct3DSpriteBatcher.cpp</itemPath>
+            <itemPath>../../../core/framework/ui/direct3d/Direct3DSpriteBatcher.h</itemPath>
+            <itemPath>../../../core/framework/ui/direct3d/GameSound.cpp</itemPath>
+            <itemPath>../../../core/framework/ui/direct3d/GameSound.h</itemPath>
+            <itemPath>../../../core/framework/ui/direct3d/PPSinWavePixelShader.hlsl</itemPath>
+            <itemPath>../../../core/framework/ui/direct3d/PPSinWaveVertexShader.hlsl</itemPath>
+            <itemPath>../../../core/framework/ui/direct3d/TexturePixelShader.hlsl</itemPath>
+            <itemPath>../../../core/framework/ui/direct3d/TextureVertexShader.hlsl</itemPath>
+          </logicalFolder>
+          <logicalFolder name="opengles" displayName="opengles" projectFiles="true">
+            <itemPath>../../../core/framework/ui/opengles/ColorProgram.cpp</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/ColorProgram.h</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/OpenGLESCircleBatcher.cpp</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/OpenGLESCircleBatcher.h</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/OpenGLESLineBatcher.cpp</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/OpenGLESLineBatcher.h</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/OpenGLESManager.cpp</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/OpenGLESManager.h</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/OpenGLESRectangleBatcher.cpp</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/OpenGLESRectangleBatcher.h</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/OpenGLESSpriteBatcher.cpp</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/OpenGLESSpriteBatcher.h</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/TextureProgram.cpp</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/TextureProgram.h</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/asset_utils.c</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/asset_utils.h</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/color_shader.fsh</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/color_shader.vsh</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/image.c</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/image.h</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/linmath.h</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/platform_asset_utils.h</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/platform_file_utils.c</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/platform_file_utils.h</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/pp_sin_wave_shader.fsh</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/pp_sin_wave_shader.vsh</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/shader.c</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/shader.h</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/texture.c</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/texture.h</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/texture_shader.fsh</itemPath>
+            <itemPath>../../../core/framework/ui/opengles/texture_shader.vsh</itemPath>
+          </logicalFolder>
+          <itemPath>../../../core/framework/ui/CircleBatcher.cpp</itemPath>
+          <itemPath>../../../core/framework/ui/CircleBatcher.h</itemPath>
+          <itemPath>../../../core/framework/ui/Color.h</itemPath>
+          <itemPath>../../../core/framework/ui/Font.cpp</itemPath>
+          <itemPath>../../../core/framework/ui/Font.h</itemPath>
+          <itemPath>../../../core/framework/ui/LineBatcher.cpp</itemPath>
+          <itemPath>../../../core/framework/ui/LineBatcher.h</itemPath>
+          <itemPath>../../../core/framework/ui/RectangleBatcher.cpp</itemPath>
+          <itemPath>../../../core/framework/ui/RectangleBatcher.h</itemPath>
+          <itemPath>../../../core/framework/ui/SpriteBatcher.cpp</itemPath>
+          <itemPath>../../../core/framework/ui/SpriteBatcher.h</itemPath>
+          <itemPath>../../../core/framework/ui/TextureRegion.cpp</itemPath>
+          <itemPath>../../../core/framework/ui/TextureRegion.h</itemPath>
+          <itemPath>../../../core/framework/ui/TextureWrapper.h</itemPath>
+          <itemPath>../../../core/framework/ui/TouchEvent.cpp</itemPath>
+          <itemPath>../../../core/framework/ui/TouchEvent.h</itemPath>
+          <itemPath>../../../core/framework/ui/TouchType.h</itemPath>
+          <itemPath>../../../core/framework/ui/TriangleBatcher.cpp</itemPath>
+          <itemPath>../../../core/framework/ui/TriangleBatcher.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="util" displayName="util" projectFiles="true">
+          <itemPath>../../../core/framework/util/FlagUtil.h</itemPath>
+          <itemPath>../../../core/framework/util/macros.h</itemPath>
+        </logicalFolder>
+      </logicalFolder>
+      <logicalFolder name="game" displayName="game" projectFiles="true">
+        <logicalFolder name="ui" displayName="ui" projectFiles="true">
+          <logicalFolder name="direct3d" displayName="direct3d" projectFiles="true">
+            <itemPath>../../../core/game/ui/direct3d/Direct3DGameScreen.cpp</itemPath>
+            <itemPath>../../../core/game/ui/direct3d/Direct3DGameScreen.h</itemPath>
+            <itemPath>../../../core/game/ui/direct3d/Direct3DRenderer.cpp</itemPath>
+            <itemPath>../../../core/game/ui/direct3d/Direct3DRenderer.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="opengles" displayName="opengles" projectFiles="true">
+            <itemPath>../../../core/game/ui/opengles/OpenGLESGameScreen.cpp</itemPath>
+            <itemPath>../../../core/game/ui/opengles/OpenGLESGameScreen.h</itemPath>
+            <itemPath>../../../core/game/ui/opengles/OpenGLESRenderer.cpp</itemPath>
+            <itemPath>../../../core/game/ui/opengles/OpenGLESRenderer.h</itemPath>
+          </logicalFolder>
+          <itemPath>../../../core/game/ui/Assets.cpp</itemPath>
+          <itemPath>../../../core/game/ui/Assets.h</itemPath>
+          <itemPath>../../../core/game/ui/GameButton.cpp</itemPath>
+          <itemPath>../../../core/game/ui/GameButton.h</itemPath>
+          <itemPath>../../../core/game/ui/GameScreen.cpp</itemPath>
+          <itemPath>../../../core/game/ui/GameScreen.h</itemPath>
+          <itemPath>../../../core/game/ui/Renderer.cpp</itemPath>
+          <itemPath>../../../core/game/ui/Renderer.h</itemPath>
+          <itemPath>../../../core/game/ui/ScreenState.h</itemPath>
+        </logicalFolder>
+        <itemPath>../../../core/game/EnvironmentType.h</itemPath>
+        <itemPath>../../../core/game/GameConstants.h</itemPath>
+        <itemPath>../../../core/game/GameListener.cpp</itemPath>
+        <itemPath>../../../core/game/GameListener.h</itemPath>
+        <itemPath>../../../core/game/GameState.h</itemPath>
+        <itemPath>../../../core/game/Glove.cpp</itemPath>
+        <itemPath>../../../core/game/Glove.h</itemPath>
+        <itemPath>../../../core/game/Obstacle.cpp</itemPath>
+        <itemPath>../../../core/game/Obstacle.h</itemPath>
+        <itemPath>../../../core/game/PlanePhysicalEntity.cpp</itemPath>
+        <itemPath>../../../core/game/PlanePhysicalEntity.h</itemPath>
+        <itemPath>../../../core/game/PlaneType.h</itemPath>
+        <itemPath>../../../core/game/PuffCloud.cpp</itemPath>
+        <itemPath>../../../core/game/PuffCloud.h</itemPath>
+        <itemPath>../../../core/game/ResourceConstants.h</itemPath>
+        <itemPath>../../../core/game/SpikePhysicalEntity.cpp</itemPath>
+        <itemPath>../../../core/game/SpikePhysicalEntity.h</itemPath>
+        <itemPath>../../../core/game/World.cpp</itemPath>
+        <itemPath>../../../core/game/World.h</itemPath>
+      </logicalFolder>
+    </logicalFolder>
+    <df root="." name="0">
+      <df name="source">
+        <in>DSGameScreen.cpp</in>
+        <in>DSGameScreen.h</in>
+        <in>DSRenderer.cpp</in>
+        <in>DSRenderer.h</in>
+        <in>DSSpriteBatcher.cpp</in>
+        <in>DSSpriteBatcher.h</in>
+      </df>
+    </df>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
+  <sourceRootList>
+    <Elem>.</Elem>
+    <Elem>../../../core</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>false</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <codeAssistance>
+      </codeAssistance>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>.</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath></executablePath>
+          <cTool>
+            <incDir>
+              <pElem>source</pElem>
+              <pElem>../../../../../../../../../../../devkitPro/devkitARM/arm-none-eabi/include/machine</pElem>
+              <pElem>../../../../../../../../../../../devkitPro/devkitARM/arm-none-eabi/include</pElem>
+              <pElem>../../../../../../../../../../../devkitPro/libctru/include/3ds</pElem>
+              <pElem>../../../../../../../../../../../devkitPro/libctru/include/3ds/services</pElem>
+              <pElem>../../../../../../../../../../../devkitPro/libctru/include</pElem>
+              <pElem>build</pElem>
+              <pElem>../../../core/framework/entity</pElem>
+              <pElem>../../../core/framework/math</pElem>
+              <pElem>../../../core/framework/ui</pElem>
+              <pElem>../../../core/framework/util</pElem>
+              <pElem>../../../core/game</pElem>
+              <pElem>../../../core/game/ui</pElem>
+            </incDir>
+          </cTool>
+          <ccTool>
+            <incDir>
+              <pElem>source</pElem>
+              <pElem>../../../../../../../../../../../devkitPro/devkitARM/arm-none-eabi/include/machine</pElem>
+              <pElem>../../../../../../../../../../../devkitPro/devkitARM/arm-none-eabi/include</pElem>
+              <pElem>../../../../../../../../../../../devkitPro/libctru/include/3ds</pElem>
+              <pElem>../../../../../../../../../../../devkitPro/libctru/include/3ds/services</pElem>
+              <pElem>../../../../../../../../../../../devkitPro/libctru/include</pElem>
+              <pElem>build</pElem>
+              <pElem>../../../core/framework/entity</pElem>
+              <pElem>../../../core/framework/math</pElem>
+              <pElem>../../../core/framework/ui</pElem>
+              <pElem>../../../core/framework/util</pElem>
+              <pElem>../../../core/game</pElem>
+              <pElem>../../../core/game/ui</pElem>
+            </incDir>
+          </ccTool>
+        </makeTool>
+      </makefileType>
+      <item path="../../../core/framework/entity/Entity.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/entity/Entity.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/entity/PhysicalEntity.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/entity/PhysicalEntity.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/math/Circle.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/math/Circle.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/math/Line.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/math/Line.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/math/OverlapTester.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/math/OverlapTester.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/math/Rectangle.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/math/Rectangle.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/math/Triangle.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/math/Triangle.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/math/Vector2D.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/math/Vector2D.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/CircleBatcher.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/CircleBatcher.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/Color.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/Font.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/Font.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/LineBatcher.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/LineBatcher.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/RectangleBatcher.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/RectangleBatcher.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/SpriteBatcher.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/SpriteBatcher.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/TextureRegion.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/TextureRegion.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/TextureWrapper.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/TouchEvent.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/TouchEvent.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/TouchType.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/TriangleBatcher.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/TriangleBatcher.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/direct3d/ColorPixelShader.hlsl"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/direct3d/ColorVertexShader.hlsl"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/direct3d/Direct3DCircleBatcher.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/direct3d/Direct3DCircleBatcher.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/direct3d/Direct3DLineBatcher.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/direct3d/Direct3DLineBatcher.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/direct3d/Direct3DManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/direct3d/Direct3DManager.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/direct3d/Direct3DProgram.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/direct3d/Direct3DProgram.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/direct3d/Direct3DRectangleBatcher.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/direct3d/Direct3DRectangleBatcher.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/direct3d/Direct3DSpriteBatcher.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/direct3d/Direct3DSpriteBatcher.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/direct3d/GameSound.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/direct3d/GameSound.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/direct3d/PPSinWavePixelShader.hlsl"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/direct3d/PPSinWaveVertexShader.hlsl"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/direct3d/TexturePixelShader.hlsl"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/direct3d/TextureVertexShader.hlsl"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/ColorProgram.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/ColorProgram.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/OpenGLESCircleBatcher.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/OpenGLESCircleBatcher.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/OpenGLESLineBatcher.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/OpenGLESLineBatcher.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/OpenGLESManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/OpenGLESManager.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/OpenGLESRectangleBatcher.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/OpenGLESRectangleBatcher.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/OpenGLESSpriteBatcher.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/OpenGLESSpriteBatcher.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/TextureProgram.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/TextureProgram.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/asset_utils.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/asset_utils.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/color_shader.fsh"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/color_shader.vsh"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/image.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/image.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/linmath.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/platform_asset_utils.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/platform_file_utils.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/platform_file_utils.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/pp_sin_wave_shader.fsh"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/pp_sin_wave_shader.vsh"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/shader.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/shader.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/texture.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/texture.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/texture_shader.fsh"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/opengles/texture_shader.vsh"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/util/FlagUtil.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/util/macros.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/game/EnvironmentType.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/game/GameConstants.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../../core/game/GameListener.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/game/GameListener.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../../core/game/GameState.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../../core/game/Glove.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../../core/game/Glove.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../../core/game/Obstacle.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../../core/game/Obstacle.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../../core/game/PlanePhysicalEntity.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/game/PlanePhysicalEntity.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/game/PlaneType.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../../core/game/PuffCloud.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../../core/game/PuffCloud.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../../core/game/ResourceConstants.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/game/SpikePhysicalEntity.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/game/SpikePhysicalEntity.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/game/World.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../../core/game/World.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../../core/game/ui/Assets.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../../core/game/ui/Assets.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../../core/game/ui/GameButton.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/game/ui/GameButton.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../../core/game/ui/GameScreen.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/game/ui/GameScreen.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../../core/game/ui/Renderer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../../core/game/ui/Renderer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../../core/game/ui/ScreenState.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/game/ui/direct3d/Direct3DGameScreen.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/game/ui/direct3d/Direct3DGameScreen.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/game/ui/direct3d/Direct3DRenderer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/game/ui/direct3d/Direct3DRenderer.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/game/ui/opengles/OpenGLESGameScreen.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/game/ui/opengles/OpenGLESGameScreen.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/game/ui/opengles/OpenGLESRenderer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/game/ui/opengles/OpenGLESRenderer.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="source/DSGameScreen.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/DSGameScreen.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="source/DSRenderer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/DSRenderer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="source/DSSpriteBatcher.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/DSSpriteBatcher.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
