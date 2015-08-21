@@ -54,7 +54,7 @@ int main()
         hidScanInput();
 
         gameScreen.update(deltaTime);
-        gameScreen.present();
+        gameScreen.render();
 
         u32 kDown = hidKeysDown();
         if (kDown & KEY_START)

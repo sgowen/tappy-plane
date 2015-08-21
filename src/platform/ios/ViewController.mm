@@ -166,7 +166,7 @@ static bool isRunningiOS8 = false;
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
 {
-    gameScreen->present();
+    gameScreen->render();
     [self handleSound];
 }
 

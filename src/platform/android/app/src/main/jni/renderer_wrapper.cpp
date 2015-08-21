@@ -21,7 +21,7 @@ JNIEXPORT void JNICALL Java_com_gowengamedev_tappyplane_RendererWrapper_init(JNI
 JNIEXPORT void JNICALL Java_com_gowengamedev_tappyplane_RendererWrapper_on_1resume(JNIEnv* env, jclass cls);
 JNIEXPORT void JNICALL Java_com_gowengamedev_tappyplane_RendererWrapper_on_1pause(JNIEnv* env, jclass cls);
 JNIEXPORT void JNICALL Java_com_gowengamedev_tappyplane_RendererWrapper_update(JNIEnv* env, jclass cls, jfloat delta_time);
-JNIEXPORT void JNICALL Java_com_gowengamedev_tappyplane_RendererWrapper_present(JNIEnv* env, jclass cls);
+JNIEXPORT void JNICALL Java_com_gowengamedev_tappyplane_RendererWrapper_render(JNIEnv* env, jclass cls);
 JNIEXPORT void JNICALL Java_com_gowengamedev_tappyplane_RendererWrapper_on_1touch_1down(JNIEnv* env, jclass cls, jfloat raw_touch_x, jfloat raw_touch_y);
 JNIEXPORT void JNICALL Java_com_gowengamedev_tappyplane_RendererWrapper_on_1touch_1dragged(JNIEnv* env, jclass cls, jfloat raw_touch_x, jfloat raw_touch_y);
 JNIEXPORT void JNICALL Java_com_gowengamedev_tappyplane_RendererWrapper_on_1touch_1up(JNIEnv* env, jclass cls, jfloat raw_touch_x, jfloat raw_touch_y);
@@ -81,12 +81,12 @@ JNIEXPORT void JNICALL Java_com_gowengamedev_tappyplane_RendererWrapper_update(J
 	gameScreen->update(delta_time);
 }
 
-JNIEXPORT void JNICALL Java_com_gowengamedev_tappyplane_RendererWrapper_present(JNIEnv* env, jclass cls)
+JNIEXPORT void JNICALL Java_com_gowengamedev_tappyplane_RendererWrapper_render(JNIEnv* env, jclass cls)
 {
 	UNUSED(env);
 	UNUSED(cls);
 
-	gameScreen->present();
+	gameScreen->render();
 }
 
 JNIEXPORT void JNICALL Java_com_gowengamedev_tappyplane_RendererWrapper_on_1touch_1down(JNIEnv* env, jclass cls, jfloat raw_touch_x, jfloat raw_touch_y)

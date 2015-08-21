@@ -81,8 +81,6 @@
 		BB7A4C2D1B868F4300DED640 /* OpenGLESRectangleBatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB7A4BEF1B868F4300DED640 /* OpenGLESRectangleBatcher.cpp */; };
 		BB7A4C2E1B868F4300DED640 /* OpenGLESSpriteBatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB7A4BF11B868F4300DED640 /* OpenGLESSpriteBatcher.cpp */; };
 		BB7A4C2F1B868F4300DED640 /* platform_file_utils.c in Sources */ = {isa = PBXBuildFile; fileRef = BB7A4BF41B868F4300DED640 /* platform_file_utils.c */; };
-		BB7A4C301B868F4300DED640 /* pp_sin_wave_shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = BB7A4BF61B868F4300DED640 /* pp_sin_wave_shader.fsh */; };
-		BB7A4C311B868F4300DED640 /* pp_sin_wave_shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = BB7A4BF71B868F4300DED640 /* pp_sin_wave_shader.vsh */; };
 		BB7A4C321B868F4300DED640 /* shader.c in Sources */ = {isa = PBXBuildFile; fileRef = BB7A4BF81B868F4300DED640 /* shader.c */; };
 		BB7A4C331B868F4300DED640 /* texture.c in Sources */ = {isa = PBXBuildFile; fileRef = BB7A4BFA1B868F4300DED640 /* texture.c */; };
 		BB7A4C341B868F4300DED640 /* texture_shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = BB7A4BFC1B868F4300DED640 /* texture_shader.fsh */; };
@@ -254,8 +252,6 @@
 		BB7A4BF31B868F4300DED640 /* platform_asset_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform_asset_utils.h; sourceTree = "<group>"; };
 		BB7A4BF41B868F4300DED640 /* platform_file_utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = platform_file_utils.c; sourceTree = "<group>"; };
 		BB7A4BF51B868F4300DED640 /* platform_file_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform_file_utils.h; sourceTree = "<group>"; };
-		BB7A4BF61B868F4300DED640 /* pp_sin_wave_shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = pp_sin_wave_shader.fsh; sourceTree = "<group>"; };
-		BB7A4BF71B868F4300DED640 /* pp_sin_wave_shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = pp_sin_wave_shader.vsh; sourceTree = "<group>"; };
 		BB7A4BF81B868F4300DED640 /* shader.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = shader.c; sourceTree = "<group>"; };
 		BB7A4BF91B868F4300DED640 /* shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shader.h; sourceTree = "<group>"; };
 		BB7A4BFA1B868F4300DED640 /* texture.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = texture.c; sourceTree = "<group>"; };
@@ -628,8 +624,6 @@
 				BB7A4BF31B868F4300DED640 /* platform_asset_utils.h */,
 				BB7A4BF41B868F4300DED640 /* platform_file_utils.c */,
 				BB7A4BF51B868F4300DED640 /* platform_file_utils.h */,
-				BB7A4BF61B868F4300DED640 /* pp_sin_wave_shader.fsh */,
-				BB7A4BF71B868F4300DED640 /* pp_sin_wave_shader.vsh */,
 				BB7A4BF81B868F4300DED640 /* shader.c */,
 				BB7A4BF91B868F4300DED640 /* shader.h */,
 				BB7A4BFA1B868F4300DED640 /* texture.c */,
@@ -747,7 +741,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB7A4C301B868F4300DED640 /* pp_sin_wave_shader.fsh in Resources */,
 				BB7A4C271B868F4300DED640 /* color_shader.vsh in Resources */,
 				0ADF1886178E2185005DA99E /* InfoPlist.strings in Resources */,
 				BBC2B9F818AEF9A30009DD7F /* iPad Portrait Retina.png in Resources */,
@@ -772,7 +765,6 @@
 				BBC2B9E918AEF8420009DD7F /* App iPad Retina.png in Resources */,
 				BBC2B9E818AEF8420009DD7F /* App iPad Non-Retina.png in Resources */,
 				BBC2B9EA18AEF8420009DD7F /* App iPhone Retina.png in Resources */,
-				BB7A4C311B868F4300DED640 /* pp_sin_wave_shader.vsh in Resources */,
 				BBC2B9F018AEF8420009DD7F /* Spotlight iPhone Retina.png in Resources */,
 				0ADF1898178E2185005DA99E /* MainStoryboard_iPad.storyboard in Resources */,
 				BBAE1A7318B916D40079D8DA /* ascend.caf in Resources */,
