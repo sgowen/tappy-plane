@@ -15,7 +15,7 @@ class DSGameScreen : public GameScreen
 {
 public:
     DSGameScreen();
-    
+
     virtual void init();
 
     virtual void touchToWorld(TouchEvent &touchEvent);
@@ -23,9 +23,6 @@ public:
     virtual void platformResume();
 
     virtual void platformPause();
-
-private:
-
 };
 
 #endif /* defined(__tappyplane__DSGameScreen__) */

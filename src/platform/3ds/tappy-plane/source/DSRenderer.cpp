@@ -110,18 +110,27 @@ void DSRenderer::renderWorldForeground(World &world, Glove &glove, float titleAl
     renderPhysicalEntity(world.getForegroundRight(), Assets::getWorldForegroundRightTextureRegion(world.getEnvironmentType()));
     m_spriteBatcher->endBatchWithTexture(*m_gameTexture);
 
+    if (titleAlpha > 0)
+    {
+        printf("\x1b[15;12HTap A to start");
+    }
+    else
+    {
+        printf("\x1b[15;12H              ");
+    }
+
     if (!world.isGameOver() && world.getScore() > 0 && titleAlpha < 0)
     {
         std::stringstream ss;
         ss << world.getScore();
         std::string score = ss.str();
-        
+
         //Move the cursor to row 15 and column 19 and then prints "Hello World!"
-	//To move the cursor you have to print "\x1b[r;cH", where r and c are respectively
-	//the row and column where you want your cursor to move
-	//The top screen has 30 rows and 50 columns
-	//The bottom screen has 30 rows and 40 columns
-	printf("\x1b[5;19H%s", score.c_str());
+        //To move the cursor you have to print "\x1b[r;cH", where r and c are respectively
+        //the row and column where you want your cursor to move
+        //The top screen has 30 rows and 50 columns
+        //The bottom screen has 30 rows and 40 columns
+        printf("\x1b[5;19H%s", score.c_str());
     }
 }
 
