@@ -47,6 +47,10 @@ INCLUDES	+=	../../../core/framework/util
 INCLUDES	+=	../../../core/game
 INCLUDES	+=	../../../core/game/ui
 
+APP_TITLE	:=	Tappy Plane
+APP_DESCRIPTION	:=	A Flappy Bird clone
+APP_AUTHOR	:=	sgowen
+
 #---------------------------------------------------------------------------------
 # options for code generation
 #---------------------------------------------------------------------------------
