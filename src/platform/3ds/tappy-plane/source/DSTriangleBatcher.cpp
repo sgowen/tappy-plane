@@ -12,9 +12,9 @@
 #include "Vector2D.h"
 #include "GameConstants.h"
 
-#define DS_TOP_W 398.0f
-#define DS_TOP_H 238.0f
-#define DS_TOP_PADDING 1
+#define DS_BOTTOM_W 318.0f
+#define DS_BOTTOM_H 238.0f
+#define DS_BOTTOM_PADDING 1
 
 DSTriangleBatcher::DSTriangleBatcher(bool isFill) : TriangleBatcher(isFill)
 {
@@ -32,7 +32,7 @@ void DSTriangleBatcher::endBatch()
     if (m_iNumTriangles > 0)
     {
         // Please note that the 3DS screens are sideways (thus 240x400 and 240x320)
-        u8* fb = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL);
+        u8* fb = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL);
 
         int left, top, right, bottom, x1, y1, x2, y2, x3, y3;
 
@@ -40,14 +40,14 @@ void DSTriangleBatcher::endBatch()
         {
             TRIANGLE tri = *itr;
 
-            x1 = (int) (tri.x1 / SCREEN_WIDTH * DS_TOP_W + DS_TOP_PADDING);
-            y1 = (int) (tri.y1 / SCREEN_HEIGHT * DS_TOP_H + DS_TOP_PADDING);
+            x1 = (int) (tri.x1 / SCREEN_WIDTH * DS_BOTTOM_W + DS_BOTTOM_PADDING);
+            y1 = (int) (tri.y1 / SCREEN_HEIGHT * DS_BOTTOM_H + DS_BOTTOM_PADDING);
 
-            x2 = (int) (tri.x2 / SCREEN_WIDTH * DS_TOP_W + DS_TOP_PADDING);
-            y2 = (int) (tri.y2 / SCREEN_HEIGHT * DS_TOP_H + DS_TOP_PADDING);
+            x2 = (int) (tri.x2 / SCREEN_WIDTH * DS_BOTTOM_W + DS_BOTTOM_PADDING);
+            y2 = (int) (tri.y2 / SCREEN_HEIGHT * DS_BOTTOM_H + DS_BOTTOM_PADDING);
 
-            x3 = (int) (tri.x3 / SCREEN_WIDTH * DS_TOP_W + DS_TOP_PADDING);
-            y3 = (int) (tri.y3 / SCREEN_HEIGHT * DS_TOP_H + DS_TOP_PADDING);
+            x3 = (int) (tri.x3 / SCREEN_WIDTH * DS_BOTTOM_W + DS_BOTTOM_PADDING);
+            y3 = (int) (tri.y3 / SCREEN_HEIGHT * DS_BOTTOM_H + DS_BOTTOM_PADDING);
 
             left = x1;
             left = x2 < left ? x2 : left;
@@ -73,11 +73,11 @@ void DSTriangleBatcher::endBatch()
 
             for (int x = left; x < right; x++)
             {
-                if (x >= DS_TOP_PADDING && x <= (DS_TOP_W + DS_TOP_PADDING))
+                if (x >= DS_BOTTOM_PADDING && x <= (DS_BOTTOM_W + DS_BOTTOM_PADDING))
                 {
                     for (int y = bottom; y < top; y++)
                     {
-                        if (y >= DS_TOP_PADDING && y <= (DS_TOP_H + DS_TOP_PADDING))
+                        if (y >= DS_BOTTOM_PADDING && y <= (DS_BOTTOM_H + DS_BOTTOM_PADDING))
                         {
                             Point p = {x, y};
                             if (OverlapTester::isInside(points, 3, p))

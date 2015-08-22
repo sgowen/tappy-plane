@@ -31,8 +31,8 @@ void DSGameScreen::init()
 {
     GameScreen::init();
 
-    u8* fbb = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL);
-    memset(fbb, 0, 240 * 320 * 3);
+    u8* fbb = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL);
+    memset(fbb, 0, 240 * 400 * 3);
 }
 
 void DSGameScreen::touchToWorld(TouchEvent &touchEvent)

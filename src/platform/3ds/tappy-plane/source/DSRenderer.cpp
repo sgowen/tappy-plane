@@ -51,14 +51,14 @@ DSRenderer::DSRenderer() : Renderer()
     m_triangleBatcher = std::unique_ptr<DSTriangleBatcher>(new DSTriangleBatcher(true));
 
     //Initialize console on top screen. Using NULL as the second argument tells the console library to use the internal console structure as current one
-    consoleInit(GFX_BOTTOM, NULL);
+    consoleInit(GFX_TOP, NULL);
 }
 
 void DSRenderer::clearScreenWithColor(float r, float g, float b, float a)
 {
     // Please note that the 3DS screens are sideways (thus 240x400 and 240x320)
-    u8* fb = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL);
-    memset(fb, 0, 240 * 400 * 3);
+    u8* fb = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL);
+    memset(fb, 0, 240 * 320 * 3);
 }
 
 void DSRenderer::beginFrame()
@@ -112,11 +112,11 @@ void DSRenderer::renderWorldForeground(World &world, Glove &glove, float titleAl
 
     if (titleAlpha > 0)
     {
-        printf("\x1b[15;12HTap A to start");
+        printf("\x1b[15;17HTap A to start");
     }
     else
     {
-        printf("\x1b[15;12H              ");
+        printf("\x1b[15;17H              ");
     }
 
     if (!world.isGameOver() && world.getScore() > 0 && titleAlpha < 0)
@@ -130,12 +130,12 @@ void DSRenderer::renderWorldForeground(World &world, Glove &glove, float titleAl
         //the row and column where you want your cursor to move
         //The top screen has 30 rows and 50 columns
         //The bottom screen has 30 rows and 40 columns
-        printf("\x1b[5;19H%s", score.c_str());
+        printf("\x1b[5;24H%s", score.c_str());
     }
 }
 
 void DSRenderer::renderWorldGameOver(World &world, GameButton &okButton, GameButton &leaderboardsButton, int bestScore)
 {
-    printf("\x1b[15;15HGame Over!");
-    printf("\x1b[17;12HTap A to restart");
+    printf("\x1b[15;20HGame Over!");
+    printf("\x1b[17;17HTap A to restart");
 }
