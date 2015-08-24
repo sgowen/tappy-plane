@@ -419,13 +419,13 @@ void Direct3DManager::createMatrix()
 	using namespace DirectX;
 
 	// calculate the view transformation
-	XMVECTOR vecCamPosition = XMVectorSet(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 1, 0);
-	XMVECTOR vecCamLookAt = XMVectorSet(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 0, 0);
+	XMVECTOR vecCamPosition = XMVectorSet(GAME_WIDTH / 2, GAME_HEIGHT / 2, 1, 0);
+	XMVECTOR vecCamLookAt = XMVectorSet(GAME_WIDTH / 2, GAME_HEIGHT / 2, 0, 0);
 	XMVECTOR vecCamUp = XMVectorSet(0, 1, 0, 0);
 	XMMATRIX matView = XMMatrixLookAtRH(vecCamPosition, vecCamLookAt, vecCamUp);
 
 	// calculate the projection transformation
-	XMMATRIX matProjection = XMMatrixOrthographicRH(SCREEN_WIDTH, SCREEN_HEIGHT, -1.0, 1.0);
+	XMMATRIX matProjection = XMMatrixOrthographicRH(GAME_WIDTH, GAME_HEIGHT, -1.0, 1.0);
 
 	// calculate the final matrix
 	m_matFinal = matView * matProjection;

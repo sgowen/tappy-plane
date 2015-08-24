@@ -24,20 +24,20 @@
 
 World::World()
 {
-    m_plane = std::unique_ptr<PlanePhysicalEntity>(new PlanePhysicalEntity(SCREEN_WIDTH / 8 * 3, SCREEN_HEIGHT / 2, 3.95f, 3.25f));
+    m_plane = std::unique_ptr<PlanePhysicalEntity>(new PlanePhysicalEntity(GAME_WIDTH / 8 * 3, GAME_HEIGHT / 2, 3.95f, 3.25f));
     
     int randomInt = rand() % 4;
     m_environmentType = randomInt == 0 ? GRASS : randomInt == 1 ? ROCK : randomInt == 2 ? SNOW : ICE;
     
-    m_obstacles.push_back(std::unique_ptr<Obstacle>(new Obstacle(GAME_RESET_OBSTACLE_X, SCREEN_HEIGHT / 2, 8.55f, SCREEN_HEIGHT, GAME_SPEED, m_environmentType)));
-    m_obstacles.push_back(std::unique_ptr<Obstacle>(new Obstacle(SCREEN_WIDTH / 8 * 20, SCREEN_HEIGHT / 2, 8.55f, SCREEN_HEIGHT, GAME_SPEED, m_environmentType)));
-    m_obstacles.push_back(std::unique_ptr<Obstacle>(new Obstacle(SCREEN_WIDTH / 8 * 25, SCREEN_HEIGHT / 2, 8.55f, SCREEN_HEIGHT, GAME_SPEED, m_environmentType)));
-    m_obstacles.push_back(std::unique_ptr<Obstacle>(new Obstacle(SCREEN_WIDTH / 8 * 30, SCREEN_HEIGHT / 2, 8.55f, SCREEN_HEIGHT, GAME_SPEED, m_environmentType)));
-    m_obstacles.push_back(std::unique_ptr<Obstacle>(new Obstacle(SCREEN_WIDTH / 8 * 35, SCREEN_HEIGHT / 2, 8.55f, SCREEN_HEIGHT, GAME_SPEED, m_environmentType)));
-    m_obstacles.push_back(std::unique_ptr<Obstacle>(new Obstacle(SCREEN_WIDTH / 8 * 40, SCREEN_HEIGHT / 2, 8.55f, SCREEN_HEIGHT, GAME_SPEED, m_environmentType)));
+    m_obstacles.push_back(std::unique_ptr<Obstacle>(new Obstacle(GAME_RESET_OBSTACLE_X, GAME_HEIGHT / 2, 8.55f, GAME_HEIGHT, GAME_SPEED, m_environmentType)));
+    m_obstacles.push_back(std::unique_ptr<Obstacle>(new Obstacle(GAME_WIDTH / 8 * 20, GAME_HEIGHT / 2, 8.55f, GAME_HEIGHT, GAME_SPEED, m_environmentType)));
+    m_obstacles.push_back(std::unique_ptr<Obstacle>(new Obstacle(GAME_WIDTH / 8 * 25, GAME_HEIGHT / 2, 8.55f, GAME_HEIGHT, GAME_SPEED, m_environmentType)));
+    m_obstacles.push_back(std::unique_ptr<Obstacle>(new Obstacle(GAME_WIDTH / 8 * 30, GAME_HEIGHT / 2, 8.55f, GAME_HEIGHT, GAME_SPEED, m_environmentType)));
+    m_obstacles.push_back(std::unique_ptr<Obstacle>(new Obstacle(GAME_WIDTH / 8 * 35, GAME_HEIGHT / 2, 8.55f, GAME_HEIGHT, GAME_SPEED, m_environmentType)));
+    m_obstacles.push_back(std::unique_ptr<Obstacle>(new Obstacle(GAME_WIDTH / 8 * 40, GAME_HEIGHT / 2, 8.55f, GAME_HEIGHT, GAME_SPEED, m_environmentType)));
     
-    m_foregroundLeft = std::unique_ptr<PhysicalEntity>(new PhysicalEntity(SCREEN_WIDTH_1_2, GAME_WORLD_BASE_1_2, SCREEN_WIDTH, GAME_WORLD_BASE, 0));
-    m_foregroundRight = std::unique_ptr<PhysicalEntity>(new PhysicalEntity(SCREEN_WIDTH_3_2, GAME_WORLD_BASE_1_2, SCREEN_WIDTH, GAME_WORLD_BASE, 0));
+    m_foregroundLeft = std::unique_ptr<PhysicalEntity>(new PhysicalEntity(GAME_WIDTH_1_2, GAME_WORLD_BASE_1_2, GAME_WIDTH, GAME_WORLD_BASE, 0));
+    m_foregroundRight = std::unique_ptr<PhysicalEntity>(new PhysicalEntity(GAME_WIDTH_3_2, GAME_WORLD_BASE_1_2, GAME_WIDTH, GAME_WORLD_BASE, 0));
     
     m_iScore = 0;
 }
@@ -73,23 +73,23 @@ void World::update(float deltaTime)
     if(m_foregroundLeft->getPosition().getX() < m_foregroundRight->getPosition().getX())
     {
         m_foregroundLeft->getPosition().sub(shiftX, 0);
-        m_foregroundRight->getPosition().set(m_foregroundLeft->getPosition().getX() + SCREEN_WIDTH, m_foregroundRight->getPosition().getY());
+        m_foregroundRight->getPosition().set(m_foregroundLeft->getPosition().getX() + GAME_WIDTH, m_foregroundRight->getPosition().getY());
     }
     else
     {
         m_foregroundRight->getPosition().sub(shiftX, 0);
-        m_foregroundLeft->getPosition().set(m_foregroundRight->getPosition().getX() + SCREEN_WIDTH, m_foregroundLeft->getPosition().getY());
+        m_foregroundLeft->getPosition().set(m_foregroundRight->getPosition().getX() + GAME_WIDTH, m_foregroundLeft->getPosition().getY());
     }
     
-    if(m_foregroundLeft->getPosition().getX() < -SCREEN_WIDTH_1_2)
+    if(m_foregroundLeft->getPosition().getX() < -GAME_WIDTH_1_2)
     {
-        m_foregroundLeft->getPosition().set(SCREEN_WIDTH_3_2, m_foregroundLeft->getPosition().getY());
-        m_foregroundRight->getPosition().set(SCREEN_WIDTH_1_2, m_foregroundRight->getPosition().getY());
+        m_foregroundLeft->getPosition().set(GAME_WIDTH_3_2, m_foregroundLeft->getPosition().getY());
+        m_foregroundRight->getPosition().set(GAME_WIDTH_1_2, m_foregroundRight->getPosition().getY());
     }
-    else if(m_foregroundRight->getPosition().getX() < -SCREEN_WIDTH_1_2)
+    else if(m_foregroundRight->getPosition().getX() < -GAME_WIDTH_1_2)
     {
-        m_foregroundRight->getPosition().set(SCREEN_WIDTH_3_2, m_foregroundRight->getPosition().getY());
-        m_foregroundLeft->getPosition().set(SCREEN_WIDTH_1_2, m_foregroundLeft->getPosition().getY());
+        m_foregroundRight->getPosition().set(GAME_WIDTH_3_2, m_foregroundRight->getPosition().getY());
+        m_foregroundLeft->getPosition().set(GAME_WIDTH_1_2, m_foregroundLeft->getPosition().getY());
     }
     
     m_foregroundLeft->updateBounds();

@@ -23,20 +23,11 @@ OpenGLESGameScreen::OpenGLESGameScreen() : GameScreen()
     // Empty
 }
 
-void OpenGLESGameScreen::onSurfaceCreated(int width, int height)
+void OpenGLESGameScreen::initGraphics(int screenWidth, int screenHeight)
 {
-    m_iDeviceScreenWidth = width;
-    m_iDeviceScreenHeight = height;
-    
-    OGLESManager->init(width, height, SCREEN_WIDTH, SCREEN_HEIGHT);
+    OGLESManager->init(screenWidth, screenHeight, GAME_WIDTH, GAME_HEIGHT);
     
     m_renderer = std::unique_ptr<OpenGLESRenderer>(new OpenGLESRenderer());
-}
-
-void OpenGLESGameScreen::onSurfaceChanged(int width, int height)
-{
-    m_iDeviceScreenWidth = width;
-    m_iDeviceScreenHeight = height;
 }
 
 void OpenGLESGameScreen::platformResume()

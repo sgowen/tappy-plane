@@ -11,12 +11,14 @@
 
 #include "Renderer.h"
 
+#include <3ds.h>
+
 class TriangleBatcher;
 
 class DSRenderer : public Renderer
 {
 public:
-    DSRenderer();
+    DSRenderer(gfxScreen_t screen, int screenWidth, int screenHeight);
 
     virtual void clearScreenWithColor(float r, float g, float b, float a);
 
@@ -29,8 +31,6 @@ public:
     virtual void renderWorldBackground(World &world);
 
     virtual void renderWorldForeground(World &world, Glove &glove, float titleAlpha);
-    
-    virtual void renderWorldGameOver(World &world, GameButton &okButton, GameButton &leaderboardsButton, int bestScore);
     
 private:
     std::unique_ptr<TriangleBatcher> m_triangleBatcher;

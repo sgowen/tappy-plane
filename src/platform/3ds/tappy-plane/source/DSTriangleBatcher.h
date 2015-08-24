@@ -24,7 +24,7 @@ struct TRIANGLE
 class DSTriangleBatcher : public TriangleBatcher
 {
 public:
-    DSTriangleBatcher(bool isFill);
+    DSTriangleBatcher(gfxScreen_t screen, int screenWidth, int screenHeight, bool isFill);
 
     virtual void beginBatch();
 
@@ -34,6 +34,9 @@ public:
 
 private:
     std::vector<TRIANGLE> m_triangles;
+    gfxScreen_t m_screen;
+    int m_iScreenWidth;
+    int m_iScreenHeight;
     
     void setPixel(uint8_t *framebuffer, int x, int y, int red, int green, int blue);
 };

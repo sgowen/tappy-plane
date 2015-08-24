@@ -67,8 +67,6 @@ protected:
     std::unique_ptr<GameButton> m_okButton;
     std::unique_ptr<GameButton> m_leaderboardsButton;
     Game_State m_gameState;
-    int m_iDeviceScreenWidth;
-    int m_iDeviceScreenHeight;
     int m_iScreenState;
 
     int m_iBestScore;

@@ -86,9 +86,9 @@ void PlanePhysicalEntity::update(float deltaTime, float shiftX)
             m_bounds->getLowerLeft().set(getPosition().getX() - getWidth() / 4, getPosition().getY() - getHeight() / 4);
             m_bounds->setAngle(getAngle());
             
-            if(m_position->getY() > SCREEN_HEIGHT - (getHeight() / 2))
+            if(m_position->getY() > GAME_HEIGHT - (getHeight() / 2))
             {
-                m_position->set(m_position->getX(), SCREEN_HEIGHT - (getHeight() / 2));
+                m_position->set(m_position->getX(), GAME_HEIGHT - (getHeight() / 2));
             }
             else if(m_position->getY() < GAME_WORLD_BASE)
             {

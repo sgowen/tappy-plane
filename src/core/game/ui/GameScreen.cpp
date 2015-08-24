@@ -48,7 +48,7 @@ void GameScreen::init()
     m_touchEventsPool.push_back(TouchEvent(0, 0, Touch_Type::DOWN));
     m_touchEventsPool.push_back(TouchEvent(0, 0, Touch_Type::DOWN));
 
-    m_glove = std::unique_ptr<Glove>(new Glove(SCREEN_WIDTH_1_2, SCREEN_HEIGHT_1_2 - 4, 2, 2));
+    m_glove = std::unique_ptr<Glove>(new Glove(GAME_WIDTH_1_2, GAME_HEIGHT_1_2 - 4, 2, 2));
     m_world = std::unique_ptr<World>(new World());
     m_okButton = std::unique_ptr<GameButton>(new GameButton(5.4f, 8.6f, 3.6f, 2.11764706f));
     m_leaderboardsButton = std::unique_ptr<GameButton>(new GameButton(11.6f, 8.6f, 6.0f, 2.20408163f));

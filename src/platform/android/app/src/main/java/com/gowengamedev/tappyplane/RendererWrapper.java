@@ -38,8 +38,8 @@ public final class RendererWrapper implements Renderer
     }
 
     private final Activity activity;
-    private final int deviceScreenWidth;
-    private final int deviceScreenHeight;
+    private final int screenWidth;
+    private final int screenHeight;
     private final Audio audio;
 
     private final Sound ascendSound;
@@ -53,11 +53,11 @@ public final class RendererWrapper implements Renderer
     private boolean isInitialized;
     private boolean _isMinimumWaveRequirementMet;
 
-    public RendererWrapper(Activity activity, int deviceScreenWidth, int deviceScreenHeight)
+    public RendererWrapper(Activity activity, int screenWidth, int screenHeight)
     {
         this.activity = activity;
-        this.deviceScreenWidth = deviceScreenWidth;
-        this.deviceScreenHeight = deviceScreenHeight;
+        this.screenWidth = screenWidth;
+        this.screenHeight = screenHeight;
         this.audio = new Audio(activity.getAssets());
 
         this.ascendSound = audio.newSound("ascend.ogg");
@@ -81,7 +81,7 @@ public final class RendererWrapper implements Renderer
             isInitialized = true;
         }
 
-        on_surface_created(deviceScreenWidth, deviceScreenHeight);
+        on_surface_created(screenWidth, screenHeight);
     }
 
     @Override

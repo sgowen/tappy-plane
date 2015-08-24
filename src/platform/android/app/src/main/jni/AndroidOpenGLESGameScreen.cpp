@@ -23,9 +23,22 @@ AndroidOpenGLESGameScreen::AndroidOpenGLESGameScreen() : OpenGLESGameScreen()
     // Empty
 }
 
+void AndroidOpenGLESGameScreen::onSurfaceCreated(int screenWidth, int screenHeight)
+{
+    onSurfaceChanged(screenWidth, screenHeight);
+}
+
+void AndroidOpenGLESGameScreen::onSurfaceChanged(int screenWidth, int screenHeight)
+{
+    m_iScreenWidth = screenWidth;
+    m_iScreenHeight = screenHeight;
+
+    initGraphics(screenWidth, screenHeight);
+}
+
 void AndroidOpenGLESGameScreen::touchToWorld(TouchEvent &touchEvent)
 {
-    m_touchPoint->set((touchEvent.getX() / (float) m_iDeviceScreenWidth) * SCREEN_WIDTH, (1 - touchEvent.getY() / (float) m_iDeviceScreenHeight) * SCREEN_HEIGHT);
+    m_touchPoint->set((touchEvent.getX() / (float) m_iScreenWidth) * GAME_WIDTH, (1 - touchEvent.getY() / (float) m_iScreenHeight) * GAME_HEIGHT);
 }
 
 bool AndroidOpenGLESGameScreen::handleOnBackPressed()

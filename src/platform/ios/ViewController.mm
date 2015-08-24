@@ -83,16 +83,13 @@ static bool isRunningiOS8 = false;
     if(isRunningiOS8)
     {
         [logger debug:@"Instantiating IOS8OpenGLESGameScreen"];
-        gameScreen = new IOS8OpenGLESGameScreen([UIScreen mainScreen].applicationFrame.size.width, [UIScreen mainScreen].applicationFrame.size.height);
+        gameScreen = new IOS8OpenGLESGameScreen(MIN(newSize.width, newSize.height), MAX(newSize.width, newSize.height), [UIScreen mainScreen].applicationFrame.size.width, [UIScreen mainScreen].applicationFrame.size.height);
     }
     else
     {
         [logger debug:@"Instantiating IOSOpenGLESGameScreen"];
-        gameScreen = new IOSOpenGLESGameScreen([UIScreen mainScreen].applicationFrame.size.width, [UIScreen mainScreen].applicationFrame.size.height);
+        gameScreen = new IOSOpenGLESGameScreen(MIN(newSize.width, newSize.height), MAX(newSize.width, newSize.height), [UIScreen mainScreen].applicationFrame.size.width, [UIScreen mainScreen].applicationFrame.size.height);
     }
-    
-    gameScreen->onSurfaceCreated(MIN(newSize.width, newSize.height), MAX(newSize.width, newSize.height));
-    gameScreen->onSurfaceChanged(MIN(newSize.width, newSize.height), MAX(newSize.width, newSize.height));
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onPause)

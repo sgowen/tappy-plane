@@ -71,8 +71,6 @@
             <itemPath>../../../core/framework/ui/opengles/platform_asset_utils.h</itemPath>
             <itemPath>../../../core/framework/ui/opengles/platform_file_utils.c</itemPath>
             <itemPath>../../../core/framework/ui/opengles/platform_file_utils.h</itemPath>
-            <itemPath>../../../core/framework/ui/opengles/pp_sin_wave_shader.fsh</itemPath>
-            <itemPath>../../../core/framework/ui/opengles/pp_sin_wave_shader.vsh</itemPath>
             <itemPath>../../../core/framework/ui/opengles/shader.c</itemPath>
             <itemPath>../../../core/framework/ui/opengles/shader.h</itemPath>
             <itemPath>../../../core/framework/ui/opengles/texture.c</itemPath>
@@ -609,16 +607,6 @@
             flavor2="0">
       </item>
       <item path="../../../core/framework/ui/opengles/platform_file_utils.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../../core/framework/ui/opengles/pp_sin_wave_shader.fsh"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../../core/framework/ui/opengles/pp_sin_wave_shader.vsh"
             ex="false"
             tool="3"
             flavor2="0">

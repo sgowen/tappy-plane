@@ -39,9 +39,11 @@ int main()
 {
     gfxInitDefault();
 
-    DSGameScreen gameScreen = DSGameScreen();
+    DSGameScreen gameScreen = DSGameScreen(400, 240, 320, 240);
 
     u64 lastTick = svcGetSystemTick();
+
+    touchPosition lastTouchPosition = {0, 0};
 
     // Main loop
     while (aptMainLoop())
@@ -61,11 +63,33 @@ int main()
         {
             break; // break in order to return to hbmenu
         }
-        else if (kDown & KEY_A)
+
+        touchPosition touch;
+
+        //Read the touch screen coordinates
+        hidTouchRead(&touch);
+
+        if (lastTouchPosition.px == 0 && lastTouchPosition.py == 0)
         {
-            gameScreen.onTouch(Touch_Type::DOWN, 0, 0);
-            gameScreen.onTouch(Touch_Type::UP, 0, 0);
+            if (touch.px != 0 && touch.py != 0)
+            {
+                gameScreen.onTouch(Touch_Type::DOWN, touch.px, touch.py);
+            }
         }
+        else
+        {
+            if (touch.px == 0 && touch.py == 0)
+            {
+                gameScreen.onTouch(Touch_Type::UP, lastTouchPosition.px, lastTouchPosition.py);
+            }
+            else
+            {
+                gameScreen.onTouch(Touch_Type::DRAGGED, touch.px, touch.py);
+            }
+        }
+
+        lastTouchPosition.px = touch.px;
+        lastTouchPosition.py = touch.py;
 
         // Flush and swap framebuffers
         gfxFlushBuffers();

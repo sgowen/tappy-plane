@@ -14,7 +14,7 @@
 class DSGameScreen : public GameScreen
 {
 public:
-    DSGameScreen();
+    DSGameScreen(int topScreenWidth, int topScreenHeight, int bottomScreenWidth, int bottomScreenHeight);
 
     virtual void init();
 
@@ -23,6 +23,12 @@ public:
     virtual void platformResume();
 
     virtual void platformPause();
+
+private:
+    int m_iTopScreenWidth;
+    int m_iTopScreenHeight;
+    int m_iBottomScreenWidth;
+    int m_iBottomScreenHeight;
 };
 
 #endif /* defined(__tappyplane__DSGameScreen__) */

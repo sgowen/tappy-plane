@@ -15,11 +15,7 @@
 #include "math.h"
 #include "OverlapTester.h"
 
-#define DS_BOTTOM_W 318.0f
-#define DS_BOTTOM_H 238.0f
-#define DS_BOTTOM_PADDING 1
-
-DSSpriteBatcher::DSSpriteBatcher()
+DSSpriteBatcher::DSSpriteBatcher(gfxScreen_t screen, int screenWidth, int screenHeight) : m_screen(screen), m_iScreenWidth(screenWidth), m_iScreenHeight(screenHeight)
 {
     m_iNumSprites = 0;
 }
@@ -35,7 +31,7 @@ void DSSpriteBatcher::endBatchWithTexture(TextureWrapper &textureWrapper)
     if (m_iNumSprites > 0)
     {
         // Please note that the 3DS screens are sideways (thus 240x400 and 240x320)
-        u8* fb = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL);
+        u8* fb = gfxGetFramebuffer(m_screen, GFX_LEFT, NULL, NULL);
 
         int left, top, right, bottom, x1, y1, x2, y2, x3, y3, x4, y4;
 
@@ -43,17 +39,17 @@ void DSSpriteBatcher::endBatchWithTexture(TextureWrapper &textureWrapper)
         {
             QUAD quad = *itr;
 
-            x1 = (int) (quad.X1 / SCREEN_WIDTH * DS_BOTTOM_W + DS_BOTTOM_PADDING);
-            y1 = (int) (quad.Y1 / SCREEN_HEIGHT * DS_BOTTOM_H + DS_BOTTOM_PADDING);
+            x1 = (int) (quad.X1 / GAME_WIDTH * (m_iScreenWidth - 1));
+            y1 = (int) (quad.Y1 / GAME_HEIGHT * (m_iScreenHeight - 1));
 
-            x2 = (int) (quad.X2 / SCREEN_WIDTH * DS_BOTTOM_W + DS_BOTTOM_PADDING);
-            y2 = (int) (quad.Y2 / SCREEN_HEIGHT * DS_BOTTOM_H + DS_BOTTOM_PADDING);
+            x2 = (int) (quad.X2 / GAME_WIDTH * (m_iScreenWidth - 1));
+            y2 = (int) (quad.Y2 / GAME_HEIGHT * (m_iScreenHeight - 1));
 
-            x3 = (int) (quad.X3 / SCREEN_WIDTH * DS_BOTTOM_W + DS_BOTTOM_PADDING);
-            y3 = (int) (quad.Y3 / SCREEN_HEIGHT * DS_BOTTOM_H + DS_BOTTOM_PADDING);
+            x3 = (int) (quad.X3 / GAME_WIDTH * (m_iScreenWidth - 1));
+            y3 = (int) (quad.Y3 / GAME_HEIGHT * (m_iScreenHeight - 1));
 
-            x4 = (int) (quad.X4 / SCREEN_WIDTH * DS_BOTTOM_W + DS_BOTTOM_PADDING);
-            y4 = (int) (quad.Y4 / SCREEN_HEIGHT * DS_BOTTOM_H + DS_BOTTOM_PADDING);
+            x4 = (int) (quad.X4 / GAME_WIDTH * (m_iScreenWidth - 1));
+            y4 = (int) (quad.Y4 / GAME_HEIGHT * (m_iScreenHeight - 1));
 
             left = x1;
             left = x2 < left ? x2 : left;
@@ -77,11 +73,11 @@ void DSSpriteBatcher::endBatchWithTexture(TextureWrapper &textureWrapper)
 
             for (int x = left; x < right; x++)
             {
-                if (x >= DS_BOTTOM_PADDING && x <= (DS_BOTTOM_W + DS_BOTTOM_PADDING))
+                if (x >= 0 && x < m_iScreenWidth)
                 {
                     for (int y = bottom; y < top; y++)
                     {
-                        if (y >= DS_BOTTOM_PADDING && y <= (DS_BOTTOM_H + DS_BOTTOM_PADDING))
+                        if (y >= 0 && y < m_iScreenHeight)
                         {
                             setPixel(fb, x, y, (int)(quad.R * 255), (int)(quad.G * 255), (int)(quad.B * 255));
                         }

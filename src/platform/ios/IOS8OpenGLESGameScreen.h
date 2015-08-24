@@ -14,7 +14,7 @@
 class IOS8OpenGLESGameScreen : public IOSOpenGLESGameScreen
 {
 public:
-    IOS8OpenGLESGameScreen(int pointsWidth, int pointsHeight);
+    IOS8OpenGLESGameScreen(int screenWidth, int screenHeight, int pointsWidth, int pointsHeight);
     
     virtual void touchToWorld(TouchEvent &touchEvent);
 };

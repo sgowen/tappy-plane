@@ -41,14 +41,14 @@
 
 #include <string.h>
 
-DSRenderer::DSRenderer() : Renderer()
+DSRenderer::DSRenderer(gfxScreen_t screen, int screenWidth, int screenHeight) : Renderer()
 {
-    m_spriteBatcher = std::unique_ptr<DSSpriteBatcher>(new DSSpriteBatcher());
+    m_spriteBatcher = std::unique_ptr<DSSpriteBatcher>(new DSSpriteBatcher(screen, screenWidth, screenHeight));
 
     m_backgroundTexture = std::unique_ptr<TextureWrapper>(new TextureWrapper());
     m_gameTexture = std::unique_ptr<TextureWrapper>(new TextureWrapper());
 
-    m_triangleBatcher = std::unique_ptr<DSTriangleBatcher>(new DSTriangleBatcher(true));
+    m_triangleBatcher = std::unique_ptr<DSTriangleBatcher>(new DSTriangleBatcher(screen, screenWidth, screenHeight, true));
 
     //Initialize console on top screen. Using NULL as the second argument tells the console library to use the internal console structure as current one
     consoleInit(GFX_TOP, NULL);
@@ -132,10 +132,4 @@ void DSRenderer::renderWorldForeground(World &world, Glove &glove, float titleAl
         //The bottom screen has 30 rows and 40 columns
         printf("\x1b[5;24H%s", score.c_str());
     }
-}
-
-void DSRenderer::renderWorldGameOver(World &world, GameButton &okButton, GameButton &leaderboardsButton, int bestScore)
-{
-    printf("\x1b[15;20HGame Over!");
-    printf("\x1b[17;17HTap A to restart");
 }

@@ -38,15 +38,13 @@ Direct3DGameScreen::Direct3DGameScreen() : GameScreen()
 	// No further setup
 }
 
-void Direct3DGameScreen::load(float deviceScreenWidth, float deviceScreenHeight, int deviceScreenDpWidth, int deviceScreenDpHeight)
+void Direct3DGameScreen::load(float screenWidth, float screenHeight, int screenDpWidth, int screenDpHeight)
 {
-	m_iDeviceScreenWidth = deviceScreenWidth;
-	m_iDeviceScreenHeight = deviceScreenHeight;
-	m_fGameScreenToDeviceScreenWidthRatio = deviceScreenWidth / SCREEN_WIDTH;
-	m_fGameScreenToDeviceScreenHeightRatio = deviceScreenHeight / SCREEN_HEIGHT;
-	m_fDipToPixelRatio = (float)deviceScreenWidth / (float)deviceScreenDpWidth;
+	m_fGameScreenToScreenWidthRatio = screenWidth / GAME_WIDTH;
+	m_fGameScreenToScreenHeightRatio = screenHeight / GAME_HEIGHT;
+	m_fDipToPixelRatio = (float)screenWidth / (float)screenDpWidth;
 
-	D3DManager->init(deviceScreenWidth, deviceScreenHeight);
+	D3DManager->init(screenWidth, screenHeight);
 
 	m_renderer = std::unique_ptr<Direct3DRenderer>(new Direct3DRenderer());
 
@@ -58,9 +56,6 @@ void Direct3DGameScreen::load(float deviceScreenWidth, float deviceScreenHeight,
 
 void Direct3DGameScreen::updateForRenderResolutionChange(float width, float height)
 {
-	m_iDeviceScreenWidth = width;
-	m_iDeviceScreenHeight = height;
-
 	ID3D11RenderTargetView* nullViews[] = { nullptr };
 	D3DManager->m_deviceContext->OMSetRenderTargets(ARRAYSIZE(nullViews), nullViews, nullptr);
 	D3DManager->m_renderTarget = nullptr;
@@ -121,7 +116,7 @@ ID3D11Texture2D* Direct3DGameScreen::getTexture()
 
 void Direct3DGameScreen::touchToWorld(TouchEvent &touchEvent)
 {
-	m_touchPoint->set(touchEvent.getX() * m_fDipToPixelRatio / m_fGameScreenToDeviceScreenWidthRatio, SCREEN_HEIGHT - (touchEvent.getY() * m_fDipToPixelRatio / m_fGameScreenToDeviceScreenHeightRatio));
+	m_touchPoint->set(touchEvent.getX() * m_fDipToPixelRatio / m_fGameScreenToScreenWidthRatio, GAME_HEIGHT - (touchEvent.getY() * m_fDipToPixelRatio / m_fGameScreenToScreenHeightRatio));
 }
 
 void Direct3DGameScreen::platformResume()

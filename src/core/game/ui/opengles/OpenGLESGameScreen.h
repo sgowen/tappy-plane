@@ -18,9 +18,8 @@ class OpenGLESGameScreen : public GameScreen
 public:
     OpenGLESGameScreen();
     
-    void onSurfaceCreated(int deviceScreenWidth, int deviceScreenHeight);
-    
-    void onSurfaceChanged(int deviceScreenWidth, int deviceScreenHeight);
+protected:
+    void initGraphics(int screenWidth, int screenHeight);
     
     virtual void platformResume();
     

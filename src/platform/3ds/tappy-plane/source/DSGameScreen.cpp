@@ -22,9 +22,14 @@
 
 #include <string.h>
 
-DSGameScreen::DSGameScreen()
+DSGameScreen::DSGameScreen(int topScreenWidth, int topScreenHeight, int bottomScreenWidth, int bottomScreenHeight) : GameScreen()
 {
-    m_renderer = std::unique_ptr<DSRenderer>(new DSRenderer());
+    m_renderer = std::unique_ptr<DSRenderer>(new DSRenderer(GFX_BOTTOM, bottomScreenWidth, bottomScreenHeight));
+
+    m_iTopScreenWidth = topScreenWidth;
+    m_iTopScreenHeight = topScreenHeight;
+    m_iBottomScreenWidth = bottomScreenWidth;
+    m_iBottomScreenHeight = bottomScreenHeight;
 }
 
 void DSGameScreen::init()
@@ -37,8 +42,10 @@ void DSGameScreen::init()
 
 void DSGameScreen::touchToWorld(TouchEvent &touchEvent)
 {
-    // TODO
-    m_touchPoint->set(5.8f, 9.0f);
+    float x = (touchEvent.getX() / (float) m_iBottomScreenWidth) * GAME_WIDTH;
+    float y = (((float) m_iBottomScreenHeight) - touchEvent.getY()) / ((float) m_iBottomScreenHeight) * GAME_HEIGHT;
+
+    m_touchPoint->set(x, y);
 }
 
 void DSGameScreen::platformResume()
