@@ -31,6 +31,7 @@
 #include "PlanePhysicalEntity.h"
 #include "Glove.h"
 #include "GameButton.h"
+#include "GameConstants.h"
 
 #include <sstream>
 
@@ -69,7 +70,7 @@ DSRenderer::DSRenderer(gfxScreen_t screen, int screenWidth, int screenHeight) : 
 {
     m_spriteBatcher = std::unique_ptr<DSSpriteBatcher>(new DSSpriteBatcher(screen, screenWidth, screenHeight));
 
-    sf2d_init();
+    sf2d_init(GAME_WIDTH, GAME_HEIGHT, GAME_WIDTH, GAME_HEIGHT);
 
     backgroundTex = sf2d_create_texture_mem_RGBA8(background.pixel_data, background.width, background.height, TEXFMT_RGBA8, SF2D_PLACE_RAM);
     gameTex = sf2d_create_texture_mem_RGBA8(game.pixel_data, game.width, game.height, TEXFMT_RGBA8, SF2D_PLACE_RAM);

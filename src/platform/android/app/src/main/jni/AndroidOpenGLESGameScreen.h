@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Gowen Game Dev. All rights reserved.
 //
 
-#ifndef __nosfuratu__AndroidOpenGLESGameScreen__
-#define __nosfuratu__AndroidOpenGLESGameScreen__
+#ifndef __tappyplane__AndroidOpenGLESGameScreen__
+#define __tappyplane__AndroidOpenGLESGameScreen__
 
 #include "OpenGLESGameScreen.h"
 
@@ -21,12 +21,12 @@ public:
     void onSurfaceChanged(int screenWidth, int screenHeight);
     
     virtual void touchToWorld(TouchEvent &touchEvent);
-    
-    virtual bool handleOnBackPressed();
+
+    bool handleOnBackPressed();
 
 private:
     int m_iScreenWidth;
     int m_iScreenHeight;
 };
 
-#endif /* defined(__nosfuratu__AndroidOpenGLESGameScreen__) */
+#endif /* defined(__tappyplane__AndroidOpenGLESGameScreen__) */

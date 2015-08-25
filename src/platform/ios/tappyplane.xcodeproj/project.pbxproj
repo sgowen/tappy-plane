@@ -90,7 +90,6 @@
 		BB7A4C381B868F4300DED640 /* SpriteBatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB7A4C021B868F4300DED640 /* SpriteBatcher.cpp */; };
 		BB7A4C391B868F4300DED640 /* TextureRegion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB7A4C041B868F4300DED640 /* TextureRegion.cpp */; };
 		BB7A4C3A1B868F4300DED640 /* TouchEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB7A4C071B868F4300DED640 /* TouchEvent.cpp */; };
-		BB7A4C521B86936F00DED640 /* TriangleBatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB7A4C501B86936F00DED640 /* TriangleBatcher.cpp */; };
 		BB861EB718AAE93400A00266 /* game.png in Resources */ = {isa = PBXBuildFile; fileRef = BB861EB618AAE93400A00266 /* game.png */; };
 		BBA2EE6B18B6644200664736 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = BBA2EE6A18B6644200664736 /* background.png */; };
 		BBAE1A7318B916D40079D8DA /* ascend.caf in Resources */ = {isa = PBXBuildFile; fileRef = BBAE1A6F18B916D40079D8DA /* ascend.caf */; };
@@ -292,8 +291,6 @@
 		BB7A4C4D1B868F5900DED640 /* PPSinWaveVertexShader.hlsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = PPSinWaveVertexShader.hlsl; sourceTree = "<group>"; };
 		BB7A4C4E1B868F5900DED640 /* TexturePixelShader.hlsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = TexturePixelShader.hlsl; sourceTree = "<group>"; };
 		BB7A4C4F1B868F5900DED640 /* TextureVertexShader.hlsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = TextureVertexShader.hlsl; sourceTree = "<group>"; };
-		BB7A4C501B86936F00DED640 /* TriangleBatcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TriangleBatcher.cpp; sourceTree = "<group>"; };
-		BB7A4C511B86936F00DED640 /* TriangleBatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleBatcher.h; sourceTree = "<group>"; };
 		BB861EB618AAE93400A00266 /* game.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = game.png; sourceTree = "<group>"; };
 		BBA2EE6A18B6644200664736 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		BBAE1A6F18B916D40079D8DA /* ascend.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ascend.caf; sourceTree = "<group>"; };
@@ -593,8 +590,6 @@
 				BB7A4C071B868F4300DED640 /* TouchEvent.cpp */,
 				BB7A4C081B868F4300DED640 /* TouchEvent.h */,
 				BB7A4C091B868F4300DED640 /* TouchType.h */,
-				BB7A4C501B86936F00DED640 /* TriangleBatcher.cpp */,
-				BB7A4C511B86936F00DED640 /* TriangleBatcher.h */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -829,7 +824,6 @@
 				0A8FBF84179E07320039BA29 /* pngrutil.c in Sources */,
 				BB7305DC189C598D009F6DF4 /* Sound.m in Sources */,
 				0A8FBF85179E07320039BA29 /* pngset.c in Sources */,
-				BB7A4C521B86936F00DED640 /* TriangleBatcher.cpp in Sources */,
 				BB7A4B911B86200C00DED640 /* GameListener.cpp in Sources */,
 				0A8FBF86179E07320039BA29 /* pngtrans.c in Sources */,
 				0A8FBF87179E07320039BA29 /* pngwio.c in Sources */,
