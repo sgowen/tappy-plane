@@ -13,7 +13,6 @@
 #include "Rectangle.h"
 #include "Vector2D.h"
 #include "math.h"
-#include "OverlapTester.h"
 
 #include <sf2d.h>
 

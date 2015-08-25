@@ -8,7 +8,7 @@
 
 #include "Entity.h"
 
-Entity::Entity() : m_ID(getUniqueEntityID()), m_fStateTime(0.0f)
+Entity::Entity() : m_fStateTime(0.0f), m_ID(getUniqueEntityID())
 {
     // Empty
 }
