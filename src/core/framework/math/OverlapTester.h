@@ -15,17 +15,9 @@ class Rectangle;
 class Triangle;
 class Line;
 
-struct Point
-{
-    int x;
-    int y;
-};
-
 class OverlapTester
 {
 public:
-    static bool isInside(Point *polygon, int n, Point &p);
-    
     static bool doCirclesOverlap(const Circle &c1, const Circle &c2);
     
     static bool doRectanglesOverlap(Rectangle &r1, Rectangle &r2);

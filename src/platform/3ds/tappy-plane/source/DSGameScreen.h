@@ -16,8 +16,6 @@ class DSGameScreen : public GameScreen
 public:
     DSGameScreen(int topScreenWidth, int topScreenHeight, int bottomScreenWidth, int bottomScreenHeight);
 
-    virtual void init();
-
     virtual void touchToWorld(TouchEvent &touchEvent);
 
     virtual void platformResume();

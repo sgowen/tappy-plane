@@ -12,7 +12,6 @@
 #include "DSRenderer.h"
 #include "GameConstants.h"
 #include "SpriteBatcher.h"
-#include "TriangleBatcher.h"
 #include "Rectangle.h"
 #include "Circle.h"
 #include "Font.h"
@@ -30,14 +29,6 @@ DSGameScreen::DSGameScreen(int topScreenWidth, int topScreenHeight, int bottomSc
     m_iTopScreenHeight = topScreenHeight;
     m_iBottomScreenWidth = bottomScreenWidth;
     m_iBottomScreenHeight = bottomScreenHeight;
-}
-
-void DSGameScreen::init()
-{
-    GameScreen::init();
-
-    u8* fbb = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL);
-    memset(fbb, 0, 240 * 400 * 3);
 }
 
 void DSGameScreen::touchToWorld(TouchEvent &touchEvent)

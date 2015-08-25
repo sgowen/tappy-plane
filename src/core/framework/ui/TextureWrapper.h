@@ -16,6 +16,8 @@ extern "C"
 }
 #elif defined GGD_DIRECT_3D
 #include <d3d11_1.h>
+#elif defined GGD_3DS
+#include <sf2d.h>
 #endif
 
 struct TextureWrapper
@@ -34,10 +36,12 @@ struct TextureWrapper
     {
         // Empty
     }
-#else
-    TextureWrapper()
+#elif defined GGD_3DS
+    sf2d_texture *texture;
+    
+    TextureWrapper(sf2d_texture *textureIn) : texture(textureIn)
     {
-        // This is a Dummy Container for mocking
+        // Empty
     }
 #endif
 };

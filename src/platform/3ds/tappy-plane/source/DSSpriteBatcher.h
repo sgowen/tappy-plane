@@ -19,11 +19,9 @@ class Rectangle;
 
 struct QUAD
 {
-    float X1, Y1; // vertex position
-    float X2, Y2; // vertex position
-    float X3, Y3; // vertex position
-    float X4, Y4; // vertex position
-    float R, G, B; // vertex color
+    float x1, y1, x2, y2, x3, y3, x4, y4; // Vertices
+    float u1, v1, u2, v2, u3, v3, u4, v4; // Texture Coordinates
+    float r, g, b, a; // Vertex color
 };
 
 class DSSpriteBatcher : public SpriteBatcher
@@ -50,9 +48,7 @@ private:
     int m_iScreenWidth;
     int m_iScreenHeight;
     
-    void addQuad(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, float r, float g, float b);
-    
-    void setPixel(uint8_t *framebuffer, int x, int y, int red, int green, int blue);
+    void addQuad(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, float u1, float v1, float u2, float v2, float u3, float v3, float u4, float v4, float r, float g, float b, float a);
 };
 
 #endif /* defined(__gowengamedev__DSSpriteBatcher__) */

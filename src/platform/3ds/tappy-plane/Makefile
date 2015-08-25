@@ -1,5 +1,6 @@
 export DEVKITPRO=/Users/sgowen/devkitPro
 export DEVKITARM=/Users/sgowen/devkitPro/devkitARM
+export LIBSF2D=/Users/sgowen/Dropbox/Documents/Freelance/GowenGameDev/github/sf2dlib/libsf2d
 
 #---------------------------------------------------------------------------------
 .SUFFIXES:
@@ -60,20 +61,20 @@ CFLAGS	:=	-g -Wall -O2 -mword-relocations \
 			-fomit-frame-pointer -ffast-math \
 			$(ARCH)
 
-CFLAGS	+=	$(INCLUDE) -DARM11 -D_3DS
+CFLAGS	+=	$(INCLUDE) -DARM11 -D_3DS -DGGD_3DS
 
 CXXFLAGS	:= $(CFLAGS) -fno-rtti -fno-exceptions -std=gnu++11
 
 ASFLAGS	:=	-g $(ARCH)
 LDFLAGS	=	-specs=3dsx.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 
-LIBS	:= -lctru -lm
+LIBS	:= -lsf2d -lctru -lm
 
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
 # include and lib
 #---------------------------------------------------------------------------------
-LIBDIRS	:= $(CTRULIB)
+LIBDIRS	:= $(CTRULIB) $(LIBSF2D)
 
 
 #---------------------------------------------------------------------------------

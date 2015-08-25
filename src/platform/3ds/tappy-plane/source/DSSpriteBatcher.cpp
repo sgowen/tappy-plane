@@ -15,6 +15,8 @@
 #include "math.h"
 #include "OverlapTester.h"
 
+#include <sf2d.h>
+
 DSSpriteBatcher::DSSpriteBatcher(gfxScreen_t screen, int screenWidth, int screenHeight) : m_screen(screen), m_iScreenWidth(screenWidth), m_iScreenHeight(screenHeight)
 {
     m_iNumSprites = 0;
@@ -30,60 +32,11 @@ void DSSpriteBatcher::endBatchWithTexture(TextureWrapper &textureWrapper)
 {
     if (m_iNumSprites > 0)
     {
-        // Please note that the 3DS screens are sideways (thus 240x400 and 240x320)
-        u8* fb = gfxGetFramebuffer(m_screen, GFX_LEFT, NULL, NULL);
-
-        int left, top, right, bottom, x1, y1, x2, y2, x3, y3, x4, y4;
-
         for (std::vector<QUAD>::iterator itr = m_quads.begin(); itr != m_quads.end(); ++itr)
         {
             QUAD quad = *itr;
 
-            x1 = (int) (quad.X1 / GAME_WIDTH * (m_iScreenWidth - 1));
-            y1 = (int) (quad.Y1 / GAME_HEIGHT * (m_iScreenHeight - 1));
-
-            x2 = (int) (quad.X2 / GAME_WIDTH * (m_iScreenWidth - 1));
-            y2 = (int) (quad.Y2 / GAME_HEIGHT * (m_iScreenHeight - 1));
-
-            x3 = (int) (quad.X3 / GAME_WIDTH * (m_iScreenWidth - 1));
-            y3 = (int) (quad.Y3 / GAME_HEIGHT * (m_iScreenHeight - 1));
-
-            x4 = (int) (quad.X4 / GAME_WIDTH * (m_iScreenWidth - 1));
-            y4 = (int) (quad.Y4 / GAME_HEIGHT * (m_iScreenHeight - 1));
-
-            left = x1;
-            left = x2 < left ? x2 : left;
-            left = x3 < left ? x3 : left;
-            left = x4 < left ? x4 : left;
-
-            right = x1;
-            right = x2 > right ? x2 : right;
-            right = x3 > right ? x3 : right;
-            right = x4 > right ? x4 : right;
-
-            bottom = y1;
-            bottom = y2 < bottom ? y2 : bottom;
-            bottom = y3 < bottom ? y3 : bottom;
-            bottom = y4 < bottom ? y4 : bottom;
-
-            top = y1;
-            top = y2 > top ? y2 : top;
-            top = y3 > top ? y3 : top;
-            top = y4 > top ? y4 : top;
-
-            for (int x = left; x < right; x++)
-            {
-                if (x >= 0 && x < m_iScreenWidth)
-                {
-                    for (int y = bottom; y < top; y++)
-                    {
-                        if (y >= 0 && y < m_iScreenHeight)
-                        {
-                            setPixel(fb, x, y, (int)(quad.R * 255), (int)(quad.G * 255), (int)(quad.B * 255));
-                        }
-                    }
-                }
-            }
+            sf2d_draw_quad_uv(textureWrapper.texture, quad.x1, quad.y1, quad.x2, quad.y2, quad.x3, quad.y3, quad.x4, quad.y4, quad.u1, quad.v1, quad.u2, quad.v2, quad.u3, quad.v3, quad.u4, quad.v4, RGBA8((int)(quad.r * 255), (int)(quad.g * 255), (int)(quad.b * 255), (int)(quad.a * 255)), GPU_TEXTURE_MAG_FILTER(GPU_NEAREST) | GPU_TEXTURE_MIN_FILTER(GPU_NEAREST));
         }
     }
 }
@@ -123,7 +76,8 @@ void DSSpriteBatcher::drawSprite(float x, float y, float width, float height, fl
         x4 += x;
         y4 += y;
 
-        addQuad(x1, y1, x4, y4, x3, y3, x2, y2, 1, 1, 1);
+        addQuad(   x4,    y4,    x3,    y3,    x1,    y1,    x2,    y2,
+                tr.u1, tr.v1, tr.u2, tr.v1, tr.u1, tr.v2, tr.u2, tr.v2, 1, 1, 1, 1);
     }
     else
     {
@@ -168,7 +122,8 @@ void DSSpriteBatcher::drawSprite(float x, float y, float width, float height, fl
         x4 += x;
         y4 += y;
 
-        addQuad(x1, y1, x4, y4, x3, y3, x2, y2, color.red, color.green, color.blue);
+        addQuad(   x4,    y4,    x3,    y3,    x1,    y1,    x2,    y2,
+                tr.u1, tr.v1, tr.u2, tr.v1, tr.u1, tr.v2, tr.u2, tr.v2, color.red, color.green, color.blue, color.alpha);
     }
     else
     {
@@ -189,7 +144,8 @@ void DSSpriteBatcher::drawSprite(float x, float y, float width, float height, Te
     float x2 = x + halfWidth;
     float y2 = y + halfHeight;
 
-    addQuad(x1, y1, x1, y2, x2, y2, x2, y1, 1, 1, 1);
+    addQuad(   x1,    y2,    x2,    y2,    x1,    y1,    x2,    y1,
+            tr.u1, tr.v1, tr.u2, tr.v1, tr.u1, tr.v2, tr.u2, tr.v2, 1, 1, 1, 1);
 }
 
 void DSSpriteBatcher::drawSprite(float x, float y, float width, float height, Color &color, TextureRegion tr)
@@ -201,20 +157,14 @@ void DSSpriteBatcher::drawSprite(float x, float y, float width, float height, Co
     float x2 = x + halfWidth;
     float y2 = y + halfHeight;
 
-    addQuad(x1, y1, x1, y2, x2, y2, x2, y1, color.red, color.green, color.blue);
+    addQuad(   x1,    y2,    x2,    y2,    x1,    y1,    x2,    y1,
+            tr.u1, tr.v1, tr.u2, tr.v1, tr.u1, tr.v2, tr.u2, tr.v2, color.red, color.green, color.blue, color.alpha);
 }
 
 #pragma mark private
 
-void DSSpriteBatcher::addQuad(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, float r, float g, float b)
+void DSSpriteBatcher::addQuad(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, float u1, float v1, float u2, float v2, float u3, float v3, float u4, float v4, float r, float g, float b, float a)
 {
-    QUAD q = {x1, y1, x2, y2, x3, y3, x4, y4, r, g, b};
+    QUAD q = {x1, GAME_HEIGHT - y1, x2, GAME_HEIGHT - y2, x3, GAME_HEIGHT - y3, x4, GAME_HEIGHT - y4, u1, v1, u2, v2, u3, v3, u4, v4, r, g, b, a};
     m_quads.push_back(q);
-}
-
-void DSSpriteBatcher::setPixel(uint8_t *framebuffer, int x, int y, int red, int green, int blue)
-{
-    framebuffer[3 * (y + x * 240)] = blue;
-    framebuffer[3 * (y + x * 240) + 1] = green;
-    framebuffer[3 * (y + x * 240) + 2] = red;
 }

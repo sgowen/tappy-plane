@@ -37,8 +37,6 @@
 
 int main()
 {
-    gfxInitDefault();
-
     DSGameScreen gameScreen = DSGameScreen(400, 240, 320, 240);
 
     u64 lastTick = svcGetSystemTick();
@@ -52,7 +50,6 @@ int main()
         float deltaTime = ((float) (newTick - lastTick)) / TICKS_PER_SEC;
         lastTick = newTick;
 
-        gspWaitForVBlank();
         hidScanInput();
 
         gameScreen.update(deltaTime);
@@ -90,13 +87,7 @@ int main()
 
         lastTouchPosition.px = touch.px;
         lastTouchPosition.py = touch.py;
-
-        // Flush and swap framebuffers
-        gfxFlushBuffers();
-        gfxSwapBuffers();
     }
-
-    gfxExit();
 
     return 0;
 }

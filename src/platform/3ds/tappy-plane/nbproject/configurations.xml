@@ -95,8 +95,6 @@
           <itemPath>../../../core/framework/ui/TouchEvent.cpp</itemPath>
           <itemPath>../../../core/framework/ui/TouchEvent.h</itemPath>
           <itemPath>../../../core/framework/ui/TouchType.h</itemPath>
-          <itemPath>../../../core/framework/ui/TriangleBatcher.cpp</itemPath>
-          <itemPath>../../../core/framework/ui/TriangleBatcher.h</itemPath>
         </logicalFolder>
         <logicalFolder name="util" displayName="util" projectFiles="true">
           <itemPath>../../../core/framework/util/FlagUtil.h</itemPath>
@@ -201,6 +199,7 @@
               <pElem>/Users/sgowen/devkitPro/libctru/include</pElem>
               <pElem>/Users/sgowen/devkitPro/libctru/include/3ds</pElem>
               <pElem>/Users/sgowen/devkitPro/libctru/include/3ds/services</pElem>
+              <pElem>/Users/sgowen/Dropbox/Documents/Freelance/GowenGameDev/github/sf2dlib/libsf2d/include</pElem>
             </incDir>
           </cTool>
           <ccTool>
@@ -377,16 +376,6 @@
             flavor2="0">
       </item>
       <item path="../../../core/framework/ui/TouchType.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../../core/framework/ui/TriangleBatcher.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../../../core/framework/ui/TriangleBatcher.h"
             ex="false"
             tool="3"
             flavor2="0">

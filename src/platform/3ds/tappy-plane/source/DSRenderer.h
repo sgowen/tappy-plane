@@ -13,12 +13,12 @@
 
 #include <3ds.h>
 
-class TriangleBatcher;
-
 class DSRenderer : public Renderer
 {
 public:
     DSRenderer(gfxScreen_t screen, int screenWidth, int screenHeight);
+
+    ~DSRenderer();
 
     virtual void clearScreenWithColor(float r, float g, float b, float a);
 
@@ -27,13 +27,6 @@ public:
     virtual void endFrame();
 
     virtual void cleanUp();
-
-    virtual void renderWorldBackground(World &world);
-
-    virtual void renderWorldForeground(World &world, Glove &glove, float titleAlpha);
-    
-private:
-    std::unique_ptr<TriangleBatcher> m_triangleBatcher;
 };
 
 #endif /* defined(__tappyplane__DSRenderer__) */
