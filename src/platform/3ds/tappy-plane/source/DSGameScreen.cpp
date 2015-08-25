@@ -48,3 +48,8 @@ void DSGameScreen::platformPause()
 {
     // Empty
 }
+
+void DSGameScreen::exit()
+{
+    m_renderer->cleanUp();
+}

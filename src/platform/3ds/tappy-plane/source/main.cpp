@@ -11,6 +11,7 @@
 #include <3ds.h>
 
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 
 #include "DSGameScreen.h"
@@ -32,11 +33,45 @@
 #include "Circle.h"
 #include "GameButton.h"
 #include "SpikePhysicalEntity.h"
+#include "ResourceConstants.h"
+
+extern "C"
+{
+#include "sfx.h"
+#include "filesystem.h"
+}
 
 #define TICKS_PER_SEC (268123480)
 
-int main()
+//SFX_s* ascendSFX;
+//SFX_s* hitSFX;
+//SFX_s* landSFX;
+//SFX_s* scoreSFX;
+
+int main(int argc, char** argv)
 {
+    //init fs
+//    filesystemInit(argc, argv);
+//
+//    initSound();
+//
+//    char str1[] = "ascend.raw";
+//    char* ascendSFXFn = &str1[0];
+//
+//    char str2[] = "hit.raw";
+//    char* hitSFXFn = &str2[0];
+//
+//    char str3[] = "land.raw";
+//    char* landSFXFn = &str3[0];
+//
+//    char str4[] = "score.raw";
+//    char* scoreSFXFn = &str4[0];
+//
+//    ascendSFX = createSFX(ascendSFXFn, SOUND_FORMAT_16BIT);
+//    hitSFX = createSFX(hitSFXFn, SOUND_FORMAT_16BIT);
+//    landSFX = createSFX(landSFXFn, SOUND_FORMAT_16BIT);
+//    scoreSFX = createSFX(scoreSFXFn, SOUND_FORMAT_16BIT);
+
     DSGameScreen gameScreen = DSGameScreen(400, 240, 320, 240);
 
     u64 lastTick = svcGetSystemTick();
@@ -87,7 +122,33 @@ int main()
 
         lastTouchPosition.px = touch.px;
         lastTouchPosition.py = touch.py;
+
+//        short soundId;
+//        while ((soundId = gameScreen.getCurrentSoundId()) > 0)
+//        {
+//            switch (soundId)
+//            {
+//            case ASCEND_SOUND:
+//                playSFX(ascendSFX);
+//                break;
+//            case SCORE_SOUND:
+//                playSFX(scoreSFX);
+//                break;
+//            case HIT_SOUND:
+//                playSFX(hitSFX);
+//                break;
+//            case LAND_SOUND:
+//                playSFX(landSFX);
+//                break;
+//            default:
+//                break;
+//            }
+//        }
     }
+
+//    exitSound();
+
+    gameScreen.exit();
 
     return 0;
 }

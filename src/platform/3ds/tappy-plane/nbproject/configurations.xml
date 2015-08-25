@@ -23,7 +23,19 @@
           <itemPath>../../../core/framework/math/Vector2D.cpp</itemPath>
           <itemPath>../../../core/framework/math/Vector2D.h</itemPath>
         </logicalFolder>
+        <logicalFolder name="sound" displayName="sound" projectFiles="true">
+          <logicalFolder name="3ds" displayName="3ds" projectFiles="true">
+            <itemPath>../../../core/framework/sound/3ds/filesystem.c</itemPath>
+            <itemPath>../../../core/framework/sound/3ds/filesystem.h</itemPath>
+            <itemPath>../../../core/framework/sound/3ds/sfx.c</itemPath>
+            <itemPath>../../../core/framework/sound/3ds/sfx.h</itemPath>
+          </logicalFolder>
+        </logicalFolder>
         <logicalFolder name="ui" displayName="ui" projectFiles="true">
+          <logicalFolder name="3ds" displayName="3ds" projectFiles="true">
+            <itemPath>../../../core/framework/ui/3ds/DSSpriteBatcher.cpp</itemPath>
+            <itemPath>../../../core/framework/ui/3ds/DSSpriteBatcher.h</itemPath>
+          </logicalFolder>
           <logicalFolder name="direct3d" displayName="direct3d" projectFiles="true">
             <itemPath>../../../core/framework/ui/direct3d/ColorPixelShader.hlsl</itemPath>
             <itemPath>../../../core/framework/ui/direct3d/ColorVertexShader.hlsl</itemPath>
@@ -41,8 +53,6 @@
             <itemPath>../../../core/framework/ui/direct3d/Direct3DSpriteBatcher.h</itemPath>
             <itemPath>../../../core/framework/ui/direct3d/GameSound.cpp</itemPath>
             <itemPath>../../../core/framework/ui/direct3d/GameSound.h</itemPath>
-            <itemPath>../../../core/framework/ui/direct3d/PPSinWavePixelShader.hlsl</itemPath>
-            <itemPath>../../../core/framework/ui/direct3d/PPSinWaveVertexShader.hlsl</itemPath>
             <itemPath>../../../core/framework/ui/direct3d/TexturePixelShader.hlsl</itemPath>
             <itemPath>../../../core/framework/ui/direct3d/TextureVertexShader.hlsl</itemPath>
           </logicalFolder>
@@ -152,8 +162,6 @@
         <in>DSGameScreen.h</in>
         <in>DSRenderer.cpp</in>
         <in>DSRenderer.h</in>
-        <in>DSSpriteBatcher.cpp</in>
-        <in>DSSpriteBatcher.h</in>
       </df>
     </df>
     <logicalFolder name="ExternalFiles"
@@ -297,6 +305,36 @@
             flavor2="0">
       </item>
       <item path="../../../core/framework/math/Vector2D.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/sound/3ds/filesystem.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/sound/3ds/filesystem.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/sound/3ds/sfx.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/sound/3ds/sfx.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/3ds/DSSpriteBatcher.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../core/framework/ui/3ds/DSSpriteBatcher.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -456,16 +494,6 @@
             flavor2="0">
       </item>
       <item path="../../../core/framework/ui/direct3d/GameSound.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../../core/framework/ui/direct3d/PPSinWavePixelShader.hlsl"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../../core/framework/ui/direct3d/PPSinWaveVertexShader.hlsl"
             ex="false"
             tool="3"
             flavor2="0">
@@ -773,10 +801,6 @@
       <item path="source/DSRenderer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/DSRenderer.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="source/DSSpriteBatcher.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="source/DSSpriteBatcher.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

@@ -21,6 +21,8 @@ public:
     virtual void platformResume();
 
     virtual void platformPause();
+    
+    void exit();
 
 private:
     int m_iTopScreenWidth;
