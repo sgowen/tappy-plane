@@ -29,7 +29,7 @@ DSGameScreen::DSGameScreen(int topScreenWidth, int topScreenHeight, int bottomSc
     sf2d_init(GAME_WIDTH, GAME_HEIGHT, GAME_WIDTH, GAME_HEIGHT);
 
     m_renderer = std::unique_ptr<DSRenderer>(new DSRenderer(GFX_BOTTOM, bottomScreenWidth, bottomScreenHeight));
-    topScreenRenderer = new TopScreenRenderer(GFX_TOP, 400, 240);
+    m_topScreenRenderer = new TopScreenRenderer(GFX_TOP, 400, 240);
 
     m_iTopScreenWidth = topScreenWidth;
     m_iTopScreenHeight = topScreenHeight;
@@ -59,9 +59,9 @@ void DSGameScreen::render()
 {
     GameScreen::render();
 
-    topScreenRenderer->beginFrame();
-    topScreenRenderer->render();
-    topScreenRenderer->endFrame();
+    m_topScreenRenderer->beginFrame();
+    m_topScreenRenderer->render();
+    m_topScreenRenderer->endFrame();
 
     sf2d_swapbuffers();
 }
@@ -69,7 +69,7 @@ void DSGameScreen::render()
 void DSGameScreen::exit()
 {
     m_renderer->cleanUp();
-    topScreenRenderer->cleanUp();
+    m_topScreenRenderer->cleanUp();
 
     sf2d_fini();
 }

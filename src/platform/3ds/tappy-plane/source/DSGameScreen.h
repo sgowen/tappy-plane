@@ -33,7 +33,7 @@ private:
     int m_iTopScreenHeight;
     int m_iBottomScreenWidth;
     int m_iBottomScreenHeight;
-    TopScreenRenderer *topScreenRenderer;
+    TopScreenRenderer *m_topScreenRenderer;
 };
 
 #endif /* defined(__tappyplane__DSGameScreen__) */
