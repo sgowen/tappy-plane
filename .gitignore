@@ -36,6 +36,7 @@ ipch/
 private/
 build/
 nbbuild/
+nbproject/
 dist/
 nbdist/
 nbactions.xml
