@@ -17,5 +17,6 @@ void initSFX(SFX_s* s);
 void loadSFX(SFX_s* s, char* filename, u32 format);
 SFX_s* createSFX(char* filename, u32 format);
 void playSFX(SFX_s* s);
+void playMusic(SFX_s* s);
 
 #endif

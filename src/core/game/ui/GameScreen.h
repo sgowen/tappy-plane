@@ -45,7 +45,7 @@ public:
 
     void update(float deltaTime);
 
-    void render();
+    virtual void render();
 
     int getState();
 

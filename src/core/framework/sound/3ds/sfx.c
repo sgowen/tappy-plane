@@ -74,14 +74,42 @@ SFX_s* createSFX(char* filename, u32 format)
 }
 
 int channel;
+int musicChannel = -1;
 
-void playSFX(SFX_s* s)
+void playSFXOnChannel(SFX_s* s, int channel)
 {
     if (!s || !s->used || !s->data || !soundEnabled)return;
 
+    csndPlaySound(channel + 8, s->format, 22050, 1.0, 0.0, (u32*) s->data, (u32*) s->data, s->size);
+}
+
+void playSFX(SFX_s* s)
+{
     channel++;
     channel %= 8;
+    if (channel == musicChannel)
+    {
+        channel++;
 
-    // soundPlaySample(s->data, s->format, s->size, 22050, 127, 64, false, 0);
-    csndPlaySound(channel + 8, s->format, 22050, 1.0, 0.0, (u32*) s->data, (u32*) s->data, s->size);
+        if (channel > 7)
+        {
+            channel = 0;
+        }
+    }
+
+    playSFXOnChannel(s, channel);
+}
+
+void playMusic(SFX_s* s)
+{
+    if (musicChannel == -1)
+    {
+        playSFX(s);
+
+        musicChannel = channel;
+    }
+    else
+    {
+        playSFXOnChannel(s, musicChannel);
+    }
 }

@@ -11,6 +11,8 @@
 
 #include "GameScreen.h"
 
+class TopScreenRenderer;
+
 class DSGameScreen : public GameScreen
 {
 public:
@@ -22,6 +24,8 @@ public:
 
     virtual void platformPause();
     
+    virtual void render();
+    
     void exit();
 
 private:
@@ -29,6 +33,7 @@ private:
     int m_iTopScreenHeight;
     int m_iBottomScreenWidth;
     int m_iBottomScreenHeight;
+    TopScreenRenderer *topScreenRenderer;
 };
 
 #endif /* defined(__tappyplane__DSGameScreen__) */

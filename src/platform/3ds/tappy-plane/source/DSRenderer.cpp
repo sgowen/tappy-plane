@@ -45,7 +45,6 @@
 
 extern "C"
 {
-
     extern const struct
     {
         unsigned int width;
@@ -66,11 +65,9 @@ extern "C"
 sf2d_texture *backgroundTex;
 sf2d_texture *gameTex;
 
-DSRenderer::DSRenderer(gfxScreen_t screen, int screenWidth, int screenHeight) : Renderer()
+DSRenderer::DSRenderer(gfxScreen_t screen, int screenWidth, int screenHeight) : Renderer(), m_screen(screen)
 {
     m_spriteBatcher = std::unique_ptr<DSSpriteBatcher>(new DSSpriteBatcher(screen, screenWidth, screenHeight));
-
-    sf2d_init(GAME_WIDTH, GAME_HEIGHT, GAME_WIDTH, GAME_HEIGHT);
 
     backgroundTex = sf2d_create_texture_mem_RGBA8(background.pixel_data, background.width, background.height, TEXFMT_RGBA8, SF2D_PLACE_RAM);
     gameTex = sf2d_create_texture_mem_RGBA8(game.pixel_data, game.width, game.height, TEXFMT_RGBA8, SF2D_PLACE_RAM);
@@ -91,20 +88,16 @@ void DSRenderer::clearScreenWithColor(float r, float g, float b, float a)
 
 void DSRenderer::beginFrame()
 {
-    sf2d_start_frame(GFX_BOTTOM, GFX_LEFT);
+    sf2d_start_frame(m_screen, GFX_LEFT);
 }
 
 void DSRenderer::endFrame()
 {
     sf2d_end_frame();
-
-    sf2d_swapbuffers();
 }
 
 void DSRenderer::cleanUp()
 {
     sf2d_free_texture(backgroundTex);
     sf2d_free_texture(gameTex);
-
-    sf2d_fini();
 }

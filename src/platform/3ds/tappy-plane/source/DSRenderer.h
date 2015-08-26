@@ -27,6 +27,9 @@ public:
     virtual void endFrame();
 
     virtual void cleanUp();
+
+private:
+    gfxScreen_t m_screen;
 };
 
 #endif /* defined(__tappyplane__DSRenderer__) */
