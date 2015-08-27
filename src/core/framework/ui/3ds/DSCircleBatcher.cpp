@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Gowen Game Dev. All rights reserved.
 //
 
-#define DEGREE_SPACING 24
+#define DEGREE_SPACING 36
 
 #include "DSCircleBatcher.h"
 #include "macros.h"
@@ -29,7 +29,7 @@ void DSCircleBatcher::renderPartialCircle(Circle &circle, int arcDegrees, Color 
 {
     // This method should display clockwise depleting circle, but I couldn't figure out how to do it, so...
     float radius = circle.m_fRadius;
-    radius *= (1 - (arcDegrees / 360));
+    radius *= (1 - (((float) arcDegrees) / 360.0f));
 
     renderCircle(circle.getCenter().getX(), circle.getCenter().getY(), radius, c);
 }
