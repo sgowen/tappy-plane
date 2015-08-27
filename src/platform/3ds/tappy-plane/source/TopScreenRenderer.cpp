@@ -32,6 +32,7 @@
 #include "Glove.h"
 #include "GameButton.h"
 #include "GameConstants.h"
+#include "GpuProgramWrapper.h"
 
 #include <sstream>
 
@@ -75,7 +76,7 @@ void TopScreenRenderer::render()
     static TextureRegion tr = TextureRegion(0.0f, 0.0f, 400.0f, 240.0f, 512.0f, 512.0f);
     m_spriteBatcher->beginBatch();
     m_spriteBatcher->drawSprite(GAME_WIDTH_1_2, GAME_HEIGHT_1_2, GAME_WIDTH, GAME_HEIGHT, 0, tr);
-    m_spriteBatcher->endBatchWithTexture(*m_topScreenTitleTexture);
+    m_spriteBatcher->endBatch(*m_topScreenTitleTexture);
 }
 
 void TopScreenRenderer::endFrame()

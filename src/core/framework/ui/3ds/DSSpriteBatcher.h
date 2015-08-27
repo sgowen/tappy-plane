@@ -11,6 +11,7 @@
 
 #include "SpriteBatcher.h"
 
+#include <memory>
 #include <vector>
 
 #include <3ds.h>
@@ -31,7 +32,9 @@ public:
     
     virtual void beginBatch();
     
-    virtual void endBatchWithTexture(TextureWrapper &textureWrapper);
+    virtual void endBatch(TextureWrapper &textureWrapper);
+    
+    virtual void endBatch(TextureWrapper &textureWrapper, GpuProgramWrapper &gpuProgramWrapper);
     
     virtual void drawSprite(float x, float y, float width, float height, float angle, TextureRegion tr);
     
@@ -43,6 +46,7 @@ protected:
     virtual void drawSprite(float x, float y, float width, float height, Color &color, TextureRegion tr);
     
 private:
+    std::unique_ptr<GpuProgramWrapper> m_textureProgram;
     std::vector<QUAD> m_quads;
     gfxScreen_t m_screen;
     int m_iScreenWidth;

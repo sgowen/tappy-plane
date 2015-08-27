@@ -37,7 +37,7 @@ void Renderer::renderWorldBackground(World &world)
 {
     m_spriteBatcher->beginBatch();
     m_spriteBatcher->drawSprite(WORLD_BACKGROUND_X, WORLD_BACKGROUND_Y, WORLD_BACKGROUND_WIDTH, WORLD_BACKGROUND_HEIGHT, 0, Assets::getWorldBackgroundTextureRegion());
-    m_spriteBatcher->endBatchWithTexture(*m_backgroundTexture);
+    m_spriteBatcher->endBatch(*m_backgroundTexture);
 }
 
 void Renderer::renderWorldForeground(World &world, Glove &glove, float titleAlpha)
@@ -47,11 +47,11 @@ void Renderer::renderWorldForeground(World &world, Glove &glove, float titleAlph
     {
         renderObstacle((**itr));
     }
-    m_spriteBatcher->endBatchWithTexture(*m_gameTexture);
+    m_spriteBatcher->endBatch(*m_gameTexture);
     
     m_spriteBatcher->beginBatch();
     renderPhysicalEntity(world.getPlane(), Assets::getPlaneTextureRegion(world.getPlane()));
-    m_spriteBatcher->endBatchWithTexture(*m_gameTexture);
+    m_spriteBatcher->endBatch(*m_gameTexture);
     
     if(world.getPlane().getPuffClouds().size() > 0)
     {
@@ -63,14 +63,14 @@ void Renderer::renderWorldForeground(World &world, Glove &glove, float titleAlph
             m_spriteBatcher->drawSprite((*itr)->getPosition().getX(), (*itr)->getPosition().getY(), (*itr)->getWidth(), (*itr)->getHeight(), (*itr)->getAngle(), puffCloudColor, Assets::getPuffLargeTextureRegion());
         }
         
-        m_spriteBatcher->endBatchWithTexture(*m_gameTexture);
+        m_spriteBatcher->endBatch(*m_gameTexture);
     }
     
     // Bottom Bar (foreground)
     m_spriteBatcher->beginBatch();
     renderPhysicalEntity(world.getForegroundLeft(), Assets::getWorldForegroundLeftTextureRegion(world.getEnvironmentType()));
     renderPhysicalEntity(world.getForegroundRight(), Assets::getWorldForegroundRightTextureRegion(world.getEnvironmentType()));
-    m_spriteBatcher->endBatchWithTexture(*m_gameTexture);
+    m_spriteBatcher->endBatch(*m_gameTexture);
     
     if(titleAlpha > 0)
     {
@@ -81,7 +81,7 @@ void Renderer::renderWorldForeground(World &world, Glove &glove, float titleAlph
         m_spriteBatcher->drawSprite(glove.getPosition().getX(), glove.getPosition().getY(), glove.getWidth(), glove.getHeight(), glove.getAngle(), titleColor, Assets::getGloveTextureRegion(glove));
         m_spriteBatcher->drawSprite(glove.getPosition().getX() - 3.5f, glove.getPosition().getY(), 4, 2, 0, titleColor, Assets::getTapLeftTextureRegion());
         m_spriteBatcher->drawSprite(glove.getPosition().getX() + 3.5f, glove.getPosition().getY(), 4, 2, 0, titleColor, Assets::getTapRightTextureRegion());
-        m_spriteBatcher->endBatchWithTexture(*m_backgroundTexture);
+        m_spriteBatcher->endBatch(*m_backgroundTexture);
     }
     
     if(!world.isGameOver() && world.getScore() > 0 && titleAlpha < 0)
@@ -93,7 +93,7 @@ void Renderer::renderWorldForeground(World &world, Glove &glove, float titleAlph
         
         m_spriteBatcher->beginBatch();
         m_font->renderText(*m_spriteBatcher, score, SCORE_FONT_X, SCORE_FONT_Y, SCORE_FONT_WIDTH, SCORE_FONT_HEIGHT, scoreColor, true, false, 16);
-        m_spriteBatcher->endBatchWithTexture(*m_gameTexture);
+        m_spriteBatcher->endBatch(*m_gameTexture);
     }
 }
 
@@ -118,7 +118,7 @@ void Renderer::renderWorldGameOver(World &world, GameButton &okButton, GameButto
         m_spriteBatcher->drawSprite(MEDAL_X, MEDAL_Y, MEDAL_WIDTH, MEDAL_HEIGHT, 0, Assets::getBronzeMedalTextureRegion());
     }
     
-    m_spriteBatcher->endBatchWithTexture(*m_gameTexture);
+    m_spriteBatcher->endBatch(*m_gameTexture);
     
     std::stringstream ss;
     ss << world.getScore();
@@ -133,7 +133,7 @@ void Renderer::renderWorldGameOver(World &world, GameButton &okButton, GameButto
     m_spriteBatcher->beginBatch();
     m_font->renderText(*m_spriteBatcher, scoreString, SCORE_FONT_IN_WINDOW_X, SCORE_FONT_IN_WINDOW_Y, FONT_IN_WINDOW_WIDTH, FONT_IN_WINDOW_HEIGHT, scoreColor, false, true, 16);
     m_font->renderText(*m_spriteBatcher, bestScoreString, BEST_FONT_IN_WINDOW_X, BEST_FONT_IN_WINDOW_Y, FONT_IN_WINDOW_WIDTH, FONT_IN_WINDOW_HEIGHT, scoreColor, false, true, 16);
-    m_spriteBatcher->endBatchWithTexture(*m_gameTexture);
+    m_spriteBatcher->endBatch(*m_gameTexture);
 }
 
 void Renderer::renderObstacle(Obstacle &obstacle)

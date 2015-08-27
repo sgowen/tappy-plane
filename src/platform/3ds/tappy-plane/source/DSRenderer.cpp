@@ -32,6 +32,7 @@
 #include "Glove.h"
 #include "GameButton.h"
 #include "GameConstants.h"
+#include "GpuProgramWrapper.h"
 
 #include <sstream>
 

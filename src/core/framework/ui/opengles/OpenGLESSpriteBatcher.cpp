@@ -13,7 +13,7 @@
 #include "Rectangle.h"
 #include "Vector2D.h"
 #include "OpenGLESManager.h"
-#include "TextureProgram.h"
+#include "GpuProgramWrapper.h"
 
 OpenGLESSpriteBatcher::OpenGLESSpriteBatcher()
 {
@@ -26,23 +26,23 @@ void OpenGLESSpriteBatcher::beginBatch()
     m_iNumSprites = 0;
 }
 
-void OpenGLESSpriteBatcher::endBatchWithTexture(TextureWrapper &textureWrapper)
+void OpenGLESSpriteBatcher::endBatch(TextureWrapper &textureWrapper)
 {
-    endBatchWithTexture(textureWrapper, OGLESManager->m_textureProgram);
+    endBatch(textureWrapper, *OGLESManager->m_textureProgram);
 }
 
-void OpenGLESSpriteBatcher::endBatchWithTexture(TextureWrapper &textureWrapper, TextureProgramStruct textureProgram)
+void OpenGLESSpriteBatcher::endBatch(TextureWrapper &textureWrapper, GpuProgramWrapper &gpuProgramWrapper)
 {
     if(m_iNumSprites > 0)
     {
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, textureWrapper.texture);
         
-        OGLESManager->prepareForSpriteRendering(textureProgram);
+        gpuProgramWrapper.bind();
         
         glDrawElements(GL_TRIANGLES, m_iNumSprites * INDICES_PER_RECTANGLE, GL_UNSIGNED_SHORT, &OGLESManager->m_indices[0]);
         
-        OGLESManager->finishSpriteRendering();
+        gpuProgramWrapper.unbind();
         
         glBindTexture(GL_TEXTURE_2D, 0);
     }

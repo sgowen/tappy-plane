@@ -28,7 +28,7 @@ void Direct3DSpriteBatcher::beginBatch()
 	m_iNumSprites = 0;
 }
 
-void Direct3DSpriteBatcher::endBatchWithTexture(TextureWrapper &textureWrapper)
+void Direct3DSpriteBatcher::endBatch(TextureWrapper &textureWrapper)
 {
 	if (m_iNumSprites > 0)
 	{

@@ -13,6 +13,7 @@
 #include "TextureWrapper.h"
 
 class TextureRegion;
+class GpuProgramWrapper;
 
 class SpriteBatcher
 {
@@ -21,7 +22,9 @@ public:
     
     virtual void beginBatch() = 0;
     
-    virtual void endBatchWithTexture(TextureWrapper &textureWrapper) = 0;
+    virtual void endBatch(TextureWrapper &textureWrapper) = 0;
+    
+    virtual void endBatch(TextureWrapper &textureWrapper, GpuProgramWrapper &gpuProgramWrapper) = 0;
     
     virtual void drawSprite(float x, float y, float width, float height, float angle, TextureRegion tr) = 0;
     

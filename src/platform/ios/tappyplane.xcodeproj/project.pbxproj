@@ -159,6 +159,14 @@
 		BB430E23189313C600E4EAE1 /* pngpriv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pngpriv.h; path = ../../3rdparty/libpng/pngpriv.h; sourceTree = "<group>"; };
 		BB430E24189313C600E4EAE1 /* pngstruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pngstruct.h; path = ../../3rdparty/libpng/pngstruct.h; sourceTree = "<group>"; };
 		BB4A729B1B8F8D5C003D2A6C /* texture_vert_flip_shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = texture_vert_flip_shader.vsh; sourceTree = "<group>"; };
+		BB4A72A71B8F9396003D2A6C /* DSCircleBatcher.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DSCircleBatcher.cpp; sourceTree = "<group>"; };
+		BB4A72A81B8F9396003D2A6C /* DSCircleBatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSCircleBatcher.h; sourceTree = "<group>"; };
+		BB4A72A91B8F9396003D2A6C /* DSLineBatcher.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DSLineBatcher.cpp; sourceTree = "<group>"; };
+		BB4A72AA1B8F9396003D2A6C /* DSLineBatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSLineBatcher.h; sourceTree = "<group>"; };
+		BB4A72AB1B8F9396003D2A6C /* DSRectangleBatcher.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DSRectangleBatcher.cpp; sourceTree = "<group>"; };
+		BB4A72AC1B8F9396003D2A6C /* DSRectangleBatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSRectangleBatcher.h; sourceTree = "<group>"; };
+		BB4A72AD1B8F9396003D2A6C /* DSSpriteBatcher.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DSSpriteBatcher.cpp; sourceTree = "<group>"; };
+		BB4A72AE1B8F9396003D2A6C /* DSSpriteBatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSSpriteBatcher.h; sourceTree = "<group>"; };
 		BB7305D4189C598C009F6DF4 /* AppPrefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppPrefs.h; sourceTree = "<group>"; };
 		BB7305D5189C598D009F6DF4 /* AppPrefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppPrefs.m; sourceTree = "<group>"; };
 		BB7305D8189C598D009F6DF4 /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
@@ -482,6 +490,21 @@
 			path = game;
 			sourceTree = "<group>";
 		};
+		BB4A72A61B8F9396003D2A6C /* 3ds */ = {
+			isa = PBXGroup;
+			children = (
+				BB4A72A71B8F9396003D2A6C /* DSCircleBatcher.cpp */,
+				BB4A72A81B8F9396003D2A6C /* DSCircleBatcher.h */,
+				BB4A72A91B8F9396003D2A6C /* DSLineBatcher.cpp */,
+				BB4A72AA1B8F9396003D2A6C /* DSLineBatcher.h */,
+				BB4A72AB1B8F9396003D2A6C /* DSRectangleBatcher.cpp */,
+				BB4A72AC1B8F9396003D2A6C /* DSRectangleBatcher.h */,
+				BB4A72AD1B8F9396003D2A6C /* DSSpriteBatcher.cpp */,
+				BB4A72AE1B8F9396003D2A6C /* DSSpriteBatcher.h */,
+			);
+			path = 3ds;
+			sourceTree = "<group>";
+		};
 		BB7A4B7B1B86200B00DED640 /* ui */ = {
 			isa = PBXGroup;
 			children = (
@@ -566,6 +589,7 @@
 		BB7A4BC21B868F4300DED640 /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				BB4A72A61B8F9396003D2A6C /* 3ds */,
 				BB7A4BC31B868F4300DED640 /* CircleBatcher.cpp */,
 				BB7A4BC41B868F4300DED640 /* CircleBatcher.h */,
 				BB7A4BC51B868F4300DED640 /* Color.h */,

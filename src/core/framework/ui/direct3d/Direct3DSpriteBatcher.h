@@ -19,7 +19,7 @@ public:
     
 	virtual void beginBatch();
 
-	virtual void endBatchWithTexture(TextureWrapper &textureWrapper);
+	virtual void endBatch(TextureWrapper &textureWrapper);
     
 	virtual void drawSprite(float x, float y, float width, float height, float angle, TextureRegion tr);
     
