@@ -40,6 +40,8 @@
 #include "TextureWrapper.h"
 #include "TopScreenRenderer.h"
 #include "GameConstants.h"
+#include "ScreenState.h"
+#include <math.h>
 
 extern "C"
 {
@@ -48,6 +50,33 @@ extern "C"
 }
 
 #define TICKS_PER_SEC (268123480)
+
+void handleFinalScore(GameScreen &gameScreen)
+{
+    int score = gameScreen.getScore();
+    int bestScore = 0;
+
+    FILE *fp = 0;
+    fp = openFile("tappy_plane.sav", "rb+");
+    if (fp != NULL)
+    {
+        fread((void *) &bestScore, sizeof (int), 1, fp);
+        fclose(fp);
+    }
+
+    if (score > bestScore)
+    {
+        fp = openFile("tappy_plane.sav", "wb+");
+        if (fp != NULL)
+        {
+            fwrite((void *) &score, sizeof (int), 1, fp);
+            fflush(fp);
+            fclose(fp);
+        }
+    }
+
+    gameScreen.setBestScore(fmax(score, bestScore));
+}
 
 int main(int argc, char** argv)
 {
@@ -108,7 +137,24 @@ int main(int argc, char** argv)
         lastTouchPosition.px = touch.px;
         lastTouchPosition.py = touch.py;
 
-        gameScreen.update(deltaTime);
+        int screenState = gameScreen.getState();
+        switch (screenState)
+        {
+        case SCREEN_STATE_NORMAL:
+            gameScreen.update(deltaTime);
+            break;
+        case SCREEN_STATE_GAME_OVER:
+            gameScreen.clearState();
+            handleFinalScore(gameScreen);
+            break;
+        case SCREEN_STATE_LEADERBOARDS:
+            gameScreen.clearState();
+            // TODO, show Leaderboards here if you want
+            break;
+        default:
+            break;
+        }
+
         gameScreen.render();
 
         short soundId;
