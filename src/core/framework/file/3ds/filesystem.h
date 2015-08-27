@@ -3,6 +3,8 @@
 
 #include <3ds.h>
 
+#include <stdio.h>
+
 void filesystemInit(int argc, char** argv);
 void filesystemExit();
 

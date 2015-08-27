@@ -11,17 +11,33 @@
 
 #include "CircleBatcher.h"
 
+#include <vector>
+
+#include <3ds.h>
+
+#include <sf2d.h>
+
 class DSCircleBatcher : public CircleBatcher
 {
 public:
-    DSCircleBatcher();
+    DSCircleBatcher(gfxScreen_t screen, int screenWidth, int screenHeight);
     
-    virtual void renderCircle(Circle &circle, Color &color);
+    virtual void renderCircle(Circle &circle, Color &c);
     
-    virtual void renderPartialCircle(Circle &circle, int arcDegrees, Color &color);
+    virtual void renderPartialCircle(Circle &circle, int arcDegrees, Color &c);
     
 private:
-    void endBatch(int numPoints);
+    std::vector<sf2d_vertex_pos_col> m_vertices;
+    gfxScreen_t m_screen;
+    int m_iScreenWidth;
+    int m_iScreenHeight;
+    int m_iNumPointsOnCircle;
+    
+    void renderCircle(float x, float y, float radius, Color &c);
+    
+    void addVertex(float x, float y, float r, float g, float b, float a);
+    
+    void endBatch();
 };
 
 #endif /* defined(__gowengamedev__DSCircleBatcher__) */
