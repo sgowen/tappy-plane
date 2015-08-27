@@ -39,13 +39,13 @@
 		0ADF1895178E2185005DA99E /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ADF1893178E2185005DA99E /* MainStoryboard_iPhone.storyboard */; };
 		0ADF1898178E2185005DA99E /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ADF1896178E2185005DA99E /* MainStoryboard_iPad.storyboard */; };
 		BB18E5511AC5B1E6006B755F /* GGDDeviceUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BB18E5501AC5B1E6006B755F /* GGDDeviceUtil.m */; };
+		BB4A729C1B8F8D5C003D2A6C /* texture_vert_flip_shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = BB4A729B1B8F8D5C003D2A6C /* texture_vert_flip_shader.vsh */; };
 		BB7305DA189C598D009F6DF4 /* AppPrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7305D5189C598D009F6DF4 /* AppPrefs.m */; };
 		BB7305DC189C598D009F6DF4 /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7305D9189C598D009F6DF4 /* Sound.m */; };
 		BB7305E2189C6BFA009F6DF4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB7305E1189C6BFA009F6DF4 /* AudioToolbox.framework */; };
 		BB7305E4189C6C06009F6DF4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB7305E3189C6C06009F6DF4 /* AVFoundation.framework */; };
 		BB7A4B651B86105B00DED640 /* IOS8OpenGLESGameScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB7A4B611B86105B00DED640 /* IOS8OpenGLESGameScreen.cpp */; };
 		BB7A4B661B86105B00DED640 /* IOSOpenGLESGameScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB7A4B631B86105B00DED640 /* IOSOpenGLESGameScreen.cpp */; };
-		BB7A4B691B8610EF00DED640 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7A4B681B8610EF00DED640 /* Logger.m */; };
 		BB7A4B911B86200C00DED640 /* GameListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB7A4B6C1B86200B00DED640 /* GameListener.cpp */; };
 		BB7A4B921B86200C00DED640 /* Glove.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB7A4B6F1B86200B00DED640 /* Glove.cpp */; };
 		BB7A4B931B86200C00DED640 /* Obstacle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB7A4B711B86200B00DED640 /* Obstacle.cpp */; };
@@ -158,6 +158,7 @@
 		BB430E22189313C600E4EAE1 /* pnglibconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pnglibconf.h; path = ../../3rdparty/libpng/pnglibconf.h; sourceTree = "<group>"; };
 		BB430E23189313C600E4EAE1 /* pngpriv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pngpriv.h; path = ../../3rdparty/libpng/pngpriv.h; sourceTree = "<group>"; };
 		BB430E24189313C600E4EAE1 /* pngstruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pngstruct.h; path = ../../3rdparty/libpng/pngstruct.h; sourceTree = "<group>"; };
+		BB4A729B1B8F8D5C003D2A6C /* texture_vert_flip_shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = texture_vert_flip_shader.vsh; sourceTree = "<group>"; };
 		BB7305D4189C598C009F6DF4 /* AppPrefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppPrefs.h; sourceTree = "<group>"; };
 		BB7305D5189C598D009F6DF4 /* AppPrefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppPrefs.m; sourceTree = "<group>"; };
 		BB7305D8189C598D009F6DF4 /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
@@ -168,8 +169,6 @@
 		BB7A4B621B86105B00DED640 /* IOS8OpenGLESGameScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOS8OpenGLESGameScreen.h; sourceTree = "<group>"; };
 		BB7A4B631B86105B00DED640 /* IOSOpenGLESGameScreen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IOSOpenGLESGameScreen.cpp; sourceTree = "<group>"; };
 		BB7A4B641B86105B00DED640 /* IOSOpenGLESGameScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOSOpenGLESGameScreen.h; sourceTree = "<group>"; };
-		BB7A4B671B8610EF00DED640 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
-		BB7A4B681B8610EF00DED640 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
 		BB7A4B6A1B86200B00DED640 /* EnvironmentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentType.h; sourceTree = "<group>"; };
 		BB7A4B6B1B86200B00DED640 /* GameConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameConstants.h; sourceTree = "<group>"; };
 		BB7A4B6C1B86200B00DED640 /* GameListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameListener.cpp; sourceTree = "<group>"; };
@@ -287,8 +286,6 @@
 		BB7A4C491B868F5900DED640 /* Direct3DSpriteBatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Direct3DSpriteBatcher.h; sourceTree = "<group>"; };
 		BB7A4C4A1B868F5900DED640 /* GameSound.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GameSound.cpp; sourceTree = "<group>"; };
 		BB7A4C4B1B868F5900DED640 /* GameSound.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameSound.h; sourceTree = "<group>"; };
-		BB7A4C4C1B868F5900DED640 /* PPSinWavePixelShader.hlsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = PPSinWavePixelShader.hlsl; sourceTree = "<group>"; };
-		BB7A4C4D1B868F5900DED640 /* PPSinWaveVertexShader.hlsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = PPSinWaveVertexShader.hlsl; sourceTree = "<group>"; };
 		BB7A4C4E1B868F5900DED640 /* TexturePixelShader.hlsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = TexturePixelShader.hlsl; sourceTree = "<group>"; };
 		BB7A4C4F1B868F5900DED640 /* TextureVertexShader.hlsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = TextureVertexShader.hlsl; sourceTree = "<group>"; };
 		BB861EB618AAE93400A00266 /* game.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = game.png; sourceTree = "<group>"; };
@@ -397,12 +394,16 @@
 		0ADF1881178E2185005DA99E /* ios */ = {
 			isa = PBXGroup;
 			children = (
-				BB7A4B671B8610EF00DED640 /* Logger.h */,
-				BB7A4B681B8610EF00DED640 /* Logger.m */,
 				0ADF188A178E2185005DA99E /* AppDelegate.h */,
 				0ADF188B178E2185005DA99E /* AppDelegate.m */,
 				BB7305D4189C598C009F6DF4 /* AppPrefs.h */,
 				BB7305D5189C598D009F6DF4 /* AppPrefs.m */,
+				BB18E54F1AC5B1E6006B755F /* GGDDeviceUtil.h */,
+				BB18E5501AC5B1E6006B755F /* GGDDeviceUtil.m */,
+				BB7A4B611B86105B00DED640 /* IOS8OpenGLESGameScreen.cpp */,
+				BB7A4B621B86105B00DED640 /* IOS8OpenGLESGameScreen.h */,
+				BB7A4B631B86105B00DED640 /* IOSOpenGLESGameScreen.cpp */,
+				BB7A4B641B86105B00DED640 /* IOSOpenGLESGameScreen.h */,
 				0ADF1896178E2185005DA99E /* MainStoryboard_iPad.storyboard */,
 				0ADF1893178E2185005DA99E /* MainStoryboard_iPhone.storyboard */,
 				0A8FBF6D179DF3850039BA29 /* platform_asset_utils.m */,
@@ -410,12 +411,6 @@
 				BB7305D8189C598D009F6DF4 /* Sound.h */,
 				BB7305D9189C598D009F6DF4 /* Sound.m */,
 				0ADF1882178E2185005DA99E /* Supporting Files */,
-				BB18E54F1AC5B1E6006B755F /* GGDDeviceUtil.h */,
-				BB18E5501AC5B1E6006B755F /* GGDDeviceUtil.m */,
-				BB7A4B611B86105B00DED640 /* IOS8OpenGLESGameScreen.cpp */,
-				BB7A4B621B86105B00DED640 /* IOS8OpenGLESGameScreen.h */,
-				BB7A4B631B86105B00DED640 /* IOSOpenGLESGameScreen.cpp */,
-				BB7A4B641B86105B00DED640 /* IOSOpenGLESGameScreen.h */,
 				0ADF189D178E2185005DA99E /* ViewController.h */,
 				0ADF189E178E2185005DA99E /* ViewController.mm */,
 			);
@@ -425,27 +420,27 @@
 		0ADF1882178E2185005DA99E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BBC2B9DF18AEF8420009DD7F /* App iPad Non-Retina.png */,
+				BBC2B9E018AEF8420009DD7F /* App iPad Retina.png */,
+				BBC2B9E118AEF8420009DD7F /* App iPhone Retina.png */,
+				BBD079F518AA879D00E010AF /* assets */,
+				0ADF1891178E2185005DA99E /* Default-568h@2x.png */,
+				0ADF188D178E2185005DA99E /* Default.png */,
+				0ADF188F178E2185005DA99E /* Default@2x.png */,
+				0ADF1884178E2185005DA99E /* InfoPlist.strings */,
 				BBC2B9F118AEF9A30009DD7F /* iPad Landscape Non-Retina.png */,
 				BBC2B9F218AEF9A30009DD7F /* iPad Landscape Retina.png */,
 				BBC2B9F318AEF9A30009DD7F /* iPad Portrait Non-Retina.png */,
 				BBC2B9F418AEF9A30009DD7F /* iPad Portrait Retina.png */,
-				BBC2B9DF18AEF8420009DD7F /* App iPad Non-Retina.png */,
-				BBC2B9E018AEF8420009DD7F /* App iPad Retina.png */,
-				BBC2B9E118AEF8420009DD7F /* App iPhone Retina.png */,
+				0ADF1887178E2185005DA99E /* main.m */,
 				BBC2B9E218AEF8420009DD7F /* Settings iPad Non-Retina.png */,
 				BBC2B9E318AEF8420009DD7F /* Settings iPad Retina.png */,
 				BBC2B9E418AEF8420009DD7F /* Settings iPhone Retina.png */,
 				BBC2B9E518AEF8420009DD7F /* Spotlight iPad Non-Retina.png */,
 				BBC2B9E618AEF8420009DD7F /* Spotlight iPad Retina.png */,
 				BBC2B9E718AEF8420009DD7F /* Spotlight iPhone Retina.png */,
-				BBD079F518AA879D00E010AF /* assets */,
 				0ADF1883178E2185005DA99E /* tappyplane-Info.plist */,
-				0ADF1884178E2185005DA99E /* InfoPlist.strings */,
-				0ADF1887178E2185005DA99E /* main.m */,
 				0ADF1889178E2185005DA99E /* tappyplane-Prefix.pch */,
-				0ADF188D178E2185005DA99E /* Default.png */,
-				0ADF188F178E2185005DA99E /* Default@2x.png */,
-				0ADF1891178E2185005DA99E /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -571,10 +566,10 @@
 		BB7A4BC21B868F4300DED640 /* ui */ = {
 			isa = PBXGroup;
 			children = (
-				BB7A4C3B1B868F5900DED640 /* direct3d */,
 				BB7A4BC31B868F4300DED640 /* CircleBatcher.cpp */,
 				BB7A4BC41B868F4300DED640 /* CircleBatcher.h */,
 				BB7A4BC51B868F4300DED640 /* Color.h */,
+				BB7A4C3B1B868F5900DED640 /* direct3d */,
 				BB7A4BDB1B868F4300DED640 /* Font.cpp */,
 				BB7A4BDC1B868F4300DED640 /* Font.h */,
 				BB7A4BDD1B868F4300DED640 /* LineBatcher.cpp */,
@@ -621,10 +616,11 @@
 				BB7A4BF51B868F4300DED640 /* platform_file_utils.h */,
 				BB7A4BF81B868F4300DED640 /* shader.c */,
 				BB7A4BF91B868F4300DED640 /* shader.h */,
-				BB7A4BFA1B868F4300DED640 /* texture.c */,
-				BB7A4BFB1B868F4300DED640 /* texture.h */,
 				BB7A4BFC1B868F4300DED640 /* texture_shader.fsh */,
 				BB7A4BFD1B868F4300DED640 /* texture_shader.vsh */,
+				BB4A729B1B8F8D5C003D2A6C /* texture_vert_flip_shader.vsh */,
+				BB7A4BFA1B868F4300DED640 /* texture.c */,
+				BB7A4BFB1B868F4300DED640 /* texture.h */,
 				BB7A4BFE1B868F4300DED640 /* TextureProgram.cpp */,
 				BB7A4BFF1B868F4300DED640 /* TextureProgram.h */,
 			);
@@ -659,8 +655,6 @@
 				BB7A4C491B868F5900DED640 /* Direct3DSpriteBatcher.h */,
 				BB7A4C4A1B868F5900DED640 /* GameSound.cpp */,
 				BB7A4C4B1B868F5900DED640 /* GameSound.h */,
-				BB7A4C4C1B868F5900DED640 /* PPSinWavePixelShader.hlsl */,
-				BB7A4C4D1B868F5900DED640 /* PPSinWaveVertexShader.hlsl */,
 				BB7A4C4E1B868F5900DED640 /* TexturePixelShader.hlsl */,
 				BB7A4C4F1B868F5900DED640 /* TextureVertexShader.hlsl */,
 			);
@@ -738,6 +732,7 @@
 			files = (
 				BB7A4C271B868F4300DED640 /* color_shader.vsh in Resources */,
 				0ADF1886178E2185005DA99E /* InfoPlist.strings in Resources */,
+				BB4A729C1B8F8D5C003D2A6C /* texture_vert_flip_shader.vsh in Resources */,
 				BBC2B9F818AEF9A30009DD7F /* iPad Portrait Retina.png in Resources */,
 				0ADF188E178E2185005DA99E /* Default.png in Resources */,
 				BB7A4C341B868F4300DED640 /* texture_shader.fsh in Resources */,
@@ -784,7 +779,6 @@
 				BB7A4B941B86200C00DED640 /* PlanePhysicalEntity.cpp in Sources */,
 				BB7A4C111B868F4300DED640 /* OverlapTester.cpp in Sources */,
 				BB7305DA189C598D009F6DF4 /* AppPrefs.m in Sources */,
-				BB7A4B691B8610EF00DED640 /* Logger.m in Sources */,
 				BB7A4C141B868F4300DED640 /* Vector2D.cpp in Sources */,
 				BB7A4C2F1B868F4300DED640 /* platform_file_utils.c in Sources */,
 				0A8FBF8D179E07440039BA29 /* platform_asset_utils.m in Sources */,

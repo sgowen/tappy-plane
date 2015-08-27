@@ -9,7 +9,6 @@
 #import "ViewController.h"
 #import "GGDDeviceUtil.h"
 #import "AppPrefs.h"
-#import "Logger.h"
 
 // C++
 #include "IOSOpenGLESGameScreen.h"
@@ -33,12 +32,10 @@
 
 @implementation ViewController
 
-static Logger *logger = nil;
 static bool isRunningiOS8 = false;
 
 + (void)initialize
 {
-    logger = [[Logger alloc] initWithClass:[ViewController class]];
     isRunningiOS8 = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0");
 }
 
@@ -50,7 +47,7 @@ static bool isRunningiOS8 = false;
     
     if (!self.context)
     {
-        [logger error:@"Failed to create ES context"];
+        NSLog(@"Failed to create ES context");
     }
     
     GLKView *view = (GLKView *)self.view;
@@ -76,18 +73,18 @@ static bool isRunningiOS8 = false;
     newSize.width = roundf(newSize.width);
     newSize.height = roundf(newSize.height);
     
-    [logger debug:[NSString stringWithFormat:@"dimension %f x %f", newSize.width, newSize.height]];
+    NSLog(@"dimension %f x %f", newSize.width, newSize.height);
     
     [view bindDrawable];
     
     if(isRunningiOS8)
     {
-        [logger debug:@"Instantiating IOS8OpenGLESGameScreen"];
+        NSLog(@"Instantiating IOS8OpenGLESGameScreen");
         gameScreen = new IOS8OpenGLESGameScreen(MIN(newSize.width, newSize.height), MAX(newSize.width, newSize.height), [UIScreen mainScreen].applicationFrame.size.width, [UIScreen mainScreen].applicationFrame.size.height);
     }
     else
     {
-        [logger debug:@"Instantiating IOSOpenGLESGameScreen"];
+        NSLog(@"Instantiating IOSOpenGLESGameScreen");
         gameScreen = new IOSOpenGLESGameScreen(MIN(newSize.width, newSize.height), MAX(newSize.width, newSize.height), [UIScreen mainScreen].applicationFrame.size.width, [UIScreen mainScreen].applicationFrame.size.height);
     }
     
