@@ -13,6 +13,7 @@
 #include "Rectangle.h"
 #include "Vector2D.h"
 #include "OpenGLESManager.h"
+#include "TextureProgram.h"
 
 OpenGLESSpriteBatcher::OpenGLESSpriteBatcher()
 {
@@ -27,12 +28,17 @@ void OpenGLESSpriteBatcher::beginBatch()
 
 void OpenGLESSpriteBatcher::endBatchWithTexture(TextureWrapper &textureWrapper)
 {
+    endBatchWithTexture(textureWrapper, OGLESManager->m_textureProgram);
+}
+
+void OpenGLESSpriteBatcher::endBatchWithTexture(TextureWrapper &textureWrapper, TextureProgramStruct textureProgram)
+{
     if(m_iNumSprites > 0)
     {
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, textureWrapper.texture);
         
-        OGLESManager->prepareForSpriteRendering();
+        OGLESManager->prepareForSpriteRendering(textureProgram);
         
         glDrawElements(GL_TRIANGLES, m_iNumSprites * INDICES_PER_RECTANGLE, GL_UNSIGNED_SHORT, &OGLESManager->m_indices[0]);
         
@@ -90,7 +96,7 @@ void OpenGLESSpriteBatcher::drawSprite(float x, float y, float width, float heig
     m_iNumSprites++;
 }
 
-void OpenGLESSpriteBatcher::drawSprite(float x, float y, float width, float height, float angle, Color &color, TextureRegion tr)
+void OpenGLESSpriteBatcher::drawSprite(float x, float y, float width, float height, float angle, Color &c, TextureRegion tr)
 {
     if(angle != 0)
     {
@@ -125,14 +131,14 @@ void OpenGLESSpriteBatcher::drawSprite(float x, float y, float width, float heig
         x4 += x;
         y4 += y;
         
-        OGLESManager->addVertexCoordinate(x1, y1, 0, color.red, color.green, color.blue, color.alpha, tr.u1, tr.v2);
-        OGLESManager->addVertexCoordinate(x4, y4, 0, color.red, color.green, color.blue, color.alpha, tr.u1, tr.v1);
-        OGLESManager->addVertexCoordinate(x3, y3, 0, color.red, color.green, color.blue, color.alpha, tr.u2, tr.v1);
-        OGLESManager->addVertexCoordinate(x2, y2, 0, color.red, color.green, color.blue, color.alpha, tr.u2, tr.v2);
+        OGLESManager->addVertexCoordinate(x1, y1, 0, c.red, c.green, c.blue, c.alpha, tr.u1, tr.v2);
+        OGLESManager->addVertexCoordinate(x4, y4, 0, c.red, c.green, c.blue, c.alpha, tr.u1, tr.v1);
+        OGLESManager->addVertexCoordinate(x3, y3, 0, c.red, c.green, c.blue, c.alpha, tr.u2, tr.v1);
+        OGLESManager->addVertexCoordinate(x2, y2, 0, c.red, c.green, c.blue, c.alpha, tr.u2, tr.v2);
     }
     else
     {
-        drawSprite(x, y, width, height, color, tr);
+        drawSprite(x, y, width, height, c, tr);
     }
     
     m_iNumSprites++;
@@ -155,7 +161,7 @@ void OpenGLESSpriteBatcher::drawSprite(float x, float y, float width, float heig
     OGLESManager->addVertexCoordinate(x2, y1, 0, 1, 1, 1, 1, tr.u2, tr.v2);
 }
 
-void OpenGLESSpriteBatcher::drawSprite(float x, float y, float width, float height, Color &color, TextureRegion tr)
+void OpenGLESSpriteBatcher::drawSprite(float x, float y, float width, float height, Color &c, TextureRegion tr)
 {
     GLfloat halfWidth = width / 2;
     GLfloat halfHeight = height / 2;
@@ -164,8 +170,8 @@ void OpenGLESSpriteBatcher::drawSprite(float x, float y, float width, float heig
     GLfloat x2 = x + halfWidth;
     GLfloat y2 = y + halfHeight;
     
-    OGLESManager->addVertexCoordinate(x1, y1, 0, color.red, color.green, color.blue, color.alpha, tr.u1, tr.v2);
-    OGLESManager->addVertexCoordinate(x1, y2, 0, color.red, color.green, color.blue, color.alpha, tr.u1, tr.v1);
-    OGLESManager->addVertexCoordinate(x2, y2, 0, color.red, color.green, color.blue, color.alpha, tr.u2, tr.v1);
-    OGLESManager->addVertexCoordinate(x2, y1, 0, color.red, color.green, color.blue, color.alpha, tr.u2, tr.v2);
+    OGLESManager->addVertexCoordinate(x1, y1, 0, c.red, c.green, c.blue, c.alpha, tr.u1, tr.v2);
+    OGLESManager->addVertexCoordinate(x1, y2, 0, c.red, c.green, c.blue, c.alpha, tr.u1, tr.v1);
+    OGLESManager->addVertexCoordinate(x2, y2, 0, c.red, c.green, c.blue, c.alpha, tr.u2, tr.v1);
+    OGLESManager->addVertexCoordinate(x2, y1, 0, c.red, c.green, c.blue, c.alpha, tr.u2, tr.v2);
 }

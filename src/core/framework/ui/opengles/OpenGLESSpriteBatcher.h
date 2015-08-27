@@ -10,6 +10,7 @@
 #define __gowengamedev__OpenGLESSpriteBatcher__
 
 #include "SpriteBatcher.h"
+#include "TextureProgram.h"
 
 class OpenGLESSpriteBatcher : public SpriteBatcher
 {
@@ -19,6 +20,8 @@ public:
     virtual void beginBatch();
     
     virtual void endBatchWithTexture(TextureWrapper &textureWrapper);
+    
+    virtual void endBatchWithTexture(TextureWrapper &textureWrapper, TextureProgramStruct textureProgram);
     
     virtual void drawSprite(float x, float y, float width, float height, float angle, TextureRegion tr);
     

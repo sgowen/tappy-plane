@@ -35,6 +35,7 @@ public:
     std::vector<GLshort> m_indices;
     
     TextureProgramStruct m_textureProgram;
+    TextureProgramStruct m_textureVertFlipProgram;
     ColorProgramStruct m_colorProgram;
     
     GLuint sb_vbo_object; // For Sprite Batcher
@@ -55,7 +56,7 @@ public:
     // Called by Batchers
     void addVertexCoordinate(GLfloat x, GLfloat y, GLfloat z, GLfloat r, GLfloat g, GLfloat b, GLfloat a, GLfloat u, GLfloat v);
     void addVertexCoordinate(GLfloat x, GLfloat y, GLfloat z, GLfloat r, GLfloat g, GLfloat b, GLfloat a);
-    void prepareForSpriteRendering();
+    void prepareForSpriteRendering(TextureProgramStruct textureProgram);
     void prepareForGeometryRendering();
     void finishSpriteRendering();
     void finishGeometryRendering();

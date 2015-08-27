@@ -60,24 +60,24 @@ void OpenGLESManager::addVertexCoordinate(GLfloat x, GLfloat y, GLfloat z, GLflo
     m_colorVertices.push_back(a);
 }
 
-void OpenGLESManager::prepareForSpriteRendering()
+void OpenGLESManager::prepareForSpriteRendering(TextureProgramStruct textureProgram)
 {
-    glUseProgram(m_textureProgram.program);
+    glUseProgram(textureProgram.program);
     
-    glUniformMatrix4fv(m_textureProgram.u_mvp_matrix_location, 1, GL_FALSE, (GLfloat*)m_viewProjectionMatrix);
-    glUniform1i(m_textureProgram.u_texture_unit_location, 0);
+    glUniformMatrix4fv(textureProgram.u_mvp_matrix_location, 1, GL_FALSE, (GLfloat*)m_viewProjectionMatrix);
+    glUniform1i(textureProgram.u_texture_unit_location, 0);
     
     glGenBuffers(1, &sb_vbo_object);
     glBindBuffer(GL_ARRAY_BUFFER, sb_vbo_object);
     glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * m_textureVertices.size(), &m_textureVertices[0], GL_STATIC_DRAW);
     
-    glVertexAttribPointer(m_textureProgram.a_position_location, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 9, BUFFER_OFFSET(0));
-    glVertexAttribPointer(m_textureProgram.a_color_location, 4, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 9, BUFFER_OFFSET(3 * sizeof(GL_FLOAT)));
-    glVertexAttribPointer(m_textureProgram.a_texture_coordinates_location, 2, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 9, BUFFER_OFFSET(7 * sizeof(GL_FLOAT)));
+    glVertexAttribPointer(textureProgram.a_position_location, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 9, BUFFER_OFFSET(0));
+    glVertexAttribPointer(textureProgram.a_color_location, 4, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 9, BUFFER_OFFSET(3 * sizeof(GL_FLOAT)));
+    glVertexAttribPointer(textureProgram.a_texture_coordinates_location, 2, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 9, BUFFER_OFFSET(7 * sizeof(GL_FLOAT)));
     
-    glEnableVertexAttribArray(m_textureProgram.a_position_location);
-    glEnableVertexAttribArray(m_textureProgram.a_color_location);
-    glEnableVertexAttribArray(m_textureProgram.a_texture_coordinates_location);
+    glEnableVertexAttribArray(textureProgram.a_position_location);
+    glEnableVertexAttribArray(textureProgram.a_color_location);
+    glEnableVertexAttribArray(textureProgram.a_texture_coordinates_location);
 }
 
 void OpenGLESManager::prepareForGeometryRendering()
@@ -120,6 +120,7 @@ void OpenGLESManager::finishGeometryRendering()
 void OpenGLESManager::buildShaderPrograms()
 {
     m_textureProgram = TextureProgram::getTextureProgram(build_program_from_assets("texture_shader.vsh", "texture_shader.fsh"));
+    m_textureVertFlipProgram  = TextureProgram::getTextureProgram(build_program_from_assets("texture_vert_flip_shader.vsh", "texture_shader.fsh"));
     m_colorProgram = ColorProgram::getColorProgram(build_program_from_assets("color_shader.vsh", "color_shader.fsh"));
 }
 
