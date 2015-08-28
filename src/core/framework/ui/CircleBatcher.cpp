@@ -10,5 +10,5 @@
 
 CircleBatcher::CircleBatcher()
 {
-    // Empty
+    m_iNumPoints = 0;
 }

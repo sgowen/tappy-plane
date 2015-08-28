@@ -12,6 +12,7 @@
 #include "Color.h"
 
 class Rectangle;
+class GpuProgramWrapper;
 
 class RectangleBatcher
 {
@@ -21,6 +22,8 @@ public:
     virtual void beginBatch() = 0;
     
     virtual void endBatch() = 0;
+    
+    virtual void endBatch(GpuProgramWrapper &gpuProgramWrapper) = 0;
     
     void renderRectangle(Rectangle &rectangle, Color &color);
     

@@ -11,6 +11,7 @@
 #include "Rectangle.h"
 #include "Vector2D.h"
 #include "GameConstants.h"
+#include "DummyGpuProgramWrapper.h"
 
 #include <sf2d.h>
 
@@ -28,6 +29,11 @@ void DSRectangleBatcher::beginBatch()
 }
 
 void DSRectangleBatcher::endBatch()
+{
+    endBatch(*DummyGpuProgramWrapper::getInstance());
+}
+
+void DSRectangleBatcher::endBatch(GpuProgramWrapper &gpuProgramWrapper)
 {
     if (m_iNumRectangles > 0)
     {
@@ -60,9 +66,9 @@ void DSRectangleBatcher::endBatch()
     }
 }
 
-void DSRectangleBatcher::renderRectangle(float x1, float y1, float x2, float y2, Color &color)
+void DSRectangleBatcher::renderRectangle(float x1, float y1, float x2, float y2, Color &c)
 {
-    RECT r = {x1, GAME_HEIGHT - y1, x2, GAME_HEIGHT - y2, color.red, color.green, color.blue, color.alpha};
+    RECT r = {x1, GAME_HEIGHT - y1, x2, GAME_HEIGHT - y2, c.red, c.green, c.blue, c.alpha};
     m_rects.push_back(r);
 
     m_iNumRectangles++;

@@ -26,6 +26,13 @@ public:
     
     virtual void renderPartialCircle(Circle &circle, int arcDegrees, Color &c);
     
+    virtual void renderCircle(Circle &circle, Color &c, GpuProgramWrapper &gpuProgramWrapper);
+    
+    virtual void renderPartialCircle(Circle &circle, int arcDegrees, Color &c, GpuProgramWrapper &gpuProgramWrapper);
+    
+protected:
+    virtual void endBatch(GpuProgramWrapper &gpuProgramWrapper);
+    
 private:
     std::vector<sf2d_vertex_pos_col> m_vertices;
     gfxScreen_t m_screen;
@@ -33,11 +40,9 @@ private:
     int m_iScreenHeight;
     int m_iNumPointsOnCircle;
     
-    void renderCircle(float x, float y, float radius, Color &c);
+    void renderCircle(float x, float y, float radius, Color &c, GpuProgramWrapper &gpuProgramWrapper);
     
     void addVertex(float x, float y, float r, float g, float b, float a);
-    
-    void endBatch();
 };
 
 #endif /* defined(__gowengamedev__DSCircleBatcher__) */

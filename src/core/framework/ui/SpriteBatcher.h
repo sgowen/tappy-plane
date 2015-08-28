@@ -19,23 +19,23 @@ class SpriteBatcher
 {
 public:
     SpriteBatcher();
-    
+
     virtual void beginBatch() = 0;
-    
+
     virtual void endBatch(TextureWrapper &textureWrapper) = 0;
-    
+
     virtual void endBatch(TextureWrapper &textureWrapper, GpuProgramWrapper &gpuProgramWrapper) = 0;
-    
+
     virtual void drawSprite(float x, float y, float width, float height, float angle, TextureRegion tr) = 0;
-    
-    virtual void drawSprite(float x, float y, float width, float height, float angle, Color &color, TextureRegion tr) = 0;
-    
+
+    virtual void drawSprite(float x, float y, float width, float height, float angle, Color &c, TextureRegion tr) = 0;
+
 protected:
     int m_iNumSprites;
-    
+
     virtual void drawSprite(float x, float y, float width, float height, TextureRegion tr) = 0;
-    
-    virtual void drawSprite(float x, float y, float width, float height, Color &color, TextureRegion tr) = 0;
+
+    virtual void drawSprite(float x, float y, float width, float height, Color &c, TextureRegion tr) = 0;
 };
 
 #endif /* defined(__gowengamedev__SpriteBatcher__) */

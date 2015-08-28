@@ -38,15 +38,14 @@ public:
     
     virtual void drawSprite(float x, float y, float width, float height, float angle, TextureRegion tr);
     
-    virtual void drawSprite(float x, float y, float width, float height, float angle, Color &color, TextureRegion tr);
+    virtual void drawSprite(float x, float y, float width, float height, float angle, Color &c, TextureRegion tr);
     
 protected:
     virtual void drawSprite(float x, float y, float width, float height, TextureRegion tr);
     
-    virtual void drawSprite(float x, float y, float width, float height, Color &color, TextureRegion tr);
+    virtual void drawSprite(float x, float y, float width, float height, Color &c, TextureRegion tr);
     
 private:
-    std::unique_ptr<GpuProgramWrapper> m_textureProgram;
     std::vector<QUAD> m_quads;
     gfxScreen_t m_screen;
     int m_iScreenWidth;

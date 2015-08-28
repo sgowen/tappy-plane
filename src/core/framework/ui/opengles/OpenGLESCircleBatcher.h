@@ -16,12 +16,16 @@ class OpenGLESCircleBatcher : public CircleBatcher
 public:
     OpenGLESCircleBatcher();
     
-    virtual void renderCircle(Circle &circle, Color &color);
+    virtual void renderCircle(Circle &circle, Color &c);
     
-    virtual void renderPartialCircle(Circle &circle, int arcDegrees, Color &color);
+    virtual void renderPartialCircle(Circle &circle, int arcDegrees, Color &c);
     
-private:
-    void endBatch(int numPoints);
+    virtual void renderCircle(Circle &circle, Color &c, GpuProgramWrapper &gpuProgramWrapper);
+    
+    virtual void renderPartialCircle(Circle &circle, int arcDegrees, Color &c, GpuProgramWrapper &gpuProgramWrapper);
+    
+protected:
+    virtual void endBatch(GpuProgramWrapper &gpuProgramWrapper);
 };
 
 #endif /* defined(__gowengamedev__OpenGLESCircleBatcher__) */

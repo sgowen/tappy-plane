@@ -11,6 +11,7 @@
 #include "Line.h"
 #include "Vector2D.h"
 #include "GameConstants.h"
+#include "DummyGpuProgramWrapper.h"
 
 #include <sf2d.h>
 
@@ -29,6 +30,11 @@ void DSLineBatcher::beginBatch()
 
 void DSLineBatcher::endBatch()
 {
+    endBatch(*DummyGpuProgramWrapper::getInstance());
+}
+
+void DSLineBatcher::endBatch(GpuProgramWrapper &gpuProgramWrapper)
+{
     if (m_iNumLines > 0)
     {
         for (std::vector<LINE>::iterator itr = m_lines.begin(); itr != m_lines.end(); ++itr)
@@ -40,9 +46,9 @@ void DSLineBatcher::endBatch()
     }
 }
 
-void DSLineBatcher::renderLine(float originX, float originY, float endX, float endY, Color &color)
+void DSLineBatcher::renderLine(float originX, float originY, float endX, float endY, Color &c)
 {
-    LINE l = {originX, GAME_HEIGHT - originY, endX, GAME_HEIGHT - endY, color.red, color.green, color.blue, color.alpha};
+    LINE l = {originX, GAME_HEIGHT - originY, endX, GAME_HEIGHT - endY, c.red, c.green, c.blue, c.alpha};
     m_lines.push_back(l);
 
     m_iNumLines++;

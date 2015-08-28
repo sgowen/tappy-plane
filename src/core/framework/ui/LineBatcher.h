@@ -12,6 +12,7 @@
 #include "Color.h"
 
 class Line;
+class GpuProgramWrapper;
 
 class LineBatcher
 {
@@ -22,9 +23,11 @@ public:
     
     virtual void endBatch() = 0;
     
-    void renderLine(Line &line, Color &color);
+    virtual void endBatch(GpuProgramWrapper &gpuProgramWrapper) = 0;
     
-    virtual void renderLine(float originX, float originY, float endX, float endY, Color &color) = 0;
+    void renderLine(Line &line, Color &c);
+    
+    virtual void renderLine(float originX, float originY, float endX, float endY, Color &c) = 0;
     
 protected:
     int m_iNumLines;

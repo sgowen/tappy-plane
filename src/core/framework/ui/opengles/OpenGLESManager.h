@@ -39,8 +39,7 @@ public:
     
     std::unique_ptr<GpuProgramWrapper> m_textureProgram;
     std::unique_ptr<GpuProgramWrapper> m_textureVertFlipProgram;
-    
-    ColorProgramStruct m_colorProgram;
+    std::unique_ptr<GpuProgramWrapper> m_colorProgram;
     
     GLuint sb_vbo_object; // For Sprite Batcher
     GLuint gb_vbo_object; // For Geometry Batcher
@@ -60,9 +59,6 @@ public:
     // Called by Batchers
     void addVertexCoordinate(GLfloat x, GLfloat y, GLfloat z, GLfloat r, GLfloat g, GLfloat b, GLfloat a, GLfloat u, GLfloat v);
     void addVertexCoordinate(GLfloat x, GLfloat y, GLfloat z, GLfloat r, GLfloat g, GLfloat b, GLfloat a);
-    
-    void prepareForGeometryRendering();
-    void finishGeometryRendering();
     
 private:
     void buildShaderPrograms();

@@ -13,13 +13,12 @@
 #include "Rectangle.h"
 #include "Vector2D.h"
 #include "math.h"
-#include "DSTextureGpuProgramWrapper.h"
+#include "DummyGpuProgramWrapper.h"
 
 #include <sf2d.h>
 
 DSSpriteBatcher::DSSpriteBatcher(gfxScreen_t screen, int screenWidth, int screenHeight) : m_screen(screen), m_iScreenWidth(screenWidth), m_iScreenHeight(screenHeight)
 {
-    m_textureProgram = std::unique_ptr<DSTextureGpuProgramWrapper>(new DSTextureGpuProgramWrapper());
     m_iNumSprites = 0;
 }
 
@@ -31,7 +30,7 @@ void DSSpriteBatcher::beginBatch()
 
 void DSSpriteBatcher::endBatch(TextureWrapper &textureWrapper)
 {
-    endBatch(textureWrapper, *m_textureProgram);
+    endBatch(textureWrapper, *DummyGpuProgramWrapper::getInstance());
 }
 
 void DSSpriteBatcher::endBatch(TextureWrapper &textureWrapper, GpuProgramWrapper &gpuProgramWrapper)
@@ -41,8 +40,8 @@ void DSSpriteBatcher::endBatch(TextureWrapper &textureWrapper, GpuProgramWrapper
         for (std::vector<QUAD>::iterator itr = m_quads.begin(); itr != m_quads.end(); ++itr)
         {
             QUAD quad = *itr;
-            
-            sf2d_draw_quad_uv(textureWrapper.texture, quad.x1, quad.y1, quad.x2, quad.y2, quad.x3, quad.y3, quad.x4, quad.y4, quad.u1, quad.v1, quad.u2, quad.v2, quad.u3, quad.v3, quad.u4, quad.v4, RGBA8((int)(quad.r * 255), (int)(quad.g * 255), (int)(quad.b * 255), (int)(quad.a * 255)), GPU_TEXTURE_MAG_FILTER(GPU_NEAREST) | GPU_TEXTURE_MIN_FILTER(GPU_NEAREST));
+
+            sf2d_draw_quad_uv(textureWrapper.texture, quad.x1, quad.y1, quad.x2, quad.y2, quad.x3, quad.y3, quad.x4, quad.y4, quad.u1, quad.v1, quad.u2, quad.v2, quad.u3, quad.v3, quad.u4, quad.v4, RGBA8((int) (quad.r * 255), (int) (quad.g * 255), (int) (quad.b * 255), (int) (quad.a * 255)), GPU_TEXTURE_MAG_FILTER(GPU_NEAREST) | GPU_TEXTURE_MIN_FILTER(GPU_NEAREST));
         }
     }
 }
@@ -82,7 +81,7 @@ void DSSpriteBatcher::drawSprite(float x, float y, float width, float height, fl
         x4 += x;
         y4 += y;
 
-        addQuad(   x4,    y4,    x3,    y3,    x1,    y1,    x2,    y2,
+        addQuad(x4, y4, x3, y3, x1, y1, x2, y2,
                 tr.u1, tr.v1, tr.u2, tr.v1, tr.u1, tr.v2, tr.u2, tr.v2, 1, 1, 1, 1);
     }
     else
@@ -93,7 +92,7 @@ void DSSpriteBatcher::drawSprite(float x, float y, float width, float height, fl
     m_iNumSprites++;
 }
 
-void DSSpriteBatcher::drawSprite(float x, float y, float width, float height, float angle, Color &color, TextureRegion tr)
+void DSSpriteBatcher::drawSprite(float x, float y, float width, float height, float angle, Color &c, TextureRegion tr)
 {
     if (angle != 0)
     {
@@ -128,12 +127,12 @@ void DSSpriteBatcher::drawSprite(float x, float y, float width, float height, fl
         x4 += x;
         y4 += y;
 
-        addQuad(   x4,    y4,    x3,    y3,    x1,    y1,    x2,    y2,
-                tr.u1, tr.v1, tr.u2, tr.v1, tr.u1, tr.v2, tr.u2, tr.v2, color.red, color.green, color.blue, color.alpha);
+        addQuad(x4, y4, x3, y3, x1, y1, x2, y2,
+                tr.u1, tr.v1, tr.u2, tr.v1, tr.u1, tr.v2, tr.u2, tr.v2, c.red, c.green, c.blue, c.alpha);
     }
     else
     {
-        drawSprite(x, y, width, height, color, tr);
+        drawSprite(x, y, width, height, c, tr);
     }
 
     m_iNumSprites++;
@@ -150,11 +149,11 @@ void DSSpriteBatcher::drawSprite(float x, float y, float width, float height, Te
     float x2 = x + halfWidth;
     float y2 = y + halfHeight;
 
-    addQuad(   x1,    y2,    x2,    y2,    x1,    y1,    x2,    y1,
+    addQuad(x1, y2, x2, y2, x1, y1, x2, y1,
             tr.u1, tr.v1, tr.u2, tr.v1, tr.u1, tr.v2, tr.u2, tr.v2, 1, 1, 1, 1);
 }
 
-void DSSpriteBatcher::drawSprite(float x, float y, float width, float height, Color &color, TextureRegion tr)
+void DSSpriteBatcher::drawSprite(float x, float y, float width, float height, Color &c, TextureRegion tr)
 {
     float halfWidth = width / 2;
     float halfHeight = height / 2;
@@ -163,8 +162,8 @@ void DSSpriteBatcher::drawSprite(float x, float y, float width, float height, Co
     float x2 = x + halfWidth;
     float y2 = y + halfHeight;
 
-    addQuad(   x1,    y2,    x2,    y2,    x1,    y1,    x2,    y1,
-            tr.u1, tr.v1, tr.u2, tr.v1, tr.u1, tr.v2, tr.u2, tr.v2, color.red, color.green, color.blue, color.alpha);
+    addQuad(x1, y2, x2, y2, x1, y1, x2, y1,
+            tr.u1, tr.v1, tr.u2, tr.v1, tr.u1, tr.v2, tr.u2, tr.v2, c.red, c.green, c.blue, c.alpha);
 }
 
 #pragma mark private

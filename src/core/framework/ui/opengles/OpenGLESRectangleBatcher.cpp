@@ -11,6 +11,7 @@
 #include "Rectangle.h"
 #include "Vector2D.h"
 #include "OpenGLESManager.h"
+#include "GpuProgramWrapper.h"
 
 OpenGLESRectangleBatcher::OpenGLESRectangleBatcher(bool isFill) : RectangleBatcher(isFill)
 {
@@ -25,22 +26,27 @@ void OpenGLESRectangleBatcher::beginBatch()
 
 void OpenGLESRectangleBatcher::endBatch()
 {
+    endBatch(*OGLESManager->m_colorProgram);
+}
+
+void OpenGLESRectangleBatcher::endBatch(GpuProgramWrapper &gpuProgramWrapper)
+{
     if (m_iNumRectangles > 0)
     {
-        OGLESManager->prepareForGeometryRendering();
-        
+        gpuProgramWrapper.bind();
+
         glDrawElements(m_isFill ? GL_TRIANGLES : GL_LINE_STRIP, m_iNumRectangles * INDICES_PER_RECTANGLE, GL_UNSIGNED_SHORT, &OGLESManager->m_indices[0]);
-        
-        OGLESManager->finishGeometryRendering();
+
+        gpuProgramWrapper.unbind();
     }
 }
 
-void OpenGLESRectangleBatcher::renderRectangle(float x1, float y1, float x2, float y2, Color &color)
+void OpenGLESRectangleBatcher::renderRectangle(float x1, float y1, float x2, float y2, Color &c)
 {
-    OGLESManager->addVertexCoordinate(x1, y1, 0, color.red, color.green, color.blue, color.alpha);
-    OGLESManager->addVertexCoordinate(x1, y2, 0, color.red, color.green, color.blue, color.alpha);
-    OGLESManager->addVertexCoordinate(x2, y2, 0, color.red, color.green, color.blue, color.alpha);
-    OGLESManager->addVertexCoordinate(x2, y1, 0, color.red, color.green, color.blue, color.alpha);
-    
+    OGLESManager->addVertexCoordinate(x1, y1, 0, c.red, c.green, c.blue, c.alpha);
+    OGLESManager->addVertexCoordinate(x1, y2, 0, c.red, c.green, c.blue, c.alpha);
+    OGLESManager->addVertexCoordinate(x2, y2, 0, c.red, c.green, c.blue, c.alpha);
+    OGLESManager->addVertexCoordinate(x2, y1, 0, c.red, c.green, c.blue, c.alpha);
+
     m_iNumRectangles++;
 }

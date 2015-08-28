@@ -29,8 +29,10 @@ public:
     virtual void beginBatch();
 
     virtual void endBatch();
+    
+    virtual void endBatch(GpuProgramWrapper &gpuProgramWrapper);
 
-    virtual void renderLine(float originX, float originY, float endX, float endY, Color &color);
+    virtual void renderLine(float originX, float originY, float endX, float endY, Color &c);
 
 private:
     std::vector<LINE> m_lines;

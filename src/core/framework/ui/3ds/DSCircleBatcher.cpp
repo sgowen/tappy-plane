@@ -14,6 +14,7 @@
 #include "Vector2D.h"
 #include "math.h"
 #include "GameConstants.h"
+#include "DummyGpuProgramWrapper.h"
 
 DSCircleBatcher::DSCircleBatcher(gfxScreen_t screen, int screenWidth, int screenHeight) : CircleBatcher(), m_screen(screen), m_iScreenWidth(screenWidth), m_iScreenHeight(screenHeight), m_iNumPointsOnCircle(0)
 {
@@ -22,19 +23,34 @@ DSCircleBatcher::DSCircleBatcher(gfxScreen_t screen, int screenWidth, int screen
 
 void DSCircleBatcher::renderCircle(Circle &circle, Color &c)
 {
-    renderCircle(circle.getCenter().getX(), circle.getCenter().getY(), circle.m_fRadius, c);
+    renderCircle(circle, c, *DummyGpuProgramWrapper::getInstance());
 }
 
 void DSCircleBatcher::renderPartialCircle(Circle &circle, int arcDegrees, Color &c)
+{
+    renderPartialCircle(circle, arcDegrees, c, *DummyGpuProgramWrapper::getInstance());
+}
+
+void DSCircleBatcher::renderCircle(Circle &circle, Color &c, GpuProgramWrapper &gpuProgramWrapper)
+{
+    renderCircle(circle.getCenter().getX(), circle.getCenter().getY(), circle.m_fRadius, c, gpuProgramWrapper);
+}
+
+void DSCircleBatcher::renderPartialCircle(Circle &circle, int arcDegrees, Color &c, GpuProgramWrapper &gpuProgramWrapper)
 {
     // This method should display clockwise depleting circle, but I couldn't figure out how to do it, so...
     float radius = circle.m_fRadius;
     radius *= (1 - (((float) arcDegrees) / 360.0f));
 
-    renderCircle(circle.getCenter().getX(), circle.getCenter().getY(), radius, c);
+    renderCircle(circle.getCenter().getX(), circle.getCenter().getY(), radius, c, gpuProgramWrapper);
 }
 
-void DSCircleBatcher::renderCircle(float x, float y, float radius, Color &c)
+void DSCircleBatcher::endBatch(GpuProgramWrapper &gpuProgramWrapper)
+{
+    sf2d_draw_batch_circle(&m_vertices[0], m_iNumPointsOnCircle);
+}
+
+void DSCircleBatcher::renderCircle(float x, float y, float radius, Color &c, GpuProgramWrapper &gpuProgramWrapper)
 {
     m_iNumPointsOnCircle = 0;
     m_vertices.clear();
@@ -56,7 +72,7 @@ void DSCircleBatcher::renderCircle(float x, float y, float radius, Color &c)
 
     addVertex(cos * radius + x, sin * radius + y, c.red, c.green, c.blue, c.alpha);
 
-    endBatch();
+    endBatch(gpuProgramWrapper);
 }
 
 void DSCircleBatcher::addVertex(float x, float y, float r, float g, float b, float a)
@@ -67,9 +83,4 @@ void DSCircleBatcher::addVertex(float x, float y, float r, float g, float b, flo
     m_vertices.push_back(v);
 
     m_iNumPointsOnCircle++;
-}
-
-void DSCircleBatcher::endBatch()
-{
-    sf2d_draw_batch_circle(&m_vertices[0], m_iNumPointsOnCircle);
 }

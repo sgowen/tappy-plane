@@ -15,12 +15,12 @@ LineBatcher::LineBatcher()
     m_iNumLines = 0;
 }
 
-void LineBatcher::renderLine(Line &line, Color &color)
+void LineBatcher::renderLine(Line &line, Color &c)
 {
     float oX = line.getOrigin().getX();
     float oY = line.getOrigin().getY();
     float eX = line.getEnd().getX();
     float eY = line.getEnd().getY();
     
-    renderLine(oX, oY, eX, eY, color);
+    renderLine(oX, oY, eX, eY, c);
 }
