@@ -9,16 +9,12 @@
 #ifndef __nosfuratu__Entity__
 #define __nosfuratu__Entity__
 
-struct Telegram;
-
 class Entity
 {
 public:
     Entity();
     
     virtual void update(float deltaTime);
-    
-    virtual bool handleMessage(const Telegram& msg) = 0;
     
     int getID();
     

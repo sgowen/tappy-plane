@@ -70,9 +70,3 @@ float PhysicalEntity::getAngle()
 {
     return m_fAngle;
 }
-
-bool PhysicalEntity::handleMessage(const Telegram& msg)
-{
-    // Override in subclass to properly handle the message
-    return false;
-}

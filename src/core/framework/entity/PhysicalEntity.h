@@ -39,8 +39,6 @@ public:
     
     virtual float getAngle();
     
-    virtual bool handleMessage(const Telegram& msg);
-    
 protected:
     std::unique_ptr<Vector2D> m_position;
     std::unique_ptr<Vector2D> m_velocity;
