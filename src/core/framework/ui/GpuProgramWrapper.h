@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Gowen Game Dev. All rights reserved.
 //
 
-#ifndef __nosfuratu__GpuProgramWrapper__
-#define __nosfuratu__GpuProgramWrapper__
+#ifndef __gowengamedev__GpuProgramWrapper__
+#define __gowengamedev__GpuProgramWrapper__
 
 class GpuProgramWrapper
 {
@@ -19,4 +19,4 @@ public:
     virtual void unbind() = 0;
 };
 
-#endif /* defined(__nosfuratu__GpuProgramWrapper__) */
+#endif /* defined(__gowengamedev__GpuProgramWrapper__) */

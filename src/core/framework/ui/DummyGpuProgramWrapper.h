@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Gowen Game Dev. All rights reserved.
 //
 
-#ifndef __nosfuratu__DummyGpuProgramWrapper__
-#define __nosfuratu__DummyGpuProgramWrapper__
+#ifndef __gowengamedev__DummyGpuProgramWrapper__
+#define __gowengamedev__DummyGpuProgramWrapper__
 
 #include "GpuProgramWrapper.h"
 
@@ -27,4 +27,4 @@ private:
     DummyGpuProgramWrapper& operator=(const DummyGpuProgramWrapper&);
 };
 
-#endif /* defined(__nosfuratu__DummyGpuProgramWrapper__) */
+#endif /* defined(__gowengamedev__DummyGpuProgramWrapper__) */

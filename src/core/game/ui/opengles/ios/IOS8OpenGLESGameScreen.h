@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Gowen Game Dev. All rights reserved.
 //
 
-#ifndef __nosfuratu__IOS8OpenGLESGameScreen__
-#define __nosfuratu__IOS8OpenGLESGameScreen__
+#ifndef __tappyplane__IOS8OpenGLESGameScreen__
+#define __tappyplane__IOS8OpenGLESGameScreen__
 
 #include "IOSOpenGLESGameScreen.h"
 
@@ -19,4 +19,4 @@ public:
     virtual void touchToWorld(TouchEvent &touchEvent);
 };
 
-#endif /* defined(__nosfuratu__IOS8OpenGLESGameScreen__) */
+#endif /* defined(__tappyplane__IOS8OpenGLESGameScreen__) */

@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Gowen Game Dev. All rights reserved.
 //
 
-#ifndef __nosfuratu__IOSOpenGLESGameScreen__
-#define __nosfuratu__IOSOpenGLESGameScreen__
+#ifndef __tappyplane__IOSOpenGLESGameScreen__
+#define __tappyplane__IOSOpenGLESGameScreen__
 
 #include "OpenGLESGameScreen.h"
 
@@ -23,4 +23,4 @@ protected:
     int m_iPointsHeight;
 };
 
-#endif /* defined(__nosfuratu__IOSOpenGLESGameScreen__) */
+#endif /* defined(__tappyplane__IOSOpenGLESGameScreen__) */

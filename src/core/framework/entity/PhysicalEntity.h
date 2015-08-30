@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Gowen Game Dev. All rights reserved.
 //
 
-#ifndef PhysicalEntity_H
-#define PhysicalEntity_H
+#ifndef __gowengamedev__PhysicalEntity__
+#define __gowengamedev__PhysicalEntity__
 
 #include "Entity.h"
 
@@ -49,4 +49,4 @@ protected:
     float m_fAngle;
 };
 
-#endif /* PhysicalEntity_H */
+#endif /* defined(__gowengamedev__PhysicalEntity__) */

@@ -26,10 +26,10 @@
 
 DSGameScreen::DSGameScreen(int topScreenWidth, int topScreenHeight, int bottomScreenWidth, int bottomScreenHeight) : GameScreen()
 {
-    sf2d_init(GAME_WIDTH, GAME_HEIGHT, GAME_WIDTH, GAME_HEIGHT);
+    sf2d_init(GAME_WIDTH, GAME_HEIGHT, GAME_WIDTH * 2, GAME_HEIGHT);
 
     m_renderer = std::unique_ptr<DSRenderer>(new DSRenderer(GFX_BOTTOM, bottomScreenWidth, bottomScreenHeight));
-    m_topScreenRenderer = new TopScreenRenderer(GFX_TOP, 400, 240);
+    m_topScreenRenderer = new TopScreenRenderer(GFX_TOP, topScreenWidth, topScreenHeight);
 
     m_iTopScreenWidth = topScreenWidth;
     m_iTopScreenHeight = topScreenHeight;
@@ -39,7 +39,7 @@ DSGameScreen::DSGameScreen(int topScreenWidth, int topScreenHeight, int bottomSc
 
 void DSGameScreen::touchToWorld(TouchEvent &touchEvent)
 {
-    float x = (touchEvent.getX() / (float) m_iBottomScreenWidth) * GAME_WIDTH;
+    float x = (touchEvent.getX() / (float) m_iBottomScreenWidth) * (GAME_WIDTH * 2);
     float y = (((float) m_iBottomScreenHeight) - touchEvent.getY()) / ((float) m_iBottomScreenHeight) * GAME_HEIGHT;
 
     m_touchPoint->set(x, y);

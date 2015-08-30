@@ -42,6 +42,7 @@ SOURCES		+=	../../../core/framework/ui/3ds
 SOURCES		+=	../../../core/framework/util
 SOURCES		+=	../../../core/game
 SOURCES		+=	../../../core/game/ui
+SOURCES		+=	../../../core/game/ui/3ds
 DATA		:=	data
 INCLUDES	:=	include
 INCLUDES	+=	../../../core/framework/entity
@@ -53,6 +54,7 @@ INCLUDES	+=	../../../core/framework/ui/3ds
 INCLUDES	+=	../../../core/framework/util
 INCLUDES	+=	../../../core/game
 INCLUDES	+=	../../../core/game/ui
+INCLUDES	+=	../../../core/game/ui/3ds
 
 APP_TITLE	:=	Tappy Plane
 APP_DESCRIPTION	:=	A Flappy Bird clone

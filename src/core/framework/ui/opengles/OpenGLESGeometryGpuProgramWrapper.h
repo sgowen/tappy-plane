@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Gowen Game Dev. All rights reserved.
 //
 
-#ifndef __nosfuratu__OpenGLESGeometryGpuProgramWrapper__
-#define __nosfuratu__OpenGLESGeometryGpuProgramWrapper__
+#ifndef __gowengamedev__OpenGLESGeometryGpuProgramWrapper__
+#define __gowengamedev__OpenGLESGeometryGpuProgramWrapper__
 
 #include "GpuProgramWrapper.h"
 #include "ColorProgram.h"
@@ -25,4 +25,4 @@ private:
     ColorProgramStruct m_colorProgram;
 };
 
-#endif /* defined(__nosfuratu__OpenGLESGeometryGpuProgramWrapper__) */
+#endif /* defined(__gowengamedev__OpenGLESGeometryGpuProgramWrapper__) */

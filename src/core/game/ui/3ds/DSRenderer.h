@@ -27,6 +27,10 @@ public:
     virtual void endFrame();
 
     virtual void cleanUp();
+    
+    virtual void renderWorldBackground(World &world);
+    
+    virtual void renderWorldForeground(World &world, Glove &glove, float titleAlpha);
 
 private:
     gfxScreen_t m_screen;

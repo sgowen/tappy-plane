@@ -1,13 +1,13 @@
 //
 //  ColorProgram.h
-//  nosfuratu
+//  gowengamedev-framework
 //
 //  Created by Stephen Gowen on 8/4/15.
 //  Copyright (c) 2015 Gowen Game Dev. All rights reserved.
 //
 
-#ifndef __nosfuratu__ColorProgram__
-#define __nosfuratu__ColorProgram__
+#ifndef __gowengamedev__ColorProgram__
+#define __gowengamedev__ColorProgram__
 
 extern "C"
 {
@@ -32,4 +32,4 @@ private:
     ColorProgram();
 };
 
-#endif /* defined(__nosfuratu__ColorProgram__) */
+#endif /* defined(__gowengamedev__ColorProgram__) */

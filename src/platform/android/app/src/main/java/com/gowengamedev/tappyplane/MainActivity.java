@@ -5,7 +5,10 @@ import android.app.Activity;
 import android.graphics.Point;
 import android.media.AudioManager;
 import android.opengl.GLSurfaceView;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -15,9 +18,7 @@ import android.widget.LinearLayout;
 
 public final class MainActivity extends Activity
 {
-    private static final Logger logger = new Logger(MainActivity.class);
-
-    protected RendererWrapper _rendererWrapper;
+    private GameRenderer _gameRenderer;
     private GLSurfaceView _glSurfaceView;
 
     @Override
@@ -32,17 +33,14 @@ public final class MainActivity extends Activity
 
         setContentView(R.layout.activity_main);
 
-        Point size = ViewUtils.getScreenSize(this);
+        Point size = getScreenSize();
 
-        if (Logger.isDebugEnabled())
-        {
-            logger.debug("dimension " + size.x + " x " + size.y);
-        }
+        Log.d("MainActivity", "dimension " + size.x + " x " + size.y);
 
-        _rendererWrapper = new RendererWrapper(this, size.x, size.y);
+        _gameRenderer = new GameRenderer(this, size.x, size.y);
         _glSurfaceView = new GLSurfaceView(this);
         _glSurfaceView.setEGLContextClientVersion(2);
-        _glSurfaceView.setRenderer(_rendererWrapper);
+        _glSurfaceView.setRenderer(_gameRenderer);
 
         LinearLayout gameContainer = (LinearLayout) findViewById(R.id.game);
         gameContainer.addView(_glSurfaceView);
@@ -64,18 +62,18 @@ public final class MainActivity extends Activity
                     {
                         case MotionEvent.ACTION_DOWN:
                         case MotionEvent.ACTION_POINTER_DOWN:
-                            _rendererWrapper.handleTouchDown(event.getX(pointerIndex), event.getY(pointerIndex));
+                            _gameRenderer.handleTouchDown(event.getX(pointerIndex), event.getY(pointerIndex));
                             break;
                         case MotionEvent.ACTION_UP:
                         case MotionEvent.ACTION_POINTER_UP:
                         case MotionEvent.ACTION_CANCEL:
-                            _rendererWrapper.handleTouchUp(event.getX(pointerIndex), event.getY(pointerIndex));
+                            _gameRenderer.handleTouchUp(event.getX(pointerIndex), event.getY(pointerIndex));
                             break;
                         case MotionEvent.ACTION_MOVE:
                             for (int i = 0; i < event.getPointerCount(); i++)
                             {
                                 pointerIndex = i;
-                                _rendererWrapper.handleTouchDragged(event.getX(pointerIndex), event.getY(pointerIndex));
+                                _gameRenderer.handleTouchDragged(event.getX(pointerIndex), event.getY(pointerIndex));
                             }
                             break;
                     }
@@ -92,13 +90,13 @@ public final class MainActivity extends Activity
         super.onResume();
 
         _glSurfaceView.onResume();
-        _rendererWrapper.onResume();
+        _gameRenderer.onResume();
     }
 
     @Override
     protected void onPause()
     {
-        _rendererWrapper.onPause();
+        _gameRenderer.onPause();
         _glSurfaceView.onPause();
 
         super.onPause();
@@ -107,11 +105,31 @@ public final class MainActivity extends Activity
     @Override
     public void onBackPressed()
     {
-        if (_rendererWrapper.handleOnBackPressed())
+        if (_gameRenderer.handleOnBackPressed())
         {
             return;
         }
 
         super.onBackPressed();
+    }
+
+    @SuppressLint("NewApi")
+    @SuppressWarnings("deprecation")
+    private Point getScreenSize()
+    {
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2)
+        {
+            display.getSize(size);
+        }
+        else
+        {
+            size.x = display.getWidth();
+            size.y = display.getHeight();
+        }
+
+        return size;
     }
 }

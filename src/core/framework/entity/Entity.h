@@ -1,13 +1,13 @@
 //
 //  Entity.h
-//  nosfuratu
+//  gowengamedev-framework
 //
 //  Created by Stephen Gowen on 8/3/15.
 //  Copyright (c) 2015 Gowen Game Dev. All rights reserved.
 //
 
-#ifndef __nosfuratu__Entity__
-#define __nosfuratu__Entity__
+#ifndef __gowengamedev__Entity__
+#define __gowengamedev__Entity__
 
 class Entity
 {
@@ -29,4 +29,4 @@ private:
     int m_ID;
 };
 
-#endif /* defined(__nosfuratu__Entity__) */
+#endif /* defined(__gowengamedev__Entity__) */

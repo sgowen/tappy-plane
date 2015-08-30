@@ -1,13 +1,13 @@
 //
 //  TouchType.h
-//  nosfuratu
+//  gowengamedev-framework
 //
 //  Created by Stephen Gowen on 7/22/15.
 //  Copyright (c) 2015 Gowen Game Dev. All rights reserved.
 //
 
-#ifndef nosfuratu_TouchType_h
-#define nosfuratu_TouchType_h
+#ifndef __gowengamedev__TouchType__
+#define __gowengamedev__TouchType__
 
 typedef enum
 {
@@ -16,4 +16,4 @@ typedef enum
     UP
 } Touch_Type;
 
-#endif
+#endif /* defined(__gowengamedev__TouchType__) */

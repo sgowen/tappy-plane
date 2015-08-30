@@ -13,7 +13,7 @@
 
 static AAssetManager *asset_manager;
 
-JNIEXPORT void JNICALL Java_com_gowengamedev_tappyplane_platform_PlatformFileUtils_init_1asset_1manager(JNIEnv * env, jclass jclazz, jobject java_asset_manager)
+JNIEXPORT void JNICALL Java_com_gowengamedev_tappyplane_platform_PlatformAssetUtils_init_1asset_1manager(JNIEnv * env, jclass jclazz, jobject java_asset_manager)
 {
 	UNUSED(jclazz);
 	asset_manager = AAssetManager_fromJava(env, java_asset_manager);

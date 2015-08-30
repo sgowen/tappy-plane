@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Gowen Game Dev. All rights reserved.
 //
 
-#ifndef __nosfuratu__OpenGLESTextureGpuProgramWrapper__
-#define __nosfuratu__OpenGLESTextureGpuProgramWrapper__
+#ifndef __gowengamedev__OpenGLESTextureGpuProgramWrapper__
+#define __gowengamedev__OpenGLESTextureGpuProgramWrapper__
 
 #include "GpuProgramWrapper.h"
 #include "TextureProgram.h"
@@ -25,4 +25,4 @@ private:
     TextureProgramStruct m_textureProgram;
 };
 
-#endif /* defined(__nosfuratu__OpenGLESTextureGpuProgramWrapper__) */
+#endif /* defined(__gowengamedev__OpenGLESTextureGpuProgramWrapper__) */

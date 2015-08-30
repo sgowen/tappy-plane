@@ -1,18 +1,17 @@
 package com.gowengamedev.tappyplane;
 
-import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.opengles.GL10;
-
 import android.app.Activity;
 import android.opengl.GLSurfaceView.Renderer;
 import android.os.SystemClock;
+import android.util.Log;
 
-import com.gowengamedev.tappyplane.platform.PlatformFileUtils;
+import com.gowengamedev.tappyplane.platform.PlatformAssetUtils;
 
-public final class RendererWrapper implements Renderer
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.opengles.GL10;
+
+public final class GameRenderer implements Renderer
 {
-    private static final Logger logger = new Logger(RendererWrapper.class);
-
     // Definitions from src/core/game/ResourceConstants.h
     private static final short ASCEND_SOUND = 1;
     private static final short SCORE_SOUND = 2;
@@ -53,7 +52,7 @@ public final class RendererWrapper implements Renderer
     private boolean isInitialized;
     private boolean _isMinimumWaveRequirementMet;
 
-    public RendererWrapper(Activity activity, int screenWidth, int screenHeight)
+    public GameRenderer(Activity activity, int screenWidth, int screenHeight)
     {
         this.activity = activity;
         this.screenWidth = screenWidth;
@@ -73,11 +72,11 @@ public final class RendererWrapper implements Renderer
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config)
     {
-        logger.debug("GL Surface created!");
+        Log.d("GameRenderer", "GL Surface created!");
 
         if (!isInitialized)
         {
-            PlatformFileUtils.init_asset_manager(activity.getAssets());
+            PlatformAssetUtils.init_asset_manager(activity.getAssets());
             isInitialized = true;
         }
 
@@ -87,7 +86,7 @@ public final class RendererWrapper implements Renderer
     @Override
     public void onSurfaceChanged(GL10 gl, int width, int height)
     {
-        logger.debug("GL Surface changed!");
+        Log.d("GameRenderer", "GL Surface changed!");
 
         on_surface_changed(width, height, width, height);
         on_resume();
@@ -133,7 +132,7 @@ public final class RendererWrapper implements Renderer
         else
         {
             realTimeElapsed_ms = smoothedDeltaRealTime_ms; // just the first
-                                                           // time
+            // time
         }
 
         movAverageDeltaTime_ms = (realTimeElapsed_ms + movAverageDeltaTime_ms * (movAveragePeriod - 1)) / movAveragePeriod;
