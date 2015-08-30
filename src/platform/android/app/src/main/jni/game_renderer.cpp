@@ -1,5 +1,5 @@
 //
-//  renderer_wrapper.cpp
+//  game_renderer.cpp
 //  tappyplane
 //
 //  Created by Stephen Gowen on 1/29/14.
