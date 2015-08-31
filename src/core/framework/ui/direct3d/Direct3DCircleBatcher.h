@@ -15,16 +15,19 @@ class Direct3DCircleBatcher : public CircleBatcher
 {
 public:
 	Direct3DCircleBatcher();
-    
-    virtual void renderCircle(Circle &circle, Color &color);
-    
-    virtual void renderPartialCircle(Circle &circle, int arcDegrees, Color &color);
+
+	virtual void renderCircle(Circle &circle, Color &c);
+
+	virtual void renderPartialCircle(Circle &circle, int arcDegrees, Color &c);
+
+	virtual void renderCircle(Circle &circle, Color &c, GpuProgramWrapper &gpuProgramWrapper);
+
+	virtual void renderPartialCircle(Circle &circle, int arcDegrees, Color &c, GpuProgramWrapper &gpuProgramWrapper);
+
+protected:
+	virtual void endBatch(GpuProgramWrapper &gpuProgramWrapper);
 
 private:
-	int m_iNumPoints;
-
-	void endBatch();
-
 	void addVertexCoordinate(float x, float y, float z, float r, float g, float b, float a, float u, float v);
 };
 

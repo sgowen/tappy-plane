@@ -14,6 +14,7 @@
 #include "Vector2D.h"
 #include "Direct3DProgram.h"
 #include "Direct3DManager.h"
+#include "GpuProgramWrapper.h"
 
 Direct3DRectangleBatcher::Direct3DRectangleBatcher(bool isFill) : RectangleBatcher(isFill)
 {
@@ -28,14 +29,21 @@ void Direct3DRectangleBatcher::beginBatch()
 
 void Direct3DRectangleBatcher::endBatch()
 {
+	endBatch(*D3DManager->m_colorProgram);
+}
+
+void Direct3DRectangleBatcher::endBatch(GpuProgramWrapper &gpuProgramWrapper)
+{
 	if (m_iNumRectangles > 0)
 	{
 		// set the primitive topology
 		D3DManager->m_deviceContext->IASetPrimitiveTopology(m_isFill ? D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST : D3D11_PRIMITIVE_TOPOLOGY_LINESTRIP);
 
-		D3DManager->prepareForGeometryRendering();
+		gpuProgramWrapper.bind();
 
 		D3DManager->m_deviceContext->DrawIndexed(m_iNumRectangles * INDICES_PER_RECTANGLE, 0, 0);
+
+		gpuProgramWrapper.bind();
 	}
 }
 

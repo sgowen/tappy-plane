@@ -10,6 +10,8 @@
 #include "Direct3DManager.h"
 #include "GameConstants.h"
 #include "BasicReaderWriter.h"
+#include "Direct3DTextureGpuProgramWrapper.h"
+#include "Direct3DGeometryGpuProgramWrapper.h"
 
 inline void throwIfFailed(HRESULT hr)
 {
@@ -38,8 +40,10 @@ void Direct3DManager::init(float width, float height)
 	createVertexBufferForGeometryBatcher();
 	createIndexBuffer();
 	createConstantBuffer();
-	createOffsetBuffer();
 	createMatrix();
+
+	m_textureProgram = std::unique_ptr<Direct3DTextureGpuProgramWrapper>(new Direct3DTextureGpuProgramWrapper());
+	m_colorProgram = std::unique_ptr<Direct3DGeometryGpuProgramWrapper>(new Direct3DGeometryGpuProgramWrapper());
 }
 
 void Direct3DManager::initWindowSizeDependentResources(float width, float height)
@@ -106,59 +110,6 @@ void Direct3DManager::initWindowSizeDependentResources(float width, float height
 	viewport.Height = static_cast<float>(height);
 
 	m_deviceContext->RSSetViewports(1, &viewport);
-}
-
-void Direct3DManager::prepareForSpriteRendering()
-{
-	D3DManager->m_deviceContext->IASetInputLayout(D3DManager->m_sbInputLayout);
-
-	// set the shader objects as the active shaders
-	D3DManager->m_deviceContext->VSSetShader(D3DManager->m_sbVertexShader, nullptr, 0);
-	D3DManager->m_deviceContext->PSSetShader(D3DManager->m_sbPixelShader, nullptr, 0);
-
-	D3D11_MAPPED_SUBRESOURCE mappedResource;
-	ZeroMemory(&mappedResource, sizeof(D3D11_MAPPED_SUBRESOURCE));
-
-	//	Disable GPU access to the vertex buffer data.
-	D3DManager->m_deviceContext->Map(D3DManager->m_sbVertexBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
-
-	int numTextureVertices = D3DManager->m_textureVertices.size();
-	//	Update the vertex buffer here.
-	memcpy(mappedResource.pData, &D3DManager->m_textureVertices[0], sizeof(TEXTURE_VERTEX)* numTextureVertices);
-
-	//	Reenable GPU access to the vertex buffer data.
-	D3DManager->m_deviceContext->Unmap(D3DManager->m_sbVertexBuffer, 0);
-
-	// Set the vertex and index buffer
-	UINT stride = sizeof(TEXTURE_VERTEX);
-	UINT offset = 0;
-	D3DManager->m_deviceContext->IASetVertexBuffers(0, 1, &D3DManager->m_sbVertexBuffer, &stride, &offset);
-}
-
-void Direct3DManager::prepareForGeometryRendering()
-{
-	m_deviceContext->IASetInputLayout(m_gbInputLayout);
-
-	// set the shader objects as the active shaders
-	m_deviceContext->VSSetShader(m_gbVertexShader, nullptr, 0);
-	m_deviceContext->PSSetShader(m_gbPixelShader, nullptr, 0);
-
-	D3D11_MAPPED_SUBRESOURCE mappedResource;
-	ZeroMemory(&mappedResource, sizeof(D3D11_MAPPED_SUBRESOURCE));
-
-	//	Disable GPU access to the vertex buffer data.
-	m_deviceContext->Map(m_gbVertexBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
-
-	//	Update the vertex buffer here.
-	memcpy(mappedResource.pData, &m_colorVertices.front(), sizeof(COLOR_VERTEX)* m_colorVertices.size());
-
-	//	Reenable GPU access to the vertex buffer data.
-	m_deviceContext->Unmap(m_gbVertexBuffer, 0);
-
-	// Set the vertex buffer
-	UINT stride = sizeof(COLOR_VERTEX);
-	UINT offset = 0;
-	m_deviceContext->IASetVertexBuffers(0, 1, &m_gbVertexBuffer, &stride, &offset);
 }
 
 void Direct3DManager::cleanUp()
@@ -399,19 +350,6 @@ void Direct3DManager::createConstantBuffer()
 	m_device->CreateBuffer(&bd, nullptr, &m_matrixConstantbuffer);
 
 	m_deviceContext->VSSetConstantBuffers(0, 1, &m_matrixConstantbuffer);
-}
-
-void Direct3DManager::createOffsetBuffer()
-{
-	D3D11_BUFFER_DESC bd = { 0 };
-
-	bd.Usage = D3D11_USAGE_DEFAULT;
-	bd.ByteWidth = 16;
-	bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-
-	m_device->CreateBuffer(&bd, nullptr, &m_offsetConstantBuffer);
-
-	m_deviceContext->PSSetConstantBuffers(0, 1, &m_offsetConstantBuffer);
 }
 
 void Direct3DManager::createMatrix()

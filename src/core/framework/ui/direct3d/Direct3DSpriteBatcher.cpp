@@ -14,6 +14,7 @@
 #include "TextureRegion.h"
 #include "Direct3DProgram.h"
 #include "Direct3DManager.h"
+#include "DummyGpuProgramWrapper.h"
 
 #include <stdlib.h>
 
@@ -30,6 +31,11 @@ void Direct3DSpriteBatcher::beginBatch()
 
 void Direct3DSpriteBatcher::endBatch(TextureWrapper &textureWrapper)
 {
+	endBatch(textureWrapper, *D3DManager->m_textureProgram);
+}
+
+void Direct3DSpriteBatcher::endBatch(TextureWrapper &textureWrapper, GpuProgramWrapper &gpuProgramWrapper)
+{
 	if (m_iNumSprites > 0)
 	{
 		// tell the GPU which texture to use
@@ -38,9 +44,11 @@ void Direct3DSpriteBatcher::endBatch(TextureWrapper &textureWrapper)
 		// set the primitive topology
 		D3DManager->m_deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-		D3DManager->prepareForSpriteRendering();
+		gpuProgramWrapper.bind();
 
 		D3DManager->m_deviceContext->DrawIndexed(m_iNumSprites * INDICES_PER_RECTANGLE, 0, 0);
+
+		gpuProgramWrapper.unbind();
 	}
 }
 
@@ -140,7 +148,7 @@ void Direct3DSpriteBatcher::drawSprite(float x, float y, float width, float heig
 	m_iNumSprites++;
 }
 
-#pragma <Private>
+#pragma mark <Private>
 
 void Direct3DSpriteBatcher::drawSprite(float x, float y, float width, float height, TextureRegion tr)
 {

@@ -16,8 +16,10 @@
 #define D3DManager (Direct3DManager::getInstance())
 
 #include "Direct3DProgram.h"
+#include "GpuProgramWrapper.h"
 
 #include <vector>
+#include <memory>
 
 class Direct3DManager
 {
@@ -31,7 +33,6 @@ public:
 	ID3D11RenderTargetView *m_renderTargetView; // the render target interface
 	ID3D11BlendState *m_blendState; // the blend state interface
 	ID3D11Buffer *m_matrixConstantbuffer; // the matrix constant buffer interface
-	ID3D11Buffer *m_offsetConstantBuffer; // the offset constant buffer interface
 	ID3D11Buffer *m_indexbuffer; // the index buffer interface
 
 	// Used in SpriteBatcher
@@ -52,15 +53,14 @@ public:
 	// All above rendering takes place inside this matrix
 	DirectX::XMMATRIX m_matFinal;
 
+	std::unique_ptr<GpuProgramWrapper> m_textureProgram;
+	std::unique_ptr<GpuProgramWrapper> m_colorProgram;
+
 	static Direct3DManager * getInstance();
 
 	void init(float width, float height);
 
 	void initWindowSizeDependentResources(float width, float height);
-
-	// Called by Batchers
-	void prepareForSpriteRendering();
-	void prepareForGeometryRendering();
 
 	void cleanUp();
 
@@ -76,7 +76,6 @@ private:
 	void createVertexBufferForGeometryBatcher();
 	void createIndexBuffer();
 	void createConstantBuffer();
-	void createOffsetBuffer();
 	void createMatrix();
 
 	std::vector<short> createIndexValues();

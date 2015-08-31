@@ -16,6 +16,7 @@
 #include "Vector2D.h"
 #include "Direct3DProgram.h"
 #include "Direct3DManager.h"
+#include "GpuProgramWrapper.h"
 
 Direct3DLineBatcher::Direct3DLineBatcher() : LineBatcher()
 {
@@ -30,14 +31,21 @@ void Direct3DLineBatcher::beginBatch()
 
 void Direct3DLineBatcher::endBatch()
 {
+	endBatch(*D3DManager->m_colorProgram);
+}
+
+void Direct3DLineBatcher::endBatch(GpuProgramWrapper &gpuProgramWrapper)
+{
 	if (m_iNumLines > 0)
 	{
 		// set the primitive topology
 		D3DManager->m_deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_LINELIST);
 
-		D3DManager->prepareForGeometryRendering();
+		gpuProgramWrapper.bind();
 
 		D3DManager->m_deviceContext->Draw(m_iNumLines * VERTICES_PER_LINE, 0);
+
+		gpuProgramWrapper.unbind();
 	}
 }
 
