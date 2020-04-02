@@ -1,0 +1,4 @@
+# NetBeans
+build/
+nbproject/
+*.a
